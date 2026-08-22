@@ -1,0 +1,35 @@
+{
+  "name": "codewithveek",
+  "description": "Agent Skills by CodewithVeek — plain-language teaching, database schema engineering, and other practitioner tooling.",
+  "owner": {
+    "name": "Lucky Victory",
+    "url": "https://github.com/CodewithVeek"
+  },
+  "plugins": [
+    {
+      "name": "learn-simply",
+      "source": "./",
+      "skills": ["./skills/learn-simply"],
+      "strict": false,
+      "description": "Explains any topic in plain, unambiguous language using ASD-STE100 (Simplified Technical English) principles.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Lucky Victory",
+        "url": "https://github.com/CodewithVeek"
+      },
+      "homepage": "https://github.com/CodewithVeek/skills",
+      "repository": "https://github.com/CodewithVeek/skills",
+      "license": "MIT",
+      "category": "education",
+      "keywords": [
+        "learning",
+        "explanation",
+        "plain-language",
+        "simplified-technical-english",
+        "ste",
+        "teaching",
+        "eli5"
+      ]
+    }
+  ]
+}
