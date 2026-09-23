@@ -30,6 +30,31 @@
         "teaching",
         "eli5"
       ]
+    },
+    {
+      "name": "knowledge-graph",
+      "source": "./",
+      "skills": ["./skills/knowledge-graph"],
+      "strict": false,
+      "description": "Builds and maintains a codebase knowledge graph: one page per feature, a reading order with previous/next links, and tooling that tells you when a page has fallen behind the code it covers.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Lucky Victory",
+        "url": "https://github.com/CodewithVeek"
+      },
+      "homepage": "https://github.com/CodewithVeek/skills",
+      "repository": "https://github.com/CodewithVeek/skills",
+      "license": "MIT",
+      "category": "development",
+      "keywords": [
+        "documentation",
+        "knowledge-base",
+        "codebase-map",
+        "onboarding",
+        "docs-rot",
+        "technical-writing",
+        "repository"
+      ]
     }
   ]
 }

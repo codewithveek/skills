@@ -5,6 +5,7 @@ Agent Skills following the open [agentskills.io](https://agentskills.io) standar
 | Skill | What it does |
 | --- | --- |
 | [`learn-simply`](skills/learn-simply) | Explains any topic in plain, unambiguous language using Simplified Technical English rules |
+| [`knowledge-graph`](skills/knowledge-graph) | Maps a codebase — one page per feature — and tells you when a page has fallen behind the code |
 
 ---
 
@@ -85,6 +86,92 @@ skills/learn-simply/
 ```
 
 The reference file is loaded only when the agent needs it, so the skill costs almost nothing in context until it's actually working.
+
+---
+
+## knowledge-graph
+
+Documentation rots quietly. Nothing tells you which page stopped being true, so people stop trusting all of it, and then nobody updates any of it.
+
+`knowledge-graph` keeps a codebase's knowledge as a folder of small pages — one per feature — with an index that sets the reading order, previous/next links at the bottom of every page, and one piece of metadata per page: the source it describes.
+
+```markdown
+<!-- kg:covers
+src/lib/webhook-handler.ts
+src/api/webhook/
+-->
+```
+
+That comment stays invisible when the page renders, and it is what lets tooling answer the question documentation can never answer about itself: **what is out of date right now?**
+
+### The commands
+
+One file, no dependencies, Node 18+.
+
+| Command | Answers |
+| --- | --- |
+| `node $KG check` | Is every page in the index and every indexed page real, do all links resolve, do the covered paths exist, are the footers current? |
+| `node $KG stale` | Which pages have had commits to their code since the page itself last changed — and which commits were they? |
+| `node $KG nav --write` | Rebuild every previous/next footer from the index's order |
+| `node $KG map --gaps src` | What does each page cover — and which code files does nothing cover? |
+
+### How it behaves
+
+- **Reads before exploring.** In a repo that has a graph, the agent reads the index and the pages for the area first. Cheaper than re-deriving the structure every session, and it carries the lessons that are not in the code.
+- **Updates as part of the work.** At the end of any change: which pages does this touch, edit them, regenerate the navigation, run the check. Not a follow-up task that never happens.
+- **Verifies before it writes.** Claims get checked against the source, never carried over from another document. For a batch of pages there is a deep pass — subagents fact-checking every claim adversarially, plus one hunting for what is missing. On the project this skill came out of, that pass found 41 errors in 18 freshly written pages.
+- **Fixes the code when the code is the problem.** A verification pass that only ever edits prose is missing half of what it finds: a log level that contradicts what the docs promise is a bug, not a documentation error.
+- **Bootstraps a repo that has none.** Survey, agree the page list, write the index first, then fill it in.
+
+### Install
+
+**Claude Code** (as a plugin):
+
+```
+/plugin marketplace add CodewithVeek/skills
+/plugin install knowledge-graph@codewithveek
+```
+
+**Any agent** (via the skills CLI):
+
+```bash
+npx skills add CodewithVeek/skills
+```
+
+**Manually**:
+
+```bash
+git clone https://github.com/CodewithVeek/skills.git
+cp -r skills/skills/knowledge-graph ~/.claude/skills/     # Claude Code
+cp -r skills/skills/knowledge-graph ~/.codex/skills/      # OpenAI Codex
+```
+
+### Use it
+
+```
+document this codebase
+update the knowledge graph
+is the documentation still accurate?
+what has gone stale?
+where does payment capture actually happen?
+```
+
+To force it in Claude Code: `/knowledge-graph:knowledge-graph`
+
+### What's inside
+
+```
+skills/knowledge-graph/
+├── SKILL.md                        # When to read it, when to update it, the rules
+├── references/
+│   ├── page-contract.md            # Page template, naming, what does not belong
+│   ├── bootstrap.md                # Starting a graph in a repo that has none
+│   └── deep-verification.md        # Fact-checking every claim against the source
+└── scripts/
+    └── kg.mjs                      # check · stale · nav · map
+```
+
+The reference files load only when that part of the job comes up, so the skill stays cheap until it is actually working.
 
 ## Contributing
 
