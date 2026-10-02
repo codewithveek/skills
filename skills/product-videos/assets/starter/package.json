@@ -1,0 +1,28 @@
+{
+  "name": "product-videos",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Product videos built with Remotion: rebuilt app screens, camera and cursor, voiceover, music, captions, thumbnails.",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "typecheck": "tsc",
+    "voice": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/voice.mts",
+    "music": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/music.mts",
+    "vtt": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/vtt.mts",
+    "render": "./render-all.sh",
+    "audio-report": "node scripts/audio-report.mjs"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.530",
+    "@remotion/google-fonts": "4.0.530",
+    "@remotion/transitions": "4.0.530",
+    "lucide-react": "^1.49.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "remotion": "4.0.530"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "typescript": "^7.0.2"
+  }
+}

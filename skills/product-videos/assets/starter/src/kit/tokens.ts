@@ -1,0 +1,91 @@
+// The app's UI tokens, value for value from its own theme (CSS variables, Tailwind config). These defaults are a dark
+// zinc-and-blue example; replace them with the product's so rebuilt screens match the real app.
+export const t = {
+  canvas: "#09090b",
+  surface: "#18181b",
+  sunken: "#27272a",
+  ink: "#fafafa",
+  muted: "#a1a1aa",
+  faint: "#71717a",
+  line: "#27272a",
+  lineStrong: "#71717a",
+  lineSubtle: "#1f1f23",
+  lineControl: "#3f3f46",
+  popover: "#232327",
+  popoverLine: "#3f3f46",
+  popoverHover: "#313136",
+  scrim: "rgba(0,0,0,0.65)",
+
+  brand: "#0052cc",
+  brandStrong: "#0065ff",
+  brandSubtle: "#0b2447",
+  link: "#4c9aff",
+  focus: "#4c9aff",
+  navActive: "#0b2447",
+  navActiveInk: "#b3d4ff",
+  panel: "#061530",
+  onPanelMuted: "#b3d4ff",
+
+  positive: "#57d9a3",
+  positiveSubtle: "#0b2e1f",
+  positiveLine: "#006644",
+  warning: "#ffc400",
+  warningSubtle: "#332600",
+  warningLine: "#974f0c",
+  negative: "#ff8f73",
+  negativeSubtle: "#3d1208",
+  negativeLine: "#bf2600",
+  info: "#b3d4ff",
+  infoSubtle: "#0b2447",
+  infoLine: "#0747a6",
+  neutral: "#a1a1aa",
+  neutralSubtle: "#27272a",
+  neutralLine: "#71717a",
+
+  chart1: "#2684ff",
+  chart2: "#71717a",
+  chart3: "#079f69",
+  chart4: "#e56910",
+  chartGrid: "#27272a",
+  chartTrack: "#3f3f46",
+};
+
+export type Tone = "positive" | "warning" | "negative" | "info" | "neutral";
+
+export const tone = (k: Tone) =>
+  ({
+    positive: { fg: t.positive, bg: t.positiveSubtle, edge: t.positiveLine },
+    warning: { fg: t.warning, bg: t.warningSubtle, edge: t.warningLine },
+    negative: { fg: t.negative, bg: t.negativeSubtle, edge: t.negativeLine },
+    info: { fg: t.info, bg: t.infoSubtle, edge: t.infoLine },
+    neutral: { fg: t.neutral, bg: t.neutralSubtle, edge: t.neutralLine },
+  })[k];
+
+// The product's status words and their tones. Example values: copy the real app's mapping.
+export const STATUS: Record<string, Tone> = {
+  pending: "warning",
+  approved: "positive",
+  paid: "neutral",
+  reversed: "negative",
+  held: "warning",
+  rejected: "negative",
+  awaiting_review: "warning",
+  queued: "neutral",
+  submitted: "info",
+  in_review: "warning",
+  settled: "positive",
+  failed: "negative",
+  onboarding: "warning",
+  active: "positive",
+  suspended: "negative",
+  confirmed: "positive",
+  under_review: "warning",
+  did_not_qualify: "negative",
+  no_commission: "neutral",
+  recorded: "info",
+  attributed: "positive",
+  unattributed: "neutral",
+  clear: "positive",
+  review: "warning",
+  reject: "negative",
+};

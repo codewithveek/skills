@@ -55,6 +55,34 @@
         "technical-writing",
         "repository"
       ]
+    },
+    {
+      "name": "product-videos",
+      "source": "./",
+      "skills": ["./skills/product-videos"],
+      "strict": false,
+      "description": "Makes product videos with Remotion — launches, tutorials, explainers and vertical cutdowns — with rebuilt app screens, camera and cursor, voiceover, music, sound effects, captions and thumbnails, showing only what the product really does.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Lucky Victory",
+        "url": "https://github.com/CodewithVeek"
+      },
+      "homepage": "https://github.com/CodewithVeek/skills",
+      "repository": "https://github.com/CodewithVeek/skills",
+      "license": "MIT",
+      "category": "media",
+      "keywords": [
+        "video",
+        "remotion",
+        "launch-video",
+        "product-demo",
+        "motion-graphics",
+        "voiceover",
+        "tts",
+        "captions",
+        "explainer",
+        "social-video"
+      ]
     }
   ]
 }

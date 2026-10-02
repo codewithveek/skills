@@ -1,0 +1,7 @@
+node_modules/
+build/
+out/
+stills/
+public/vo/cache/
+public/music/*.wav
+reference/shots/

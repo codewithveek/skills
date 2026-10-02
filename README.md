@@ -6,6 +6,7 @@ Agent Skills following the open [agentskills.io](https://agentskills.io) standar
 | --- | --- |
 | [`learn-simply`](skills/learn-simply) | Explains any topic in plain, unambiguous language using Simplified Technical English rules |
 | [`knowledge-graph`](skills/knowledge-graph) | Maps a codebase — one page per feature — and tells you when a page has fallen behind the code |
+| [`product-videos`](skills/product-videos) | Makes launch, tutorial, explainer and social videos of a software product, with voiceover, music and captions, showing only what the product really does |
 
 ---
 
@@ -172,6 +173,85 @@ skills/knowledge-graph/
 ```
 
 The reference files load only when that part of the job comes up, so the skill stays cheap until it is actually working.
+
+---
+
+## product-videos
+
+Launch videos like Linear's or Raycast's are mostly code now: the product's screens, a camera that zooms in on the action, a cursor that types and clicks, words timed to a voice. `product-videos` turns that into a repeatable process with [Remotion](https://www.remotion.dev).
+
+It rebuilds the product's real screens as React components from its code and screenshots, so numbers count up and the camera can zoom without blur. And it holds one rule above the rest: **everything shown exists in the product**. Motion is free; invented buttons, toasts and live updates are not.
+
+### What it makes
+
+- **Launch videos**: problem → "Introducing …" → pitch → product moments → close
+- **Tutorials and walkthroughs**: step by step, with the app's real labels and confirmations
+- **Explainers**: diagram-led "how it works" videos
+- **Social cutdowns**: 9:16 versions from the same scenes, with captions burned in
+- Plus voiceover (local Kokoro, or ElevenLabs), music, click and whoosh effects, `.vtt` captions, loudness at -16 LUFS, and thumbnails embedded as cover art
+
+### How it behaves
+
+- **Asks first, then storyboards.** Audience, video type, length and shape, whether you bring a script, voice and music. Then it shows a scene-by-scene storyboard before building.
+- **Checks every claim.** Your script's lines are checked against the product, and overclaims get a precise rewrite ("across borders", not "globally").
+- **Narration drives timing.** Each voice line is pinned to the frame of its action, and scenes grow to fit.
+- **Verifies what it can't watch.** Frames are checked as stills, and sound is checked by measuring it. It tells you what's left to judge by eye and ear.
+- **Ships a starter kit.** A tested Remotion project with the camera and anchor system, cursor, cards, thumbnails, vertical layout, and scripts for voice, music, captions, loudness and an audio report.
+
+### Install
+
+**Claude Code** (as a plugin):
+
+```
+/plugin marketplace add CodewithVeek/skills
+/plugin install product-videos@codewithveek
+```
+
+**Any agent** (via the skills CLI):
+
+```bash
+npx skills add CodewithVeek/skills
+```
+
+**Manually**:
+
+```bash
+git clone https://github.com/CodewithVeek/skills.git
+cp -r skills/skills/product-videos ~/.claude/skills/      # Claude Code
+cp -r skills/skills/product-videos ~/.codex/skills/       # OpenAI Codex
+```
+
+Needs Node 22+. Voiceover adds `kokoro-js` (about 500 MB, installed once).
+
+### Use it
+
+```
+make a launch video for my app, it's running on localhost:3000
+turn the onboarding flow into a 60-second tutorial with a voiceover
+make a 9:16 version of the launch video for Reels
+add music and click sounds to the videos
+write the VTT captions and a thumbnail for each video
+```
+
+To force it in Claude Code: `/product-videos:product-videos`
+
+### What's inside
+
+```
+skills/product-videos/
+├── SKILL.md                    # Intake questions, the workflow, the rules, delivery
+├── references/
+│   ├── styles.md               # Launch, tutorial, explainer, teaser, cutdown… structures and pacing
+│   ├── scriptwriting.md        # Word budget, headlines, narration, claim audit, pronunciation
+│   ├── audio.md                # Voice, music, effects, levels, licences, ElevenLabs MCP
+│   ├── accuracy.md             # What may be shown, how to verify it
+│   ├── kit.md                  # The starter project: camera, anchors, scenes, vertical, thumbnails
+│   ├── social.md               # Platform shapes, safe areas, captions, thumbnails
+│   └── pitfalls.md             # Bugs met along the way, and their fixes
+└── assets/starter/             # A working Remotion project with an example video
+```
+
+---
 
 ## Contributing
 
