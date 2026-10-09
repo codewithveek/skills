@@ -4,7 +4,7 @@ description: "Make motion videos for a software product with Remotion — launch
 license: MIT
 metadata:
   author: CodewithVeek
-  version: "1.1.0"
+  version: "1.2.0"
   homepage: "https://github.com/CodewithVeek/skills"
 ---
 
@@ -25,7 +25,9 @@ Three things make these videos good, and most of this skill serves them:
 2. **The words carry it.** A clear problem, one promise, short headlines, narration that says what
    the screen shows. Read `references/scriptwriting.md` before drafting.
 3. **Sound finishes it.** Voice timed to the action, music ducked under it, a click on every click,
-   one loudness for every file. Read `references/audio.md` before adding sound.
+   a sound on each transition and motion moment (a stamp lands, a card is dealt, a number ticks) from
+   the look's sound palette, one loudness for every file. All bundled effects are CC0 or made by the
+   kit. Read `references/audio.md` before adding sound.
 
 You cannot watch or listen to what you make. Check pictures as still frames (`stills.sh`) and sound
 as numbers (`scripts/audio-report.mjs`), then tell the user plainly what they still need to judge
@@ -86,6 +88,8 @@ into it, and roughly how long. It is cheap to change words and order now and exp
    reach in `<Anchor name="…">` and aim at names, never at hand-measured coordinates.
    `references/kit.md` explains the camera, pointer, anchors, scene reuse and the vertical layout.
 6. **Generate sound**: `npm run voice` (scenes grow to fit their narration), `npm run music`.
+   Effects come with the motion blocks and transitions; add `<Sfx name="confirm" at={…} />` for the
+   one moment per scene that resolves, and nothing more.
 7. **Check stills** at the moments that matter — every click, every typed value, every zoom, the
    last frame of each scene — and fix framing, overlaps and clipped text before rendering. Most
    problems are camera framing; widen the zoom or aim at a different anchor.
@@ -123,7 +127,7 @@ Read the one you need, when you need it:
 | `references/styles.md` | Choosing a video type; you need a structure, length and pacing |
 | `references/visual-styles.md` | Choosing and recommending a look; building Editorial, Graphic or Cinematic scenes; matching a reference video |
 | `references/scriptwriting.md` | Writing or reviewing the script, headlines, narration, captions, or working from a user's script |
-| `references/audio.md` | Voiceover, music, sound effects, levels, licensing, ElevenLabs or other AI audio tools |
+| `references/audio.md` | Voiceover, music, sound effects and each look's sound palette, levels, licensing, finding more CC0 sounds, ElevenLabs or other AI audio tools |
 | `references/accuracy.md` | Before rebuilding any screen; deciding what may be shown |
 | `references/kit.md` | Working in the starter project: looks, transitions, motion blocks, camera, cursor, anchors, scenes, vertical, thumbnails |
 | `references/social.md` | 9:16 or 1:1 cutdowns, burned-in captions, platform specs, thumbnails |

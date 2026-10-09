@@ -1,7 +1,7 @@
 {
   "name": "product-videos",
   "private": true,
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Product videos built with Remotion: rebuilt app screens, camera and cursor, voiceover, music, captions, thumbnails.",
   "scripts": {
     "studio": "remotion studio src/index.ts",
@@ -10,7 +10,8 @@
     "music": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/music.mts",
     "vtt": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/vtt.mts",
     "render": "./render-all.sh",
-    "audio-report": "node scripts/audio-report.mjs"
+    "audio-report": "node scripts/audio-report.mjs",
+    "sfx": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/sfx.mts"
   },
   "dependencies": {
     "@remotion/cli": "4.0.530",

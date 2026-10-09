@@ -193,7 +193,7 @@ It rebuilds the product's real screens as React components from its code and scr
   - **Editorial**: warm paper, one big rolling number per scene, floating cards, focus pulls, brand-colour circle reveals (launches, feature drops, explainers)
   - **Graphic**: white grid, one loud brand colour, pixel motifs, colour slabs, logo swirls and orbits (API and infrastructure products)
   - **Cinematic**: near-black, soft glow, large light type, slow (premium brands, teasers)
-- Plus voiceover (local Kokoro, or ElevenLabs), music, click and whoosh effects, `.vtt` captions, loudness at -16 LUFS, and thumbnails embedded as cover art
+- Plus voiceover (local Kokoro, or ElevenLabs), music, 15 bundled sound effects (CC0, or made by the kit) that play with the motion (stamps, dealt cards, ticking numbers, risers, slabs) in a palette per style, `.vtt` captions, loudness at -16 LUFS, and thumbnails embedded as cover art
 
 ### How it behaves
 

@@ -83,7 +83,8 @@ floating window; a camera that zooms to anchors and a cursor that clicks and typ
   with an uppercase eyebrow in the brand colour.
 - **Transitions:** 12-frame crossfade with a soft whoosh; `push` between steps of a series.
 - **Pace:** 5–8 s per product moment; camera wide → zoom to the action → pull back.
-- **Sound:** voiceover first, music ducked under it.
+- **Sound:** voiceover first, music ducked under it. Effects: a click per cursor click, a whoosh per
+  transition, little else.
 - **Kit:** `Step`, `AppWindow`, `Anchor`, `Cursor`, `TitleCard`, `EndCard` (see `kit.md`).
 
 ## 4. Editorial
@@ -127,6 +128,9 @@ saved for the brand moments.
   the story; a circle of brand colour for brand moments; a rounded panel growing to full frame when
   moving into a detail.
 - **Pace:** 3–5 s per scene, about ten scenes in 40 s. Music only; no voiceover.
+- **Sound palette:** paper and cards. Soft air under focus pulls, a riser into each circle of brand
+  colour, a swish and a wooden knock as cards are dealt, a punchy stamp, ticks while a slow number
+  rolls, one confirm when something resolves.
 - **Close:** the offer on brand colour (price, URL, mark), then optionally one last proof scene.
 
 **Kit:** `Paper`, `Slab dots`, `RuleLabel`, `Odometer`, `AccentLine`, `Caption`, `PersonCard`,
@@ -164,6 +168,8 @@ whose value is not a screen.
 - **Transitions:** colour slabs, hard cuts on the beat, push for lists, a zoom through concentric
   squares into the close.
 - **Pace:** 2–4 s per scene, cut to the music. Music only.
+- **Sound palette:** crisp and digital. A thump as each slab lands, glitches as pixels appear, pops
+  instead of knocks, a blip as the name lands, ticks as a list steps, a riser into the zoom-through.
 - **Close:** "[Name] is live now" on the brand colour, with the mark as an outlined watermark.
 
 **Kit:** `Blueprint` (and `Blueprint dark`), `Slab watermark`, `DotMatrix`, `GridCell`, `Swirl` + `Tile`,
@@ -179,7 +185,8 @@ type, slow focus pulls.
 - **Type:** Geist, semi-bold, large (90–120 px), light on dark; one accent phrase per line.
 - **Motion:** slower than every other look: 20-frame focus pulls, words rising 6–8 frames apart, long
   holds. UI appears in the Studio window but with fewer, slower camera moves.
-- **Sound:** a calm bed or a slow voiceover; no whooshes, or very quiet ones.
+- **Sound:** a calm bed or a slow voiceover. Effects at half level: soft air on transitions, stamps
+  and confirms only; no ticks, pops or blips.
 - **Pace:** 5–8 s per scene; fewer scenes.
 
 ## 7. Motion rules that apply to every look
@@ -213,5 +220,7 @@ Learned from both references and true in all four looks:
   (a mixed-style showcase), but keep one look per video unless there is a reason.
 - A new look is an entry in `LOOKS` in `src/kit/looks.ts`. Derive it from the brand (its font, its
   background, its accent) and give it a default transition and pace.
+- Sound: each look's `sfx` palette sets the transition sounds, swaps and level (`audio.md` section 4).
+  A new look should set one too.
 - Music: Editorial and Cinematic suit `bed.wav`; Graphic and Studio launches suit `upbeat.wav`. For
   music-led videos raise the music's `alone` level (0.6) since nothing ducks it.

@@ -2,7 +2,8 @@
 
 Remotion mixes audio itself: `<Audio>` elements inside sequences play at their frames, with a
 `volume` that can be a function of the frame. The starter's `makeVideo` already places narration,
-music (ducked under the voice), a whoosh on each transition, and the cursor's click sounds.
+music (ducked under the voice), a sound for each transition, the cursor's click sounds, and the
+sounds the motion blocks make (a stamp landing, a card dealt, an odometer ticking).
 
 ## Contents
 
@@ -28,7 +29,9 @@ music (ducked under the voice), a whoosh on each transition, and the cursor's cl
 | Music, local AI | Stable Audio Open Small | Stability Community Licence: free under $1M annual revenue | Needs a Hugging Face account and Python; heavy on CPU. |
 | Music, library | Pixabay Music, YouTube Audio Library | Free commercial use | Pixabay tracks can trigger YouTube Content ID claims; its licence certificate clears them. |
 | Avoid for commercial work | MusicGen weights | CC-BY-NC | Non-commercial only. |
-| Sound effects | `@remotion/sfx` (CC0 subset), freesound.org CC0 | CC0: no attribution | Most of `@remotion/sfx` is memes; use mouse-click, whoosh, page-turn, ding. |
+| Sound effects, in the kit | `public/sfx/`: 15 sounds from Kenney's CC0 packs, `@remotion/sfx`'s CC0 subset and the kit's synth (`npm run sfx`) | CC0 or original: ship freely, no attribution | Listed with sources in `public/sfx/CREDITS.md`. Covers clicks, transitions and every motion block. |
+| More sound effects, CC0 | Kenney packs (kenney.nl/assets: Interface, UI Audio, Impact, Digital Audio …), freesound.org with the CC0 filter, OpenGameArt with the CC0 filter | CC0 | Kenney is consistent and clean; Freesound needs an account to download; check the licence of every Freesound/OpenGameArt file, it varies per file. |
+| Sound effects for one video only | Pixabay, Mixkit, YouTube Audio Library | Free to use in a video, **not** to redistribute | Fine for a user's own video; never commit them into the kit or a shared repo. |
 
 Tell the user which licences apply to what you delivered, and that AI voices are AI-generated.
 
@@ -66,13 +69,47 @@ variable or a git-ignored `.env`, never in the code.
 
 ## 4. Sound effects
 
-| Moment | Sound | Level |
-|---|---|---|
-| Every cursor click | `mouse-click.wav`, starting 1 frame before the click | 0.38 |
-| Every scene transition | `whoosh.wav`, 3 frames before the crossfade | 0.2 |
-| Optional: success state | a soft ding, once per video at most | 0.25 |
+The kit's effects live in `public/sfx/` and are listed, with a length and a default level, in
+`src/kit/Sfx.tsx`. Most are played for you:
 
-Fewer is better. No sound for typing (it gets tiring), no sound on every pop-in, no meme sounds.
+| Moment | Sound | Who plays it | Level |
+|---|---|---|---|
+| Every cursor click | `click` (mouse-click.wav), 1 frame before the click | `Cursor` | 0.38 |
+| Crossfade | `whoosh`, 3 frames before | `makeVideo`, from the look | 0.2 |
+| Focus pull | `air`, a soft swell | `makeVideo` | 0.32 |
+| Circle reveal, zoom-through | `riser`, ending as the new scene covers the old | `makeVideo` | 0.3 |
+| Colour slab | `thump`, as the slab covers the frame | `makeVideo` | 0.3 |
+| Panel grow | `open` | `makeVideo` | 0.16 |
+| Push | `swish` | `makeVideo` | 0.3 |
+| Hard cut | none: the cut is the sound | — | — |
+| A card dealt | `swish` as it flies, `land` as it lands | `Dealt` | 0.3 |
+| A stamp | `stamp`, 2 frames after it starts | `Stamp` | 0.42 |
+| A card flip | `swish`, then a softer `land` | `Flip` | 0.3 |
+| A number rolling | a `tick` per step when it changes 15 times or fewer; else one tick as it lands | `Odometer` | 0.22 |
+| A limit hit | `alert` when the rule turns red | `RuleLabel hot` | 0.2 |
+| A list stepping | a `tick` per step | `WordSlot` | 0.22 |
+| Tiles swirling, items orbiting | one `swish` at the start | `Swirl`, `Orbit` | 0.3 |
+| Pixels appearing / collapsing | `glitch` ×3, then once on collapse | `DotMatrix` | 0.18 |
+| A name landing in a grid cell | `blip` | `GridCell` | 0.16 |
+| A good, resolved state (Ready, Passed, Saved) | `confirm`, once per scene at most | you: `<Sfx name="confirm" at={…} />` | 0.24 |
+
+Each look has a **sound palette** (`sfx` in `src/kit/looks.ts`): which sound each transition makes,
+swaps (Graphic turns `land` into `pop`; Editorial turns `blip` into `pop`) and an overall level
+(Cinematic plays at half level and drops ticks, pops and blips). Scenes don't change between looks;
+the palette does.
+
+- Place one-off sounds with `<Sfx name="confirm" at={96} />` inside a scene; `endAt` aligns the end
+  instead (a riser that must peak on a cut). Every motion block takes `sound={false}` to stay quiet.
+- **Fewer is better.** One confirm per scene at most, no sound for typing (it gets tiring), no sound
+  on every pop-in, no meme sounds. A dozen effects in a 40-second video is plenty; the kit's defaults
+  are set for that.
+- **Under a voice,** effects must not cover words. The music ducks under narration, but effects
+  don't: keep stamps and thumps off narrated lines, or pass `volume={0.5}`.
+- **Small speakers.** A hit with nothing above 250 Hz is silent on a phone. Every kit sound has mid
+  or high content; check new ones with the band test in section 6.
+- **Adding a sound:** only CC0 or your own (`scripts/sfx.mts` shows how to synthesise one).
+  Convert to 48 kHz mono WAV, normalise (`loudnorm=I=-16:TP=-1`), add it to `SFX` with its length in
+  frames and a level, and list it in `public/sfx/CREDITS.md`.
 
 ## 5. Levels and loudness
 
@@ -92,6 +129,25 @@ loudness timeline (`#` voice-level, `+` music or effects, `.` quiet, space silen
 - Nothing clips (peak below 0 dBFS; after normalising, about -1.5).
 - Music isn't all bass: a bed with more than ~70% of its energy under 250 Hz will sound boomy.
 - Speech looks like speech: most energy under 1 kHz, a little above 4 kHz.
+
+**Hearing the effects on their own.** Effects are short and sit under the music, so the report of a
+whole mix barely changes when they are added. To check them, render once with effects off (set the
+look's `sfx.level` to 0) and once with them on, then subtract:
+
+```bash
+ffmpeg -i out/with.mp4 -i out/without.mp4 -filter_complex \
+  "[0:a][1:a]amerge=inputs=2,pan=mono|c0=0.5*c0+0.5*c1-0.5*c2-0.5*c3" fx-only.wav
+node scripts/audio-report.mjs fx-only.wav
+```
+
+The timeline then shows only the effects: each should appear where its moment is. Normalise neither
+file first (or match their gains), or the difference will contain music. A stamp or a land should
+reach the music's level; transition sounds sit 3–8 dB under it; ticks are transients and cut through
+regardless.
+
+**Band test** (is there anything a laptop can play?):
+`ffmpeg -i s.wav -af highpass=f=250,astats -f null - 2>&1 | grep "RMS level" | tail -1`, compared
+with the same without the high-pass. More than ~15 dB lower means it will vanish on small speakers.
 
 Read 32-bit float WAVs as float (Kokoro writes them): reading them as 16-bit gives nonsense numbers
 that look like hiss.
