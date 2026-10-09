@@ -11,7 +11,8 @@
     "vtt": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/vtt.mts",
     "render": "./render-all.sh",
     "audio-report": "node scripts/audio-report.mjs",
-    "sfx": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/sfx.mts"
+    "sfx": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/sfx.mts",
+    "fetch-music": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/fetch-music.mts"
   },
   "dependencies": {
     "@remotion/cli": "4.0.530",

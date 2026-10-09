@@ -48,7 +48,7 @@ batch, and offer a recommended default for each:
 | Script: will they write it, or should you? | If they bring one, check every claim against the product | You draft, they approve |
 | Product name and brand: logo, colours, font | Title cards and the app frame | The app's own tokens; ask before inventing a name |
 | Voiceover? Which voice? | Timing is driven by the narration | Yes, local Kokoro `af_heart`; ElevenLabs if they have a paid plan |
-| Music: a licensed track, AI-generated, or the kit's generated bed? | Licensing | The kit's generated bed, flagged as a placeholder |
+| Music: a real track they have or choose, AI-generated, or the kit's synth? | Licensing | The look's synth preset (`npm run music`), flagged as a placeholder; offer a CC0 or library track for a launch (`audio.md`) |
 | Where should the output go? | Delivery | `out/` in the video project, outside their repo |
 
 If they say "you choose", choose, say what you chose in one line each, and go.

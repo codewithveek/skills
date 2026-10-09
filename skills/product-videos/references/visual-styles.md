@@ -222,5 +222,6 @@ Learned from both references and true in all four looks:
   background, its accent) and give it a default transition and pace.
 - Sound: each look's `sfx` palette sets the transition sounds, swaps and level (`audio.md` section 4).
   A new look should set one too.
-- Music: Editorial and Cinematic suit `bed.wav`; Graphic and Studio launches suit `upbeat.wav`. For
-  music-led videos raise the music's `alone` level (0.6) since nothing ducks it.
+- Music: each look has its own preset (`editorial`, `graphic`, `cinematic`; Studio uses `upbeat`, and
+  `bed` under a tutorial's voice). For music-led videos raise the music's `alone` level (0.6) since
+  nothing ducks it. Cut Graphic scenes on bars (`bars(n, BPM.graphic)` from `src/kit/beats.ts`).

@@ -9,7 +9,8 @@ styles (`look` in a video's timeline): `studio` (the `example` video), `editoria
 ```bash
 npm install
 npm i -D kokoro-js@1        # once, for voiceover (large: the ONNX runtime)
-npm run music               # public/music/bed.wav and upbeat.wav
+npm run music               # public/music/: bed, upbeat, editorial, graphic, cinematic (+ beat maps)
+npm run fetch-music -- <url> --name launch --licence CC0 --credit "Artist – Title"   # a real track, for this project only
 npm run sfx                 # regenerate the synthesised effects (the CC0 ones are already in public/sfx/)
 npm run voice               # narration.ts -> public/vo/ + voice.json (cached per line)
 npm run studio              # preview and scrub in the browser

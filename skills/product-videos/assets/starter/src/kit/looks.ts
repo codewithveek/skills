@@ -36,7 +36,7 @@ export type Look = {
   /** The default hand-over between scenes, and its length in frames (the timeline's crossfade) */
   transition: TransitionName;
   crossfade: number;
-  /** Suggested music file */
+  /** The look's music (a preset from `npm run music`), used when a video in Root.tsx names no track */
   music: string;
   /**
    * The look's sound palette. `level` scales every effect (0 silences them); `transitions` is the
@@ -64,7 +64,7 @@ export const LOOKS: Record<LookName, Look> = {
   editorial: {
     name: "editorial", font: jakarta, canvas: "#efeee9", ink: "#141414", muted: "#77756f", line: "#cfcdc6",
     accent: c.brand, onAccent: "#ffffff", alarm: "#d4483a", card: "#ffffff", cardShadow: "0 18px 40px rgba(40,36,28,0.14), 0 2px 6px rgba(40,36,28,0.08)",
-    weight: 700, tracking: -0.03, transition: "focus", crossfade: 14, music: "music/bed.wav",
+    weight: 700, tracking: -0.03, transition: "focus", crossfade: 14, music: "music/editorial.wav",
     // Paper and cards: soft knocks, a stamp, ticks on slow counts; no digital blips
     sfx: { level: 1, transitions: TRANSITION_SOUNDS, swap: { blip: "pop", glitch: null } },
   },
@@ -73,7 +73,7 @@ export const LOOKS: Record<LookName, Look> = {
   graphic: {
     name: "graphic", font: interTight, canvas: "#fafafa", ink: "#111111", muted: "#8a8a8a", line: "#e7e7e7",
     accent: c.brand, onAccent: "#ffffff", alarm: c.brand, card: "#ffffff", cardShadow: "0 1px 0 #e7e7e7, 0 10px 30px rgba(0,0,0,0.06)",
-    weight: 500, tracking: -0.045, transition: "slab", crossfade: 12, music: "music/upbeat.wav",
+    weight: 500, tracking: -0.045, transition: "slab", crossfade: 12, music: "music/graphic.wav",
     // Crisp and digital: things pop rather than land, accents blip
     sfx: { level: 1, transitions: TRANSITION_SOUNDS, swap: { land: "pop", air: "swish" } },
   },
@@ -81,7 +81,7 @@ export const LOOKS: Record<LookName, Look> = {
   cinematic: {
     name: "cinematic", font: geist, canvas: "#050507", ink: "#f4f4f5", muted: "#8b8b94", line: "rgba(255,255,255,0.08)",
     accent: c.brand, onAccent: "#ffffff", alarm: "#ff7a6b", card: "#111114", cardShadow: "0 40px 120px rgba(0,0,0,0.7)",
-    weight: 600, tracking: -0.04, transition: "focus", crossfade: 20, music: "music/bed.wav",
+    weight: 600, tracking: -0.04, transition: "focus", crossfade: 20, music: "music/cinematic.wav",
     // Almost silent: soft air on transitions and the important moments only, at half level
     sfx: { level: 0.5, transitions: { ...TRANSITION_SOUNDS, slab: "air", zoom: "air", push: "air" }, swap: { tick: null, pop: null, glitch: null, blip: null, swish: "air", land: null } },
   },

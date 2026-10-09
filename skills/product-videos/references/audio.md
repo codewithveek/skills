@@ -24,10 +24,12 @@ sounds the motion blocks make (a stamp landing, a card dealt, an odometer tickin
 | Voice, free, local | **Kokoro-82M** via `kokoro-js` (in the kit) | Apache-2.0; commercial use allowed | Runs on CPU at ~1.4× real time; clear, slightly flat. Best voice: `af_heart` (grade A), then `af_bella`. 28 English voices. |
 | Voice, best quality | **ElevenLabs** | Free tier forbids commercial use and needs attribution; Starter ($6/mo) and up allow commercial use | Most natural; also gives timestamps. Hosted MCP for Claude Code. |
 | Voice, other APIs | OpenAI, Google, Azure TTS | Per-character pricing; check each provider's disclosure rules for AI voices | Fine alternatives; same pipeline. |
-| Music, free, no licence | **The kit's synthesiser** (`npm run music`) | Original, no third party | Calm bed or upbeat; serviceable, not memorable. Flag as a placeholder. |
+| Music, free, no licence | **The kit's synthesiser** (`npm run music`) | Original, no third party | Five presets: one per look plus a calm bed; `MUSIC_SEED` for variations. Serviceable, not memorable: flag it as a placeholder for a launch. |
+| Music, recorded, CC0 | OpenGameArt (filter: Music, CC0), Free Music Archive (filter: CC0) | CC0, but check each track's page | Fetch with `npm run fetch-music` (below). Much of OpenGameArt is game music (chiptune, battle themes): search for "loop", "ambient", "lo-fi", "corporate". FreePD (freepd.com) has closed. |
 | Music, AI | **ElevenLabs Music** | Commercial from Starter; free requires "Eleven Music" credit | Prompt for mood, tempo, length. |
 | Music, local AI | Stable Audio Open Small | Stability Community Licence: free under $1M annual revenue | Needs a Hugging Face account and Python; heavy on CPU. |
-| Music, library | Pixabay Music, YouTube Audio Library | Free commercial use | Pixabay tracks can trigger YouTube Content ID claims; its licence certificate clears them. |
+| Music, library | Pixabay Music, YouTube Audio Library | Free commercial use in a video; no redistribution | Pixabay tracks can trigger YouTube Content ID claims; its licence certificate clears them. Fine to fetch for a user's video; never commit. |
+| Music, attribution | Incompetech (Kevin MacLeod), ccMixter | CC-BY: credit required in the video or its description | Tell the user the exact credit line to publish. |
 | Avoid for commercial work | MusicGen weights | CC-BY-NC | Non-commercial only. |
 | Sound effects, in the kit | `public/sfx/`: 15 sounds from Kenney's CC0 packs, `@remotion/sfx`'s CC0 subset and the kit's synth (`npm run sfx`) | CC0 or original: ship freely, no attribution | Listed with sources in `public/sfx/CREDITS.md`. Covers clicks, transitions and every motion block. |
 | More sound effects, CC0 | Kenney packs (kenney.nl/assets: Interface, UI Audio, Impact, Digital Audio …), freesound.org with the CC0 filter, OpenGameArt with the CC0 filter | CC0 | Kenney is consistent and clean; Freesound needs an account to download; check the licence of every Freesound/OpenGameArt file, it varies per file. |
@@ -60,12 +62,40 @@ variable or a git-ignored `.env`, never in the code.
 - One track under the whole video, looping or longer than the video, faded in over 20 frames and out
   over the last 50.
 - Level: about 0.3 alone, 0.11 under the voice for tutorials; 0.5 alone, 0.16 under the voice for
-  launches (`Root.tsx` per video). The duck ramps over 8 frames.
-- Calm for tutorials (no drums), upbeat for launches and cutdowns (a light kick and hats).
-- To swap, drop a file at `public/music/bed.wav` or `upbeat.wav` (or point the video's entry in
-  `Root.tsx` at another file). The mix code doesn't change.
-- The kit's synth makes music that is warm and dark (most energy under 1 kHz). That sits well under a
-  voice; alone, it can feel muffled. Say so, and suggest a real track for a launch.
+  launches; 0.6 alone for music-led videos (`Root.tsx` per video). The duck ramps over 8 frames.
+
+**The kit's presets** (`npm run music`, all original, all levelled to -14 LUFS so swapping one for
+another doesn't change the mix):
+
+| Preset | Tempo | Sound | Default for |
+|---|---|---|---|
+| `bed` | 92 | Pads, plucked arpeggio, bass; no drums | Tutorials under a voice |
+| `upbeat` | 104 | The bed with a light kick and hats | The Studio look |
+| `editorial` | 88 | Bright major chords on electric piano, bell plucks, soft kick and hats | The Editorial look |
+| `graphic` | 120 | Four-on-the-floor kick, clap, 16th hats, saw arpeggio, pumping pads | The Graphic look |
+| `cinematic` | 68 | Long wide pads, a low drone, sparse bells; no drums | The Cinematic look |
+
+- A video uses its look's preset unless its entry in `Root.tsx` names a file.
+- `MUSIC_SEED=<n> npm run music` makes a variation (another key, chord order and arpeggio), so two
+  videos in a series don't sound identical. Note the seed in the delivery report.
+- Each preset writes `<preset>.beats.json`. Cut on the beat with `src/kit/beats.ts`: `bars(2, BPM.graphic)`
+  for a scene length that lands on the downbeat, `onBeat(frame, bpm, 4)` to snap a stamp or a slab to
+  the nearest bar line. Graphic videos especially should cut on bars.
+- The synth is serviceable, not memorable. For a launch, offer a real track.
+
+**A real track, fetched for one video** (never committed into the kit):
+
+```bash
+NODE_USE_ENV_PROXY=1 npm run fetch-music -- <audio file URL or path> --name launch \
+  --licence "CC0" --credit "Artist – Title" --source <the track's page> --bpm 100
+```
+
+It writes `public/music/launch.wav` (levelled like the presets), `launch.beats.json` if `--bpm` is
+given, and a row in `public/music/CREDITS.md`; then name `"music/launch.wav"` in `Root.tsx`. It
+refuses to run without a licence and credit: read the licence on the track's page first. CC0 and
+public domain need nothing; CC-BY needs the credit published with the video; library licences
+(Pixabay, YouTube Audio Library) allow use in the video but not redistribution, so the file stays in
+the video project. Tell the user which applies.
 
 ## 4. Sound effects
 

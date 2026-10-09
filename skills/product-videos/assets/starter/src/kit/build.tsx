@@ -74,13 +74,15 @@ export const TransitionSounds = ({ v, starts }: { v: VideoSpec; starts: number[]
 };
 
 /** One component per scene id, played in the timeline's order with crossfades, narration, music and transition sounds. `burnCaptions` draws the narration into the picture (for muted feeds). */
-export const makeVideo = (v: VideoSpec, components: Record<string, () => React.JSX.Element>, voice?: VoiceSpec, music = "music/bed.wav", level = MUSIC, burnCaptions = false) => {
+export const makeVideo = (v: VideoSpec, components: Record<string, () => React.JSX.Element>, voice?: VoiceSpec, track?: string, level = MUSIC, burnCaptions = false) => {
   for (const s of v.scenes) if (!components[s.id]) throw new Error(`${v.id}: no component for scene "${s.id}"`);
   const frames = sceneFrames(v, voice);
   const starts = sceneStarts(frames, v.crossfade);
   const total = totalFrames(v, voice);
   const captions = burnCaptions ? captionsFrom(v.scenes.flatMap((s, i) => (voice?.scenes[s.id]?.lines ?? []).map((l) => ({ ...l, from: starts[i] + l.from })))) : [];
   const look = LOOKS[v.look ?? "studio"];
+  // No track named: the look's own music preset
+  const music = track ?? look.music;
   const spans: [number, number][] = v.scenes.flatMap((s, i) => (voice?.scenes[s.id]?.lines ?? []).map((l) => [starts[i] + l.from, starts[i] + l.from + l.frames] as [number, number]));
 
   const Video = () => (

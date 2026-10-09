@@ -16,13 +16,15 @@ import GRAPHIC_VOICE from "./videos/graphic/voice.json";
 
 type Level = { alone: number; underVoice: number; ramp: number };
 // One entry per video: [cut list, scenes, voice manifest, music file, music levels].
-// Music: "music/bed.wav" (calm, for tutorials) or "music/upbeat.wav" (launches). Levels default to bed levels.
+// Music: leave it undefined to use the look's own preset (studio: upbeat, editorial, graphic, cinematic),
+// or name one: "music/bed.wav" (calm, for tutorials), "music/upbeat.wav", any preset from
+// `npm run music`, or a track fetched with scripts/fetch-music.mts. Levels default to bed levels.
 // The visual style is the timeline's `look` (studio, editorial, graphic, cinematic): references/visual-styles.md.
 // Music-led videos (no narration) play the music at its "alone" level throughout.
 const VIDEOS: [VideoSpec, Record<string, () => React.JSX.Element>, VoiceSpec, string?, Level?][] = [
   [EXAMPLE, EXAMPLE_SCENES, EXAMPLE_VOICE, "music/upbeat.wav", { alone: 0.5, underVoice: 0.16, ramp: 8 }],
-  [EDITORIAL, EDITORIAL_SCENES, EDITORIAL_VOICE, "music/bed.wav", { alone: 0.6, underVoice: 0.16, ramp: 8 }],
-  [GRAPHIC, GRAPHIC_SCENES, GRAPHIC_VOICE, "music/upbeat.wav", { alone: 0.6, underVoice: 0.16, ramp: 8 }],
+  [EDITORIAL, EDITORIAL_SCENES, EDITORIAL_VOICE, undefined, { alone: 0.6, underVoice: 0.16, ramp: 8 }],
+  [GRAPHIC, GRAPHIC_SCENES, GRAPHIC_VOICE, undefined, { alone: 0.6, underVoice: 0.16, ramp: 8 }],
 ];
 
 // Videos that also get a 9:16 cutdown (<Title>Vertical, 1080x1920), reusing the same scenes and voice,
