@@ -21,6 +21,8 @@ const opensOnThumbnail = (title: string) => /OPEN_ON_THUMBNAIL = true/.test(root
 
 const write = (v: Spec & { title?: string; scenes: { id?: string; frames: number; cues: Cue[] }[] }, voice?: Voice, offset = 0) => {
   let at = offset;
+  // A music-led video (or one before `npm run voice`) has an empty manifest: its cues are the captions
+  if (voice && Object.keys(voice.scenes).length === 0) voice = undefined;
   const cues = v.scenes.flatMap((s) => {
     const start = at;
     const scene = voice && s.id ? voice.scenes[s.id] : undefined;

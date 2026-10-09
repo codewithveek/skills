@@ -1,7 +1,8 @@
-# Video styles
+# Video types
 
 Proven structures. Pick one, adapt the beats to the product, and show the user a storyboard before
-building. Lengths assume narration at about 2.5 words per second (150 wpm).
+building. The type sets the structure; the **visual style** (Studio, Editorial, Graphic, Cinematic)
+sets how it looks and moves, and each type has a recommended one: see `visual-styles.md`. Lengths assume narration at about 2.5 words per second (150 wpm).
 
 ## Contents
 
@@ -106,8 +107,11 @@ For: Reels, TikTok, Shorts, LinkedIn, X. 15–30 s, 9:16 (or 1:1). Built from th
 ## 11. Pacing, transitions and camera language
 
 - **Scene length**: 5–8 s for a product moment; 3 s for a title; 4–6 s for an end card.
-- **Transitions**: a 12-frame crossfade with a soft whoosh is the default and rarely wrong. Avoid
-  spins and flashy wipes; they date fast and fight the UI.
+- **Transitions**: each look has a default (Studio: a 12-frame crossfade with a soft whoosh;
+  Editorial: a focus pull; Graphic: a colour slab; Cinematic: a slow focus pull). Use the special ones
+  for a reason: a circle of brand colour for the brand moment, a panel growing into a detail, a hard
+  cut on a music hit, a zoom through squares into the close. Avoid spins and novelty wipes; they date
+  fast and fight the UI.
 - **Camera**: start wide (orient), zoom to the action (1.3–1.8×), pull back to show the result.
   One move per beat; hold still while something is happening on screen; let the eye land before the
   next move. Ease in and out on every move.

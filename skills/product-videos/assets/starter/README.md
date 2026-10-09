@@ -2,7 +2,9 @@
 
 Remotion project for product videos: launches, tutorials, explainers and vertical cutdowns, with
 rebuilt app screens, a camera and cursor that aim at named elements, local voiceover, generated
-music, click and whoosh effects, captions, loudness normalisation and thumbnails.
+music, click and whoosh effects, captions, loudness normalisation and thumbnails. Four visual
+styles (`look` in a video's timeline): `studio` (the `example` video), `editorial` and `graphic`
+(their own example videos) and `cinematic`.
 
 ```bash
 npm install
@@ -19,11 +21,12 @@ node scripts/audio-report.mjs out/example.mp4          # levels, spectrum and lo
 |---|---|
 | `src/brand.ts` | Product name, tagline, logo glyph |
 | `src/theme.ts`, `src/kit/tokens.ts` | Stage colours and the app's UI tokens: copy the product's real values |
-| `src/videos/<id>/timeline.ts` | Scenes, base lengths, fallback captions |
+| `src/videos/<id>/timeline.ts` | The look, scenes, base lengths, each scene's entrance transition, fallback captions |
 | `src/videos/<id>/narration.ts` | Voiceover lines, the frame each aims for, respellings |
 | `src/videos/<id>/scenes.tsx` | One component per scene |
 | `src/Root.tsx` | Which videos, music, vertical cutdowns and thumbnails exist |
 | `src/kit/` | Window and camera (`AppStage`), anchors, cursor, cards, captions, thumbnails, the app frame and controls |
+| `src/kit/looks.ts`, `transitions.tsx`, `Motion.tsx`, `Backdrops.tsx` | The four looks, eight scene transitions, motion blocks (odometer, tilt, flip, stamp, cell grid, word slot, orbit, swirl, dot matrix …) and each look's ground |
 | `scripts/` | voice, music, captions, audio report |
 | `reference/capture.mjs` | Read-only screenshots of the real product, the source of truth for rebuilt screens |
 

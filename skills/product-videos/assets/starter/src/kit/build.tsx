@@ -3,10 +3,23 @@ import { linearTiming, TransitionSeries } from "@remotion/transitions";
 import { fade } from "@remotion/transitions/fade";
 import { AbsoluteFill, Audio, interpolate, Sequence, staticFile } from "remotion";
 import { BurnedCaptions, captionsFrom } from "./BurnedCaptions";
+import { LookContext, LOOKS, type LookName, type TransitionName } from "./looks";
 import { THUMB_FRAME } from "./Thumbnail";
+import { presentationFor } from "./transitions";
 
 export type Cue = { from: number; to: number; text: string };
-export type VideoSpec = { id: string; title: string; crossfade: number; scenes: { id: string; frames: number; cues: Cue[] }[] };
+/**
+ * A video's cut list. `look` sets the visual style (default "studio"); each scene can choose how it
+ * comes in (`in`, default the look's transition) and, for "circle" and "panel", where from (`origin`,
+ * fractions of the frame). Every transition lasts `crossfade` frames, so timing maths stays the same.
+ */
+export type VideoSpec = {
+  id: string;
+  title: string;
+  crossfade: number;
+  look?: LookName;
+  scenes: { id: string; frames: number; cues: Cue[]; in?: TransitionName; origin?: [number, number] }[];
+};
 /** scripts/voice.mts writes this: where each narration line lands, and how long each scene must be to fit it. */
 export type VoiceSpec = { scenes: Record<string, { lines: { src: string; from: number; frames: number; text: string }[]; minFrames: number }> };
 
@@ -40,11 +53,11 @@ export const musicVolume = (frame: number, total: number, spans: [number, number
 };
 
 /** A soft whoosh as each crossfade begins. */
-export const Whooshes = ({ at }: { at: number[] }) => (
+export const Whooshes = ({ at, volume = WHOOSH }: { at: number[]; volume?: number }) => (
   <>
     {at.map((f) => (
       <Sequence key={f} from={Math.max(0, f - 3)} durationInFrames={20} layout="none">
-        <Audio src={staticFile("sfx/whoosh.wav")} volume={WHOOSH} />
+        <Audio src={staticFile("sfx/whoosh.wav")} volume={volume} />
       </Sequence>
     ))}
   </>
@@ -57,10 +70,12 @@ export const makeVideo = (v: VideoSpec, components: Record<string, () => React.J
   const starts = sceneStarts(frames, v.crossfade);
   const total = totalFrames(v, voice);
   const captions = burnCaptions ? captionsFrom(v.scenes.flatMap((s, i) => (voice?.scenes[s.id]?.lines ?? []).map((l) => ({ ...l, from: starts[i] + l.from })))) : [];
+  const look = LOOKS[v.look ?? "studio"];
   const spans: [number, number][] = v.scenes.flatMap((s, i) => (voice?.scenes[s.id]?.lines ?? []).map((l) => [starts[i] + l.from, starts[i] + l.from + l.frames] as [number, number]));
 
   const Video = () => (
-    <AbsoluteFill>
+    <LookContext.Provider value={look}>
+    <AbsoluteFill style={{ background: look.canvas }}>
       <TransitionSeries>
         {v.scenes.flatMap(({ id }, i) => {
           const C = components[id];
@@ -74,15 +89,16 @@ export const makeVideo = (v: VideoSpec, components: Record<string, () => React.J
               ))}
             </TransitionSeries.Sequence>,
             ...(i < v.scenes.length - 1
-              ? [<TransitionSeries.Transition key={`${id}-x`} presentation={fade()} timing={linearTiming({ durationInFrames: v.crossfade })} />]
+              ? [<TransitionSeries.Transition key={`${id}-x`} presentation={presentationFor(v.scenes[i + 1].in ?? look.transition, look, v.scenes[i + 1].origin)} timing={linearTiming({ durationInFrames: v.crossfade })} />]
               : []),
           ];
         })}
       </TransitionSeries>
       <Audio src={staticFile(music)} volume={(f) => musicVolume(f, total, spans, level)} />
-      <Whooshes at={starts.slice(1)} />
+      <Whooshes at={starts.slice(1).filter((_, i) => v.scenes[i + 1].in !== "cut")} volume={look.whoosh} />
       {burnCaptions && <BurnedCaptions captions={captions} />}
     </AbsoluteFill>
+    </LookContext.Provider>
   );
   return Video;
 };

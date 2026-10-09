@@ -188,11 +188,17 @@ It rebuilds the product's real screens as React components from its code and scr
 - **Tutorials and walkthroughs**: step by step, with the app's real labels and confirmations
 - **Explainers**: diagram-led "how it works" videos
 - **Social cutdowns**: 9:16 versions from the same scenes, with captions burned in
+- **Four visual styles**, each with a recommended default per video type:
+  - **Studio**: dark stage, the real app in a window, a camera and cursor (tutorials, onboarding)
+  - **Editorial**: warm paper, one big rolling number per scene, floating cards, focus pulls, brand-colour circle reveals (launches, feature drops, explainers)
+  - **Graphic**: white grid, one loud brand colour, pixel motifs, colour slabs, logo swirls and orbits (API and infrastructure products)
+  - **Cinematic**: near-black, soft glow, large light type, slow (premium brands, teasers)
 - Plus voiceover (local Kokoro, or ElevenLabs), music, click and whoosh effects, `.vtt` captions, loudness at -16 LUFS, and thumbnails embedded as cover art
 
 ### How it behaves
 
-- **Asks first, then storyboards.** Audience, video type, length and shape, whether you bring a script, voice and music. Then it shows a scene-by-scene storyboard before building.
+- **Recommends a style, and says why.** It suggests the visual style that fits your video type, product and channel, explains the choice, lists the alternatives, and lets you pick.
+- **Asks first, then storyboards.** Audience, video type, visual style, length and shape, whether you bring a script, voice and music. Then it shows a scene-by-scene storyboard before building.
 - **Checks every claim.** Your script's lines are checked against the product, and overclaims get a precise rewrite ("across borders", not "globally").
 - **Narration drives timing.** Each voice line is pinned to the frame of its action, and scenes grow to fit.
 - **Verifies what it can't watch.** Frames are checked as stills, and sound is checked by measuring it. It tells you what's left to judge by eye and ear.
@@ -229,6 +235,8 @@ Needs Node 22+. Voiceover adds `kokoro-js` (about 500 MB, installed once).
 make a launch video for my app, it's running on localhost:3000
 turn the onboarding flow into a 60-second tutorial with a voiceover
 make a 9:16 version of the launch video for Reels
+make a 30-second launch video for our API in the graphic style
+make a LinkedIn launch video like this one (attach a reference video)
 add music and click sounds to the videos
 write the VTT captions and a thumbnail for each video
 ```
@@ -242,13 +250,14 @@ skills/product-videos/
 ├── SKILL.md                    # Intake questions, the workflow, the rules, delivery
 ├── references/
 │   ├── styles.md               # Launch, tutorial, explainer, teaser, cutdown… structures and pacing
+│   ├── visual-styles.md        # The four looks, which to recommend for which video, and why
 │   ├── scriptwriting.md        # Word budget, headlines, narration, claim audit, pronunciation
 │   ├── audio.md                # Voice, music, effects, levels, licences, ElevenLabs MCP
 │   ├── accuracy.md             # What may be shown, how to verify it
-│   ├── kit.md                  # The starter project: camera, anchors, scenes, vertical, thumbnails
+│   ├── kit.md                  # The starter project: looks, transitions, motion blocks, camera, anchors, scenes
 │   ├── social.md               # Platform shapes, safe areas, captions, thumbnails
 │   └── pitfalls.md             # Bugs met along the way, and their fixes
-└── assets/starter/             # A working Remotion project with an example video
+└── assets/starter/             # A working Remotion project with Studio, Editorial and Graphic example videos
 ```
 
 ---

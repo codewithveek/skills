@@ -1,7 +1,7 @@
 {
   "name": "product-videos",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Product videos built with Remotion: rebuilt app screens, camera and cursor, voiceover, music, captions, thumbnails.",
   "scripts": {
     "studio": "remotion studio src/index.ts",

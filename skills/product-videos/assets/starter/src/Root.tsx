@@ -1,17 +1,28 @@
 import React from "react";
 import { Composition } from "remotion";
 import { makeVideo, posterOffset, sceneFrames, totalFrames, withPoster, type VideoSpec, type VoiceSpec } from "./kit/build";
+import { LookContext, LOOKS } from "./kit/looks";
 import { Thumbnail, THUMB_FRAMES } from "./kit/Thumbnail";
 import { FPS } from "./theme";
 import { SCENES as EXAMPLE_SCENES } from "./videos/example/scenes";
 import { VIDEO as EXAMPLE } from "./videos/example/timeline";
 import EXAMPLE_VOICE from "./videos/example/voice.json";
+import { SCENES as EDITORIAL_SCENES } from "./videos/editorial/scenes";
+import { VIDEO as EDITORIAL } from "./videos/editorial/timeline";
+import EDITORIAL_VOICE from "./videos/editorial/voice.json";
+import { SCENES as GRAPHIC_SCENES } from "./videos/graphic/scenes";
+import { VIDEO as GRAPHIC } from "./videos/graphic/timeline";
+import GRAPHIC_VOICE from "./videos/graphic/voice.json";
 
 type Level = { alone: number; underVoice: number; ramp: number };
 // One entry per video: [cut list, scenes, voice manifest, music file, music levels].
 // Music: "music/bed.wav" (calm, for tutorials) or "music/upbeat.wav" (launches). Levels default to bed levels.
+// The visual style is the timeline's `look` (studio, editorial, graphic, cinematic): references/visual-styles.md.
+// Music-led videos (no narration) play the music at its "alone" level throughout.
 const VIDEOS: [VideoSpec, Record<string, () => React.JSX.Element>, VoiceSpec, string?, Level?][] = [
   [EXAMPLE, EXAMPLE_SCENES, EXAMPLE_VOICE, "music/upbeat.wav", { alone: 0.5, underVoice: 0.16, ramp: 8 }],
+  [EDITORIAL, EDITORIAL_SCENES, EDITORIAL_VOICE, "music/bed.wav", { alone: 0.6, underVoice: 0.16, ramp: 8 }],
+  [GRAPHIC, GRAPHIC_SCENES, GRAPHIC_VOICE, "music/upbeat.wav", { alone: 0.6, underVoice: 0.16, ramp: 8 }],
 ];
 
 // Videos that also get a 9:16 cutdown (<Title>Vertical, 1080x1920), reusing the same scenes and voice,
@@ -22,6 +33,16 @@ const VERTICAL = new Set(["example"]);
 const THUMBNAILS: [string, string, [string, string], () => React.JSX.Element, number][] = [
   ["ExampleThumbnail", "Introducing", ["Set up in", "one minute"], EXAMPLE_SCENES.demo, 170],
 ];
+
+/** A scene on its own, in its video's look (for stills and previews). */
+const inLook = (spec: VideoSpec, Scene: () => React.JSX.Element) => {
+  const S = () => (
+    <LookContext.Provider value={LOOKS[spec.look ?? "studio"]}>
+      <Scene />
+    </LookContext.Provider>
+  );
+  return S;
+};
 
 const thumbnail = ([, eyebrow, title, Scene, at]: (typeof THUMBNAILS)[number]) => {
   const T = () => <Thumbnail eyebrow={eyebrow} title={title} Scene={Scene} at={at} />;
@@ -49,7 +70,7 @@ export const Root = () => (
         )}
         {/* Each scene on its own, for stills and quick previews: <video id>-<scene id> */}
         {spec.scenes.map(({ id }, i) => (
-          <Composition key={id} id={`${spec.id}-${id}`} component={scenes[id]} durationInFrames={sceneFrames(spec, voice)[i]} fps={FPS} width={1920} height={1080} />
+          <Composition key={id} id={`${spec.id}-${id}`} component={inLook(spec, scenes[id])} durationInFrames={sceneFrames(spec, voice)[i]} fps={FPS} width={1920} height={1080} />
         ))}
       </React.Fragment>
     ))}

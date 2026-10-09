@@ -11,6 +11,8 @@ Each of these happened. Check here before debugging from scratch.
 | Render fails: `inputRange must contain only finite numbers` | `Infinity` passed to `interpolate` (e.g. "show forever") | Use a large finite number (`1e6`) |
 | Chromium won't start: missing `libnss3`, `libnspr4`, `libasound` (WSL without sudo) | System libraries absent | `apt-get download libnspr4 libnss3 libasound2t64`, `dpkg -x` each into a folder, set `CHROMIUM_LIBS` (the kit's scripts export it as `LD_LIBRARY_PATH`) |
 | A still shows nothing inside `<Freeze frame={220}>` | Freezing past a one-frame `<Still>`'s duration renders nothing | Make thumbnails 240-frame compositions and render frame 239 |
+| Stills fail with `Failed to fetch` fonts.gstatic.com, `ERR_CERT_AUTHORITY_INVALID` | Remotion launches Chromium with `--no-proxy-server`, so behind a TLS-intercepting proxy the font requests skip the proxy and its CA | Self-host the fonts (download the `.woff2` files into `public/fonts/` and load them with `@remotion/fonts`), or render on a network without the proxy. Don't disable certificate checks |
+| A transition looks fine in scene stills but wrong in the video | Transitions exist only where two scenes overlap | Check stills at the transition midpoints of the full composition (scene start + crossfade / 2) |
 | `transform` set twice warning, an animation ignored | Spreading `rise()` (which sets `transform`) and adding a `transform` on one element | Wrap: outer element gets `rise()`, inner element gets the scale |
 
 ## Camera, pointer, anchors
