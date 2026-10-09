@@ -4,7 +4,9 @@ import { progress, track } from "../anim";
 import { c, fontFamily, SCREEN } from "../theme";
 import { AnchorProvider, resolve, useAnchorStore, type Aim } from "./anchors";
 import { Cursor } from "./Cursor";
-import { Backdrop, Headline, useFrameShape } from "./Stage";
+import { Stage } from "./Backdrops";
+import { useLook } from "./looks";
+import { Headline, useFrameShape } from "./Stage";
 
 /** A camera keyframe: aim at an anchor (or a raw screen point) at frame `f`, zoomed by `s`. */
 export type CameraKey = Aim & { f: number; s?: number };
@@ -64,6 +66,8 @@ export const AppWindow = ({
   top?: number;
 }) => {
   const frame = useCurrentFrame();
+  const look = useLook();
+  const dark = look.name === "studio" || look.name === "cinematic";
   const { width: fw, height: fh, portrait } = useFrameShape();
   const w = width ?? Math.round(portrait ? fw - 60 : fw * 0.78);
   const tp = top ?? Math.round(portrait ? fh * 0.3 : fh * 0.213);
@@ -84,8 +88,9 @@ export const AppWindow = ({
           borderRadius: 18,
           overflow: "hidden",
           position: "relative",
-          border: "1px solid rgba(255,255,255,0.09)",
-          boxShadow: `0 40px 120px -20px rgba(0,0,0,0.9), 0 0 0 1px rgba(0,0,0,0.6), 0 0 160px -40px ${c.brand}66`,
+          border: dark ? "1px solid rgba(255,255,255,0.09)" : `1px solid ${look.line}`,
+          // On light looks the window floats on a soft shadow; on dark ones it glows in the brand colour
+          boxShadow: dark ? `0 40px 120px -20px rgba(0,0,0,0.9), 0 0 0 1px rgba(0,0,0,0.6), 0 0 160px -40px ${c.brand}66` : "0 50px 100px -30px rgba(40,36,28,0.35), 0 12px 30px rgba(40,36,28,0.10)",
           opacity: t * (1 - out),
           transform: `translateY(${(1 - t) * 160 + out * 40}px) rotateX(${(1 - t) * 22}deg) scale(${0.9 + 0.1 * t - out * 0.04})`,
           transformOrigin: "50% 0%",
@@ -126,7 +131,7 @@ export const Step = ({
   const copy = useContext(StepCopy);
   return (
     <AbsoluteFill>
-      <Backdrop />
+      <Stage />
       <Headline eyebrow={copy?.eyebrow ?? eyebrow} text={copy?.text ?? text} at={2} />
       <AppWindow enter={4} {...win}>
         {children}
