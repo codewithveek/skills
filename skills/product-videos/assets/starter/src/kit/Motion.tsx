@@ -67,7 +67,7 @@ export const Odometer = ({ value, from = 0, at = 0, dur = 36, size = 160, color,
  * A line of words that rise out of a mask one by one. Wrap words in *asterisks* to colour them
  * with the accent (`tone="accent"`) or the alarm colour (`tone="alarm"`): "100 invites a week. *That's it.*"
  */
-export const AccentLine = ({ text, at = 0, size = 44, tone = "accent", color, align = "center", gap = 3, weight }: { text: string; at?: number; size?: number; tone?: "accent" | "alarm"; color?: string; align?: "left" | "center"; gap?: number; weight?: number }) => {
+export const AccentLine = ({ text, at = 0, size = 44, tone = "accent", color, accentColor, align = "center", gap = 3, weight }: { text: string; at?: number; size?: number; tone?: "accent" | "alarm"; color?: string; accentColor?: string; align?: "left" | "center"; gap?: number; weight?: number }) => {
   const frame = useCurrentFrame();
   const look = useLook();
   const words: { w: string; hi: boolean }[] = [];
@@ -85,7 +85,7 @@ export const AccentLine = ({ text, at = 0, size = 44, tone = "accent", color, al
         const t = progress(frame, at + i * gap, at + i * gap + 14);
         return (
           <span key={i} style={{ display: "inline-block", overflow: "hidden", verticalAlign: "bottom", paddingBottom: size * 0.12, marginBottom: -size * 0.12, marginRight: size * 0.24 }}>
-            <span style={{ display: "inline-block", transform: `translateY(${(1 - t) * 110}%)`, color: h ? (tone === "alarm" ? look.alarm : look.accent) : undefined }}>{w}</span>
+            <span style={{ display: "inline-block", transform: `translateY(${(1 - t) * 110}%)`, color: h ? (accentColor ?? (tone === "alarm" ? look.alarm : look.accent)) : undefined }}>{w}</span>
           </span>
         );
       })}
@@ -111,14 +111,24 @@ export const RuleLabel = ({ label, at = 0, width = 900, hot, note, sound = true 
   );
 };
 
+/** Relative luminance of a #rrggbb colour, 0 (black) to 1 (white). */
+export const luminance = (hex: string) => {
+  const n = parseInt(hex.replace("#", "").slice(0, 6), 16);
+  const lin = (c: number) => ((c /= 255) <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);
+  return 0.2126 * lin((n >> 16) & 255) + 0.7152 * lin((n >> 8) & 255) + 0.0722 * lin(n & 255);
+};
+
 /** A dark pill caption at the bottom-left, the way a product moment is labelled in the editorial look. */
 export const Caption = ({ text, at = 0, size = 30 }: { text: string; at?: number; size?: number }) => {
   const frame = useCurrentFrame();
   const look = useLook();
   const t = progress(frame, at, at + 16);
+  // A dark brand colour (black, navy) disappears on the dark pill: then the accent word is white
+  // and the rest of the line steps back to grey
+  const dark = luminance(look.accent) < 0.25;
   return (
     <div style={{ position: "absolute", left: 70, bottom: 70, background: "#17171a", borderRadius: 12, padding: "12px 22px", opacity: t, transform: `translateY(${(1 - t) * 16}px)`, boxShadow: "0 12px 30px rgba(0,0,0,0.25)" }}>
-      <AccentLine text={text} at={at + 4} size={size} color="#fff" align="left" weight={600} />
+      <AccentLine text={text} at={at + 4} size={size} color={dark ? "#a1a1aa" : "#fff"} accentColor={dark ? "#fff" : undefined} align="left" weight={600} />
     </div>
   );
 };
