@@ -63,5 +63,7 @@ export const Stage = () => {
   if (look.name === "editorial") return <Paper />;
   if (look.name === "graphic") return <Blueprint />;
   if (look.name === "cinematic") return <Backdrop glow={0.4} />;
+  if (look.name === "footage") return <AbsoluteFill style={{ background: `radial-gradient(ellipse 90% 80% at 50% 40%, #1a1a24, ${look.canvas})` }} />;
+  if (look.name === "poster") return <AbsoluteFill style={{ background: look.canvas }} />;
   return <Backdrop />;
 };

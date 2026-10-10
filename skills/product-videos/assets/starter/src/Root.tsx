@@ -13,16 +13,26 @@ import EDITORIAL_VOICE from "./videos/editorial/voice.json";
 import { SCENES as GRAPHIC_SCENES } from "./videos/graphic/scenes";
 import { VIDEO as GRAPHIC } from "./videos/graphic/timeline";
 import GRAPHIC_VOICE from "./videos/graphic/voice.json";
+import { SCENES as FOOTAGE_SCENES } from "./videos/footage/scenes";
+import { VIDEO as FOOTAGE } from "./videos/footage/timeline";
+import FOOTAGE_VOICE from "./videos/footage/voice.json";
+import { SCENES as POSTER_SCENES } from "./videos/poster/scenes";
+import { VIDEO as POSTER } from "./videos/poster/timeline";
+import POSTER_VOICE from "./videos/poster/voice.json";
 
 type Level = { alone: number; underVoice: number; ramp: number };
 // One entry per video: [cut list, scenes, voice manifest, music file, music levels].
-// Music: "music/bed.wav" (calm, for tutorials) or "music/upbeat.wav" (launches). Levels default to bed levels.
+// Music: leave it undefined to use the look's own preset (studio: upbeat, editorial, graphic, cinematic),
+// or name one: "music/bed.wav" (calm, for tutorials), "music/upbeat.wav", any preset from
+// `npm run music`, or a track fetched with scripts/fetch-music.mts. Levels default to bed levels.
 // The visual style is the timeline's `look` (studio, editorial, graphic, cinematic): references/visual-styles.md.
 // Music-led videos (no narration) play the music at its "alone" level throughout.
 const VIDEOS: [VideoSpec, Record<string, () => React.JSX.Element>, VoiceSpec, string?, Level?][] = [
   [EXAMPLE, EXAMPLE_SCENES, EXAMPLE_VOICE, "music/upbeat.wav", { alone: 0.5, underVoice: 0.16, ramp: 8 }],
-  [EDITORIAL, EDITORIAL_SCENES, EDITORIAL_VOICE, "music/bed.wav", { alone: 0.6, underVoice: 0.16, ramp: 8 }],
-  [GRAPHIC, GRAPHIC_SCENES, GRAPHIC_VOICE, "music/upbeat.wav", { alone: 0.6, underVoice: 0.16, ramp: 8 }],
+  [EDITORIAL, EDITORIAL_SCENES, EDITORIAL_VOICE, undefined, { alone: 0.6, underVoice: 0.16, ramp: 8 }],
+  [GRAPHIC, GRAPHIC_SCENES, GRAPHIC_VOICE, undefined, { alone: 0.6, underVoice: 0.16, ramp: 8 }],
+  [FOOTAGE, FOOTAGE_SCENES, FOOTAGE_VOICE, undefined, { alone: 0.6, underVoice: 0.16, ramp: 8 }],
+  [POSTER, POSTER_SCENES, POSTER_VOICE, undefined, { alone: 0.6, underVoice: 0.16, ramp: 8 }],
 ];
 
 // Videos that also get a 9:16 cutdown (<Title>Vertical, 1080x1920), reusing the same scenes and voice,

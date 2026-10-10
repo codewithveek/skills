@@ -4,6 +4,7 @@ import { fade } from "@remotion/transitions/fade";
 import { AbsoluteFill, Audio, interpolate, Sequence, staticFile } from "remotion";
 import { BurnedCaptions, captionsFrom } from "./BurnedCaptions";
 import { LookContext, LOOKS, type LookName, type TransitionName } from "./looks";
+import { Sfx } from "./Sfx";
 import { THUMB_FRAME } from "./Thumbnail";
 import { presentationFor } from "./transitions";
 
@@ -38,7 +39,6 @@ export const sceneStarts = (frames: number[], crossfade: number) => {
   });
 };
 
-const WHOOSH = 0.2;
 const MUSIC = { alone: 0.3, underVoice: 0.11, ramp: 8 };
 
 /**
@@ -52,25 +52,37 @@ export const musicVolume = (frame: number, total: number, spans: [number, number
   return (level.alone + (level.underVoice - level.alone) * duck) * fades;
 };
 
-/** A soft whoosh as each crossfade begins. */
-export const Whooshes = ({ at, volume = WHOOSH }: { at: number[]; volume?: number }) => (
-  <>
-    {at.map((f) => (
-      <Sequence key={f} from={Math.max(0, f - 3)} durationInFrames={20} layout="none">
-        <Audio src={staticFile("sfx/whoosh.wav")} volume={volume} />
-      </Sequence>
-    ))}
-  </>
-);
+/**
+ * Each transition's sound, from the look's palette: a whoosh as a crossfade begins, air under a focus
+ * pull, a riser that peaks as a circle covers the frame, a thump as a slab lands, nothing on a cut.
+ */
+export const TransitionSounds = ({ v, starts }: { v: VideoSpec; starts: number[] }) => {
+  const look = LOOKS[v.look ?? "studio"];
+  return (
+    <>
+      {starts.slice(1).map((f, i) => {
+        const kind = v.scenes[i + 1].in ?? look.transition;
+        const name = look.sfx.transitions[kind];
+        if (!name) return null;
+        // A riser ends as the new scene covers the old; a thump lands mid-transition (the slab covers the
+        // frame); everything else starts just before the transition
+        if (name === "riser") return <Sfx key={f} name={name} endAt={f + v.crossfade} />;
+        return <Sfx key={f} name={name} at={name === "thump" ? f + Math.round(v.crossfade / 2) : Math.max(0, f - 3)} />;
+      })}
+    </>
+  );
+};
 
 /** One component per scene id, played in the timeline's order with crossfades, narration, music and transition sounds. `burnCaptions` draws the narration into the picture (for muted feeds). */
-export const makeVideo = (v: VideoSpec, components: Record<string, () => React.JSX.Element>, voice?: VoiceSpec, music = "music/bed.wav", level = MUSIC, burnCaptions = false) => {
+export const makeVideo = (v: VideoSpec, components: Record<string, () => React.JSX.Element>, voice?: VoiceSpec, track?: string, level = MUSIC, burnCaptions = false) => {
   for (const s of v.scenes) if (!components[s.id]) throw new Error(`${v.id}: no component for scene "${s.id}"`);
   const frames = sceneFrames(v, voice);
   const starts = sceneStarts(frames, v.crossfade);
   const total = totalFrames(v, voice);
   const captions = burnCaptions ? captionsFrom(v.scenes.flatMap((s, i) => (voice?.scenes[s.id]?.lines ?? []).map((l) => ({ ...l, from: starts[i] + l.from })))) : [];
   const look = LOOKS[v.look ?? "studio"];
+  // No track named: the look's own music preset
+  const music = track ?? look.music;
   const spans: [number, number][] = v.scenes.flatMap((s, i) => (voice?.scenes[s.id]?.lines ?? []).map((l) => [starts[i] + l.from, starts[i] + l.from + l.frames] as [number, number]));
 
   const Video = () => (
@@ -95,7 +107,7 @@ export const makeVideo = (v: VideoSpec, components: Record<string, () => React.J
         })}
       </TransitionSeries>
       <Audio src={staticFile(music)} volume={(f) => musicVolume(f, total, spans, level)} />
-      <Whooshes at={starts.slice(1).filter((_, i) => v.scenes[i + 1].in !== "cut")} volume={look.whoosh} />
+      <TransitionSounds v={v} starts={starts} />
       {burnCaptions && <BurnedCaptions captions={captions} />}
     </AbsoluteFill>
     </LookContext.Provider>

@@ -5,8 +5,9 @@
 | Platform | Shape | Size | Good length | Notes |
 |---|---|---|---|---|
 | YouTube | 16:9 | 1920x1080 | full video | Upload the 1280x720 thumbnail (under 2 MB) and the `.vtt` |
+| Instagram and LinkedIn feed posts | 4:5 | 1080x1350 | 15–45 s | Takes the most feed space after 9:16; register a 1080x1350 composition like the square one |
 | YouTube Shorts, TikTok, Instagram Reels | 9:16 | 1080x1920 | 15–30 s (under 60) | Captions burned in; hook in the first second |
-| LinkedIn, X | 16:9 or 1:1 | 1920x1080 / 1080x1080 | 30–60 s | Autoplays muted: burned-in captions help; attach the `.vtt` where offered |
+| LinkedIn, X | 16:9, 1:1 or 4:5 | 1920x1080 / 1080x1080 / 1080x1350 | 30–60 s | Autoplays muted: burned-in captions help; attach the `.vtt` where offered |
 | Website hero | 16:9, muted loop | 1920x1080 | 10–20 s | No voice; strong first frame; a short H.264 file |
 | Product Hunt / landing gallery | 16:9 | 1920x1080 | 30–60 s | The thumbnail is the first impression |
 

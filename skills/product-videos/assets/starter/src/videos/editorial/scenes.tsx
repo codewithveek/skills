@@ -5,7 +5,8 @@ import { PRODUCT } from "../../brand";
 import { Paper, Slab } from "../../kit/Backdrops";
 import { useLook } from "../../kit/looks";
 import { Mark } from "../../kit/Mark";
-import { AccentLine, Caption, CellGrid, dealt, Odometer, PersonCard, RuleLabel, Stamp, Tilt } from "../../kit/Motion";
+import { AccentLine, Caption, CellGrid, Dealt, Odometer, PersonCard, RuleLabel, Stamp, Tilt } from "../../kit/Motion";
+import { Sfx } from "../../kit/Sfx";
 import { useFrameShape } from "../../kit/Stage";
 
 // The editorial look: warm paper, one number or claim per scene, floating cards, focus pulls, and a
@@ -30,7 +31,6 @@ export const Stat = () => (
 
 /* Who it hurts: cards dealt onto the table, then a status stamped on each */
 export const Waiting = () => {
-  const frame = useCurrentFrame();
   const look = useLook();
   const people = [["Maya Collins", "Frontend"], ["Ethan Brooks", "Platform"], ["Emma Clarke", "Mobile"]];
   return (
@@ -39,7 +39,7 @@ export const Waiting = () => {
       <Center gap={70}>
         <div style={{ display: "flex", gap: 28 }}>
           {people.map(([name, role], i) => (
-            <div key={name} style={dealt(frame, 4 + i * 7, [-3, 1, 3][i])}>
+            <Dealt key={name} at={4 + i * 7} rest={[-3, 1, 3][i]}>
               <PersonCard name={name} role={role} width={290} footer={<><span>Pushed 2 min ago</span><span>main</span></>}>
                 <div style={{ marginTop: 16, height: 36 }}>
                   <Stamp at={40 + i * 8}>
@@ -47,7 +47,7 @@ export const Waiting = () => {
                   </Stamp>
                 </div>
               </PersonCard>
-            </div>
+            </Dealt>
           ))}
         </div>
         <AccentLine text="Your whole team, *waiting.*" tone="alarm" at={30} size={44} />
@@ -102,6 +102,8 @@ export const Runs = () => {
         </Tilt>
       </Center>
       <Caption text="Builds start in *seconds*" at={20} />
+      {/* One confirmation when the last build passes, not one per row */}
+      <Sfx name="confirm" at={46 + 3 * 14} />
     </AbsoluteFill>
   );
 };
@@ -115,6 +117,7 @@ export const Cache = () => {
   return (
     <AbsoluteFill>
       <Paper />
+      <Sfx name="confirm" at={96} />
       <div style={{ position: "absolute", left: portrait ? 60 : 140, top: portrait ? 260 : 150 }}>
         <AccentLine text="Cached for *every branch*" at={0} size={56} align="left" />
       </div>

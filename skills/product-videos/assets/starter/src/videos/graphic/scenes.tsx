@@ -6,6 +6,7 @@ import { MarkIcon, PRODUCT } from "../../brand";
 import { Blueprint, Slab } from "../../kit/Backdrops";
 import { useLook } from "../../kit/looks";
 import { AccentLine, Chip, DotMatrix, GridCell, Orbit, Swirl, Tile, WordSlot } from "../../kit/Motion";
+import { Sfx } from "../../kit/Sfx";
 
 // The graphic look: flat white, one loud brand colour, a modular grid, pixel motifs and full-bleed
 // slabs. Fast, music-led, built for products with little UI to show (APIs, data, infrastructure).
@@ -128,6 +129,7 @@ export const Live = () => {
   return (
     <AbsoluteFill>
       <Slab watermark />
+      <Sfx name="blip" at={swap} />
       <Center>
         <div style={{ fontFamily: look.font, color: look.onAccent }}>
           {frame < swap ? <AccentLine text={PRODUCT} at={6} size={110} color={look.onAccent} /> : <AccentLine text="is live now" at={swap} size={110} color={look.onAccent} />}

@@ -5,6 +5,7 @@ The script is three layers that run together: **headlines** on screen, **narrati
 
 ## Contents
 
+0. Story first: hook, pain, solution, CTA
 1. Working from the user's script
 2. The word budget
 3. Headlines
@@ -14,8 +15,41 @@ The script is three layers that run together: **headlines** on screen, **narrati
 7. Captions
 8. Names and taglines
 9. A worked example
+10. On-screen words without a voice: reading time and rhythm
 
 ---
+
+## 0. Story first: hook, pain, solution, CTA
+
+The prompt is the small part of a good video; the story, the storyboard, the assets and taste are
+the rest. Settle the story before any scene is drawn. Every product video has four parts:
+
+| Part | Job | Typical length | Example (Box, a multi-vertical business platform) |
+|---|---|---|---|
+| **Hook** | Make the right viewer stop: recognise themselves | 5–10 s | "Your business has never been one thing." The creator who runs a blog → sells digital products → consults; the salon that takes appointments → sells haircare products; the padel club that rents out courts → has a café → sells apparel and kits |
+| **Pain** | Name the cost of today's way, in their words | 5–8 s | "But most tools are built for just one flow. So you either shrink to fit, or juggle multiple tools." |
+| **Solution** | The turn, the name, then the product doing the job | 15–25 s | "What if you didn't have to?" → "Introducing Box." → tell Box how you sell, add what you sell, collect payments, pick a look and go live, see every sale land |
+| **CTA** | One thing to do now | 3–6 s | "Now live." + the URL typed into a search bar |
+
+**Angles** (pick one; mixing two is fine, as Box mixes problem → solution with a "what if" turn):
+
+1. **Problem → solution**: the pain, then the fix. The default for launches.
+2. **Before / after**: the same job, the old way and the new way.
+3. **What if**: imagine the job without the pain, then show it's real.
+4. **A day in the life**: one person's day, the product at the moments it helps.
+5. **Fast feature tour**: five or six features, one beat each, on a strong rhythm.
+6. **Teaser**: the problem and a name, no product shown; a date.
+
+**Drafting the story with the user.** Ask one question at a time (who it's for, what they do today,
+what hurts, what the product does about it, what they should do after), and play back your
+understanding before writing. Then propose **three angles with three hooks each**, each hook with the
+picture that carries it, and let them pick. Write the story as numbered lines, marked hook / pain /
+solution / CTA, and wait for approval before the storyboard. Draft pain and solution from what the
+user and the product say; don't invent claims to make the story land.
+
+The storyboard then turns each line into scenes: time range, what's on screen, the exact words, the
+sound (or "no sound effects, just the music"), and the transition. Check the total length and cut
+before building: if it runs over a minute, the scenes are trying to say too much.
 
 ## 1. Working from the user's script
 
@@ -130,3 +164,22 @@ difference: "Affiliate payouts, across borders." Put both in `src/brand.ts`.
 | Verify | "Suspicious sales wait for a reviewer." | "Anything suspicious waits for a reviewer, with a reason for every decision." |
 | Pay | "Settled in each affiliate's own currency." | "Then payouts settle through Afri-ex, in each affiliate's own currency." |
 | Close | "Track. Verify. Pay across borders." → Corridor · Affiliate payouts, across borders. | "Track. Verify. Pay across borders." … "Corridor." |
+
+## 10. On-screen words without a voice: reading time and rhythm
+
+Music-led videos (Editorial, Graphic, Footage, Poster) have no narration: the words on screen are
+the script, so they must stay up long enough to read.
+
+- **Reading speed:** 160–180 words a minute (the BBC subtitle guideline), about **a third of a second
+  per word**, plus half a second to find the line. Five words need about two seconds. The kit's
+  `readFrames(text)` (`src/kit/beats.ts`) returns the frames a line needs; a scene or phrase must hold
+  at least that long after its last word lands.
+- **Change something every 2–4 seconds** (a new phrase, a cut, a move): a pattern interrupt keeps
+  attention. But **vary the lengths** (1 s, 4 s, 2 s, 3 s), or the rhythm turns monotonous.
+- **Never leave the screen empty** while waiting for the next thing; hold the resolved state.
+- **Length:** launches, updates and ads run 30–60 s (Box: 43 s, Taeillo: 27 s).
+- **One idea per line, five to eight words.** Long sentences get split across phrases (Box's
+  "But most tools are built for / just one flow.").
+- With a voiceover, on-screen words are fewer than spoken words: one or two words per beat, landing
+  with the voice (Taeillo shows "walk into your home", "and ask", "OMG!", "THIS?" as it's said).
+

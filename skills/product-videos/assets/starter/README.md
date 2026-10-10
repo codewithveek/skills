@@ -9,7 +9,9 @@ styles (`look` in a video's timeline): `studio` (the `example` video), `editoria
 ```bash
 npm install
 npm i -D kokoro-js@1        # once, for voiceover (large: the ONNX runtime)
-npm run music               # public/music/bed.wav and upbeat.wav
+npm run music               # public/music/: bed, upbeat, editorial, graphic, cinematic (+ beat maps)
+npm run fetch-music -- <url> --name launch --licence CC0 --credit "Artist – Title"   # a real track, for this project only
+npm run sfx                 # regenerate the synthesised effects (the CC0 ones are already in public/sfx/)
 npm run voice               # narration.ts -> public/vo/ + voice.json (cached per line)
 npm run studio              # preview and scrub in the browser
 ./stills.sh example-demo:60,160 ExampleVertical:290   # check single frames
@@ -27,7 +29,8 @@ node scripts/audio-report.mjs out/example.mp4          # levels, spectrum and lo
 | `src/Root.tsx` | Which videos, music, vertical cutdowns and thumbnails exist |
 | `src/kit/` | Window and camera (`AppStage`), anchors, cursor, cards, captions, thumbnails, the app frame and controls |
 | `src/kit/looks.ts`, `transitions.tsx`, `Motion.tsx`, `Backdrops.tsx` | The four looks, eight scene transitions, motion blocks (odometer, tilt, flip, stamp, cell grid, word slot, orbit, swirl, dot matrix …) and each look's ground |
-| `scripts/` | voice, music, captions, audio report |
+| `scripts/` | voice, music, sound effects, captions, audio report |
+| `public/sfx/` | 15 sound effects, CC0 or made by the kit; sources in `CREDITS.md`, levels in `src/kit/Sfx.tsx` |
 | `reference/capture.mjs` | Read-only screenshots of the real product, the source of truth for rebuilt screens |
 
 Remotion is pinned to 4.0.530: 4.0.531 shipped an empty `@remotion/cli/dist/render-queue/queue.js`

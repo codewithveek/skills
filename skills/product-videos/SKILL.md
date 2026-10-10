@@ -1,10 +1,10 @@
 ---
 name: product-videos
-description: "Make motion videos for a software product with Remotion — launch videos, feature walkthroughs and tutorials, 'how it works' explainers, and vertical social cutdowns — in four visual styles (studio app-window, editorial paper-and-numbers, graphic grid-and-colour, cinematic dark), with a recommended style per video type — with rebuilt app screens, a camera that zooms and pans, a cursor that clicks and types, kinetic text, AI or local voiceover, music, sound effects, captions, loudness normalisation and thumbnails. Use it whenever someone asks for a product video, launch video, demo video, promo, explainer, walkthrough, tutorial video, screencast-style animation, 'a video like Linear/Raycast/Vercel launch videos', motion graphics for an app, a voiceover or narration for a video, captions or a VTT file, background music or sound effects for a video, video thumbnails, or a 9:16 Reels/TikTok/Shorts version, or a video in the style of a reference video (odometer numbers, floating cards, circle reveals, pixel grids, colour slabs) — even if they only say 'can you make a video of my app'. Also use it to change, re-time, re-voice or re-render videos made this way."
+description: "Make motion videos of a software or physical product with Remotion: launch videos, feature walkthroughs and tutorials, explainers, ads and 9:16 social cutdowns, in six visual styles (studio app window, editorial, graphic, cinematic, footage-led B-roll, type posters) with a recommended style per video type. Works from a codebase, a running app, screenshots, designs or just a description. Covers the story (hook, pain, solution, CTA) and storyboard, rebuilt app screens, camera and cursor, kinetic text, B-roll, voiceover, music, sound effects, captions, loudness and thumbnails. Use it whenever someone asks for a product, launch, demo or promo video, an explainer, walkthrough or tutorial video, motion graphics for an app, a video like a reference video or like Linear, Raycast or Vercel launches, a voiceover, music or sound effects for a video, captions, thumbnails, or a Reels, TikTok or Shorts version, even if they only say 'make a video of my app'. Also to change, re-time, re-voice or re-render such videos."
 license: MIT
 metadata:
   author: CodewithVeek
-  version: "1.1.0"
+  version: "1.2.0"
   homepage: "https://github.com/CodewithVeek/skills"
 ---
 
@@ -25,7 +25,9 @@ Three things make these videos good, and most of this skill serves them:
 2. **The words carry it.** A clear problem, one promise, short headlines, narration that says what
    the screen shows. Read `references/scriptwriting.md` before drafting.
 3. **Sound finishes it.** Voice timed to the action, music ducked under it, a click on every click,
-   one loudness for every file. Read `references/audio.md` before adding sound.
+   a sound on each transition and motion moment (a stamp lands, a card is dealt, a number ticks) from
+   the look's sound palette, one loudness for every file. All bundled effects are CC0 or made by the
+   kit. Read `references/audio.md` before adding sound.
 
 You cannot watch or listen to what you make. Check pictures as still frames (`stills.sh`) and sound
 as numbers (`scripts/audio-report.mjs`), then tell the user plainly what they still need to judge
@@ -38,7 +40,8 @@ batch, and offer a recommended default for each:
 
 | Question | Why it matters | Default if they don't care |
 |---|---|---|
-| What product, and where is it? (repo path, running URL, demo logins) | Screens are rebuilt from the real app | — must know |
+| What product, and what can I learn it from? Code, a running app or URL (and a demo login), screenshots or a recording, designs, or only a description | Screens are rebuilt from the strongest real source (`references/accuracy.md`, sources of truth) | — must know; no codebase is fine |
+| Brand assets: logo (SVG), colours (hex), fonts; product photos for physical products | Without them the video looks generic | Taken from the live site, or asked for once |
 | Who is it for, and what should they do after? | Sets the style, script and call to action | Prospective users; "try it" |
 | Which kind of video? (`references/styles.md`) | Structure, length, pacing | Launch for a new product, tutorial for a feature |
 | Which visual style? Studio, Editorial, Graphic or Cinematic | How it looks and moves | The recommended look for the type (below); always say why |
@@ -46,7 +49,7 @@ batch, and offer a recommended default for each:
 | Script: will they write it, or should you? | If they bring one, check every claim against the product | You draft, they approve |
 | Product name and brand: logo, colours, font | Title cards and the app frame | The app's own tokens; ask before inventing a name |
 | Voiceover? Which voice? | Timing is driven by the narration | Yes, local Kokoro `af_heart`; ElevenLabs if they have a paid plan |
-| Music: a licensed track, AI-generated, or the kit's generated bed? | Licensing | The kit's generated bed, flagged as a placeholder |
+| Music: a real track they have or choose, AI-generated, or the kit's synth? | Licensing | The look's synth preset (`npm run music`), flagged as a placeholder; offer a CC0 or library track for a launch (`audio.md`) |
 | Where should the output go? | Delivery | `out/` in the video project, outside their repo |
 
 If they say "you choose", choose, say what you chose in one line each, and go.
@@ -60,6 +63,11 @@ Editorial and Graphic). Tell the user which you recommend and why, in terms of *
 the other three in one line each, and go with the recommendation if they don't choose. If they point
 at a reference video, name the closest look and what you will borrow from it.
 
+**Story before storyboard.** Unless the user brings a story, draft one with them first
+(`references/scriptwriting.md`, section 0): ask one question at a time, play back your understanding,
+offer three angles with three hooks each, then write numbered lines marked hook, pain, solution and
+CTA. Wait for approval.
+
 Then show a **storyboard before building**: the look at the top, then scene by scene what is on
 screen, the headline, the narration line (or on-screen words, for music-led looks), the transition
 into it, and roughly how long. It is cheap to change words and order now and expensive later.
@@ -67,7 +75,8 @@ into it, and roughly how long. It is cheap to change words and order now and exp
 
 ## Build
 
-1. **Learn the product from its code and the running app.** Routes, page components, the exact
+1. **Learn the product from the strongest source you have** (code and the running app, else the app
+   alone, screenshots, designs; `references/accuracy.md`). From code: routes, page components, the exact
    button labels, status names and their colours, what happens after each action (a message? a
    redirect? nothing?), empty states, defaults. Grep for the strings you plan to show.
 2. **Capture references.** Screenshot every screen and state the video will show from the running
@@ -79,13 +88,17 @@ into it, and roughly how long. It is cheap to change words and order now and exp
 4. **Write the cut list and narration** per video: `src/videos/<id>/timeline.ts` (the `look`, scenes,
    base lengths, each scene's `in` transition) and `narration.ts` (lines, the frame each aims for, respellings). Register the video in
    `src/Root.tsx`.
-5. **Build scenes** (`scenes.tsx`) in the look's vocabulary: `src/videos/editorial/` and
+5. **Build scenes one at a time, with approval** (`scenes.tsx`) in the look's vocabulary. For a new
+   look or a complex scene, show a still of the first scene before building the rest: mistakes
+   compound when every scene is built at once. Then: `src/videos/editorial/` and
    `src/videos/graphic/` are working examples of the two text-led looks, `src/videos/example/` of
    Studio. Rebuild each screen from its reference screenshot with the kit's
    controls and an app frame shaped like the product's. Wrap anything the cursor or camera must
    reach in `<Anchor name="…">` and aim at names, never at hand-measured coordinates.
    `references/kit.md` explains the camera, pointer, anchors, scene reuse and the vertical layout.
 6. **Generate sound**: `npm run voice` (scenes grow to fit their narration), `npm run music`.
+   Effects come with the motion blocks and transitions; add `<Sfx name="confirm" at={…} />` for the
+   one moment per scene that resolves, and nothing more.
 7. **Check stills** at the moments that matter — every click, every typed value, every zoom, the
    last frame of each scene — and fix framing, overlaps and clipped text before rendering. Most
    problems are camera framing; widen the zoom or aim at a different anchor.
@@ -121,9 +134,10 @@ Read the one you need, when you need it:
 | File | Read it when |
 |---|---|
 | `references/styles.md` | Choosing a video type; you need a structure, length and pacing |
-| `references/visual-styles.md` | Choosing and recommending a look; building Editorial, Graphic or Cinematic scenes; matching a reference video |
-| `references/scriptwriting.md` | Writing or reviewing the script, headlines, narration, captions, or working from a user's script |
-| `references/audio.md` | Voiceover, music, sound effects, levels, licensing, ElevenLabs or other AI audio tools |
+| `references/visual-styles.md` | Choosing and recommending a look; building Editorial, Graphic, Cinematic, Footage or Poster scenes; studying a reference video |
+| `references/footage.md` | B-roll and photos: stock and public-domain (CC0) sources, AI video models and costs, prompts, putting clips or stills in the kit, disclosure |
+| `references/scriptwriting.md` | The story (hook, pain, solution, CTA; six angles), the script, headlines, narration, captions, reading time for on-screen words, or working from a user's script |
+| `references/audio.md` | Voiceover, music, sound effects and each look's sound palette, levels, licensing, finding more CC0 sounds, ElevenLabs or other AI audio tools |
 | `references/accuracy.md` | Before rebuilding any screen; deciding what may be shown |
 | `references/kit.md` | Working in the starter project: looks, transitions, motion blocks, camera, cursor, anchors, scenes, vertical, thumbnails |
 | `references/social.md` | 9:16 or 1:1 cutdowns, burned-in captions, platform specs, thumbnails |
