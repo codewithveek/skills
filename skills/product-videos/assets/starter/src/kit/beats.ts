@@ -20,3 +20,10 @@ export const onBeat = (frame: number, bpm: number, every = 1) => {
   const step = (every * 60 * FPS) / bpm;
   return Math.round(Math.round(frame / step) * step);
 };
+
+/**
+ * How long on-screen words need to stay up to be read: about 0.33 s a word (160–180 words a minute,
+ * the BBC subtitle guideline) plus half a second to find the line. Use it for any music-led scene:
+ * the scene, or the phrase, must hold at least this long after the last word lands.
+ */
+export const readFrames = (text: string, wpm = 170) => Math.round(((text.split(/\s+/).filter(Boolean).length * 60) / wpm + 0.5) * FPS);

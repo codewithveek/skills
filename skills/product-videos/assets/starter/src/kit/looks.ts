@@ -1,6 +1,8 @@
 import { createContext, useContext } from "react";
 import { loadFont as loadGeist } from "@remotion/google-fonts/Geist";
 import { loadFont as loadInterTight } from "@remotion/google-fonts/InterTight";
+import { loadFont as loadArchivoBlack } from "@remotion/google-fonts/ArchivoBlack";
+import { loadFont as loadInstrumentSerif } from "@remotion/google-fonts/InstrumentSerif";
 import { loadFont as loadJakarta } from "@remotion/google-fonts/PlusJakartaSans";
 import { c, fontFamily } from "../theme";
 import type { SfxName } from "./Sfx";
@@ -12,13 +14,17 @@ import type { SfxName } from "./Sfx";
 const { fontFamily: jakarta } = loadJakarta("normal", { weights: ["500", "600", "700", "800"], subsets: ["latin"] });
 const { fontFamily: interTight } = loadInterTight("normal", { weights: ["400", "500", "600", "700"], subsets: ["latin"] });
 const { fontFamily: geist } = loadGeist("normal", { weights: ["400", "500", "600", "700"], subsets: ["latin"] });
+const { fontFamily: archivoBlack } = loadArchivoBlack("normal", { weights: ["400"], subsets: ["latin"] });
+const { fontFamily: instrumentSerif } = loadInstrumentSerif("italic", { weights: ["400"], subsets: ["latin"] });
 
-export type TransitionName = "fade" | "focus" | "circle" | "panel" | "slab" | "zoom" | "push" | "cut";
+export type TransitionName = "fade" | "focus" | "circle" | "panel" | "slab" | "zoom" | "push" | "cut" | "pixels" | "slash";
 
 export type Look = {
   name: LookName;
   /** Display font for headlines, numbers and cards around the product */
   font: string;
+  /** An italic serif for small accent words ("Introducing"), where the look uses one */
+  serif?: string;
   /** Stage colours. `accent` is the brand colour; `alarm` colours the problem ("That's it.", "Restricted"). */
   canvas: string;
   ink: string;
@@ -46,9 +52,9 @@ export type Look = {
   sfx: { level: number; transitions: Record<TransitionName, SfxName | null>; swap: Partial<Record<SfxName, SfxName | null>> };
 };
 
-const TRANSITION_SOUNDS: Record<TransitionName, SfxName | null> = { fade: "whoosh", focus: "air", circle: "riser", panel: "open", slab: "thump", zoom: "riser", push: "swish", cut: null };
+const TRANSITION_SOUNDS: Record<TransitionName, SfxName | null> = { fade: "whoosh", focus: "air", circle: "riser", panel: "open", slab: "thump", zoom: "riser", push: "swish", cut: null, pixels: "glitch", slash: "swish" };
 
-export type LookName = "studio" | "editorial" | "graphic" | "cinematic";
+export type LookName = "studio" | "editorial" | "graphic" | "cinematic" | "footage" | "poster";
 
 export const LOOKS: Record<LookName, Look> = {
   // Dark stage, the app window front and centre, camera and cursor. The original kit look.
@@ -84,6 +90,25 @@ export const LOOKS: Record<LookName, Look> = {
     weight: 600, tracking: -0.04, transition: "focus", crossfade: 20, music: "music/cinematic.wav",
     // Almost silent: soft air on transitions and the important moments only, at half level
     sfx: { level: 0.5, transitions: { ...TRANSITION_SOUNDS, slab: "air", zoom: "air", push: "air" }, swap: { tick: null, pop: null, glitch: null, blip: null, swish: "air", land: null } },
+  },
+  // Real or generated footage under kinetic type: a human hook (people, places, a light switching
+  // on), captions that blur from one phrase to the next, hard cuts on the music, then colour floods
+  // and the product. Learned from Box's launch (Oct 2026). For products used in the physical world.
+  footage: {
+    name: "footage", font: interTight, canvas: "#0b0b10", ink: "#ffffff", muted: "#b4b4be", line: "rgba(255,255,255,0.12)",
+    accent: c.brand, onAccent: "#ffffff", alarm: "#ff6b5b", card: "#ffffff", cardShadow: "0 30px 80px rgba(0,0,0,0.45)",
+    weight: 700, tracking: -0.03, transition: "cut", crossfade: 8, music: "music/graphic.wav",
+    // Footage carries its own atmosphere: no transition sounds on cuts, effects only on key moments
+    sfx: { level: 0.9, transitions: { ...TRANSITION_SOUNDS, fade: null, focus: null }, swap: {} },
+  },
+  // Big, colour-blocked type posters: a huge product name behind a cut-out product photo, letters
+  // that drop or decode into place, one flat colour per product, an italic serif for small words.
+  // Learned from Taeillo's video (Oct 2026). For physical products, e-commerce, catalogues.
+  poster: {
+    name: "poster", font: archivoBlack, serif: instrumentSerif, canvas: "#f1ece2", ink: "#151314", muted: "#6f6a62", line: "#ddd5c7",
+    accent: c.brand, onAccent: "#ffffff", alarm: "#ec4b16", card: "#ffffff", cardShadow: "0 24px 60px rgba(0,0,0,0.18)",
+    weight: 400, tracking: -0.02, transition: "pixels", crossfade: 10, music: "music/upbeat.wav",
+    sfx: { level: 1, transitions: TRANSITION_SOUNDS, swap: { land: "pop" } },
   },
 };
 

@@ -2,7 +2,7 @@ import React from "react";
 import type { TransitionPresentation, TransitionPresentationComponentProps } from "@remotion/transitions";
 import { fade } from "@remotion/transitions/fade";
 import { slide } from "@remotion/transitions/slide";
-import { AbsoluteFill, Easing, interpolate } from "remotion";
+import { AbsoluteFill, Easing, interpolate, random } from "remotion";
 import type { Look, TransitionName } from "./looks";
 
 // Scene hand-overs, each a @remotion/transitions presentation. Plain CSS (clip-path, blur,
@@ -15,6 +15,9 @@ import type { Look, TransitionName } from "./looks";
 //   zoom   concentric squares zoom through to the next  graphic: into the close / logo
 //   push   the new scene pushes the old one out         lists, sequences, "next"
 //   cut    a hard cut at the midpoint                   on a music hit
+//   pixels squares of colour cover the frame in a random order, then clear to the new scene
+//                                                       graphic, poster, footage: between sections
+//   slash  a diagonal band of colour sweeps across       poster: from one product to the next
 
 type P = { look: Look; x: number; y: number };
 const io = Easing.bezier(0.65, 0, 0.35, 1);
@@ -83,6 +86,41 @@ const Zoom = ({ children, presentationProgress: p, presentationDirection: d, pas
   );
 };
 
+const Pixels = ({ children, presentationProgress: p, presentationDirection: d, passedProps: { look } }: TransitionPresentationComponentProps<P>) => {
+  // A 16x9 grid of squares: each one turns on at its own moment in the first half, off in the second;
+  // the scenes swap under full cover. Seeded, so every render matches.
+  const cols = 16, rows = 9;
+  if (d === "exiting") return <AbsoluteFill style={{ opacity: p < 0.5 ? 1 : 0 }}>{children}</AbsoluteFill>;
+  return (
+    <AbsoluteFill>
+      <AbsoluteFill style={{ opacity: p >= 0.5 ? 1 : 0 }}>{children}</AbsoluteFill>
+      <AbsoluteFill>
+        {Array.from({ length: cols * rows }).map((_, i) => {
+          const on = random(`px-on-${i}`) * 0.4;
+          const off = 0.6 + random(`px-off-${i}`) * 0.4;
+          if (p < on || p > off) return null;
+          const tone = random(`px-c-${i}`);
+          return <div key={i} style={{ position: "absolute", left: `${(i % cols) * (100 / cols)}%`, top: `${Math.floor(i / cols) * (100 / rows)}%`, width: `${100 / cols + 0.1}%`, height: `${100 / rows + 0.1}%`, background: tone > 0.75 ? look.canvas : look.accent }} />;
+        })}
+      </AbsoluteFill>
+    </AbsoluteFill>
+  );
+};
+
+const Slash = ({ children, presentationProgress: p, presentationDirection: d, passedProps: { look } }: TransitionPresentationComponentProps<P>) => {
+  if (d === "exiting") return <AbsoluteFill>{children}</AbsoluteFill>;
+  // A slanted band crosses left to right; the new scene is revealed behind its trailing edge
+  const t = ease(p, 0, 1);
+  const lead = -30 + t * 190; // the band's leading edge, % of width (slanted by 30%)
+  const tail = lead - 40;
+  return (
+    <AbsoluteFill>
+      <AbsoluteFill style={{ clipPath: `polygon(0 0, ${tail + 30}% 0, ${tail}% 100%, 0 100%)` }}>{children}</AbsoluteFill>
+      <AbsoluteFill style={{ background: look.alarm, clipPath: `polygon(${tail + 30}% 0, ${lead + 30}% 0, ${lead}% 100%, ${tail}% 100%)` }} />
+    </AbsoluteFill>
+  );
+};
+
 const Cut = ({ children, presentationProgress: p, presentationDirection: d }: TransitionPresentationComponentProps<P>) => (
   <AbsoluteFill style={{ opacity: d === "exiting" ? (p < 0.5 ? 1 : 0) : p >= 0.5 ? 1 : 0 }}>{children}</AbsoluteFill>
 );
@@ -100,6 +138,8 @@ export const presentationFor = (name: TransitionName, look: Look, origin: [numbe
       case "slab": return make(Slab, look);
       case "zoom": return make(Zoom, look);
       case "cut": return make(Cut, look);
+      case "pixels": return make(Pixels, look);
+      case "slash": return make(Slash, look);
       case "push": return slide({ direction: "from-right" });
       default: return fade();
     }

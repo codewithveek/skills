@@ -23,6 +23,7 @@ sounds the motion blocks make (a stamp landing, a card dealt, an odometer tickin
 |---|---|---|---|
 | Voice, free, local | **Kokoro-82M** via `kokoro-js` (in the kit) | Apache-2.0; commercial use allowed | Runs on CPU at ~1.4× real time; clear, slightly flat. Best voice: `af_heart` (grade A), then `af_bella`. 28 English voices. |
 | Voice, best quality | **ElevenLabs** | Free tier forbids commercial use and needs attribution; Starter ($6/mo) and up allow commercial use | Most natural; also gives timestamps. Hosted MCP for Claude Code. |
+| Voice and music, through Claude | **Higgsfield's Claude connector** | Per Higgsfield's plan | Used for the voiceover and music of the Taeillo ad (October 2026). Check the connector directory; if it isn't connected, the user adds it in their claude.ai connector settings. |
 | Voice, other APIs | OpenAI, Google, Azure TTS | Per-character pricing; check each provider's disclosure rules for AI voices | Fine alternatives; same pipeline. |
 | Music, free, no licence | **The kit's synthesiser** (`npm run music`) | Original, no third party | Five presets: one per look plus a calm bed; `MUSIC_SEED` for variations. Serviceable, not memorable: flag it as a placeholder for a launch. |
 | Music, recorded, CC0 | OpenGameArt (filter: Music, CC0), Free Music Archive (filter: CC0) | CC0, but check each track's page | Fetch with `npm run fetch-music` (below). Much of OpenGameArt is game music (chiptune, battle themes): search for "loop", "ambient", "lo-fi", "corporate". FreePD (freepd.com) has closed. |
@@ -56,6 +57,35 @@ Generating per line gives exact sentence timings for captions without a speech-t
 Switching to ElevenLabs or another API: replace `speak()` in `scripts/voice.mts` with an API call
 that writes a WAV (or MP3) and returns its duration; keep the rest. Put API keys in an environment
 variable or a git-ignored `.env`, never in the code.
+
+### Matching a reference voice
+
+When the user points at a video and says "a voice like that", measure it, because you can't listen:
+
+1. Isolate the speech: Whisper (`faster-whisper`, `small.en`) gives the words with timings; the gaps
+   are music.
+2. Measure on the speech only: **pace** (words per minute while speaking), **pitch** (median and the
+   10–90% range in Hz; `librosa.pyin`), **range** in semitones (expressiveness), and pauses.
+3. Generate the same script in candidate voices, measure them the same way, and pick the nearest;
+   then make a file that plays the original line followed by the candidates, for the user to judge.
+
+The Taeillo ad's voice (an excited, punchy read) measured: about 180 wpm while speaking, median
+pitch 135–150 Hz, range about 120–235 Hz (11 semitones). Kokoro voices measured on the same script
+at speed 1.15:
+
+| Kokoro voice | Median pitch | 10–90% | Range | Read |
+|---|---|---|---|---|
+| `am_fenrir` | 129 Hz | 91–192 Hz | 12.8 st | The closest to an energetic male ad read |
+| `bm_george` | 139 Hz | 114–161 Hz | 6.0 st | Right pitch, much flatter (British) |
+| `am_eric` | 156 Hz | 111–195 Hz | 9.8 st | Brighter, fast |
+| `am_puck` | 106 Hz | 87–173 Hz | 11.9 st | Lower, lively |
+| `am_michael` | 108 Hz | 67–139 Hz | 12.8 st | Low, calm narrator |
+| `af_heart` | 199 Hz | 164–248 Hz | 7.2 st | The kit's default: warm, even female narrator |
+| `af_bella` | 198 Hz | 172–248 Hz | 6.4 st | Similar to af_heart, slightly flatter |
+
+Kokoro reads evenly: it can't really shout "OMG!" or sound surprised. For hype reads, accents
+(for example a Nigerian or Indian English voice for a market the product serves) and acted emotion,
+use ElevenLabs (its voice library and emotion tags) or Higgsfield's connector, and say which.
 
 ## 3. Music
 
@@ -122,6 +152,10 @@ The kit's effects live in `public/sfx/` and are listed, with a length and a defa
 | Pixels appearing / collapsing | `glitch` ×3, then once on collapse | `DotMatrix` | 0.18 |
 | A name landing in a grid cell | `blip` | `GridCell` | 0.16 |
 | A good, resolved state (Ready, Passed, Saved) | `confirm`, once per scene at most | you: `<Sfx name="confirm" at={…} />` | 0.24 |
+| A light switching on (the dark-room hook) | `switch` | `LightSwitch` | 0.45 |
+| A short line typing out (a headline, a URL) | a key per character, four varied keys | `Typewriter`, `UrlPill` | 0.16 |
+| A word slamming in ("But", "THIS?") | a soft `thump` | `Punch` | 0.21 |
+| Cards shooting in, dropping into a box; the lid shutting | `whoosh`, `swish`, `land`; `thump` | `CardDeck`, `Crate` | as above |
 
 Each look has a **sound palette** (`sfx` in `src/kit/looks.ts`): which sound each transition makes,
 swaps (Graphic turns `land` into `pop`; Editorial turns `blip` into `pop`) and an overall level
@@ -130,7 +164,8 @@ the palette does.
 
 - Place one-off sounds with `<Sfx name="confirm" at={96} />` inside a scene; `endAt` aligns the end
   instead (a riser that must peak on a cut). Every motion block takes `sound={false}` to stay quiet.
-- **Fewer is better.** One confirm per scene at most, no sound for typing (it gets tiring), no sound
+- **Fewer is better.** One confirm per scene at most, typing sounds only for short typed lines (a
+  headline, a URL; never a paragraph), no effects under footage (just the music), no sound
   on every pop-in, no meme sounds. A dozen effects in a 40-second video is plenty; the kit's defaults
   are set for that.
 - **Under a voice,** effects must not cover words. The music ducks under narration, but effects

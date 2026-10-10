@@ -21,6 +21,12 @@ export const SFX = {
   alert: { file: "alert.wav", frames: 3, volume: 0.2 }, // a limit hit, a red state
   glitch: { file: "glitch.wav", frames: 1, volume: 0.18 }, // pixels appearing or collapsing
   blip: { file: "blip.wav", frames: 10, volume: 0.16 }, // a graphic accent, a name landing
+  switch: { file: "switch.wav", frames: 2, volume: 0.45 }, // a light switching on (the dark-room hook)
+  // Keyboard keys, four variations so typing doesn't sound like one sample repeated; Typewriter picks them
+  key1: { file: "key1.wav", frames: 1, volume: 0.16 },
+  key2: { file: "key2.wav", frames: 1, volume: 0.16 },
+  key3: { file: "key3.wav", frames: 2, volume: 0.16 },
+  key4: { file: "key4.wav", frames: 2, volume: 0.16 },
 } as const;
 
 export type SfxName = keyof typeof SFX;

@@ -13,6 +13,12 @@ import EDITORIAL_VOICE from "./videos/editorial/voice.json";
 import { SCENES as GRAPHIC_SCENES } from "./videos/graphic/scenes";
 import { VIDEO as GRAPHIC } from "./videos/graphic/timeline";
 import GRAPHIC_VOICE from "./videos/graphic/voice.json";
+import { SCENES as FOOTAGE_SCENES } from "./videos/footage/scenes";
+import { VIDEO as FOOTAGE } from "./videos/footage/timeline";
+import FOOTAGE_VOICE from "./videos/footage/voice.json";
+import { SCENES as POSTER_SCENES } from "./videos/poster/scenes";
+import { VIDEO as POSTER } from "./videos/poster/timeline";
+import POSTER_VOICE from "./videos/poster/voice.json";
 
 type Level = { alone: number; underVoice: number; ramp: number };
 // One entry per video: [cut list, scenes, voice manifest, music file, music levels].
@@ -25,6 +31,8 @@ const VIDEOS: [VideoSpec, Record<string, () => React.JSX.Element>, VoiceSpec, st
   [EXAMPLE, EXAMPLE_SCENES, EXAMPLE_VOICE, "music/upbeat.wav", { alone: 0.5, underVoice: 0.16, ramp: 8 }],
   [EDITORIAL, EDITORIAL_SCENES, EDITORIAL_VOICE, undefined, { alone: 0.6, underVoice: 0.16, ramp: 8 }],
   [GRAPHIC, GRAPHIC_SCENES, GRAPHIC_VOICE, undefined, { alone: 0.6, underVoice: 0.16, ramp: 8 }],
+  [FOOTAGE, FOOTAGE_SCENES, FOOTAGE_VOICE, undefined, { alone: 0.6, underVoice: 0.16, ramp: 8 }],
+  [POSTER, POSTER_SCENES, POSTER_VOICE, undefined, { alone: 0.6, underVoice: 0.16, ramp: 8 }],
 ];
 
 // Videos that also get a 9:16 cutdown (<Title>Vertical, 1080x1920), reusing the same scenes and voice,
