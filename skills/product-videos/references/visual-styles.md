@@ -31,7 +31,7 @@ Start from the video type, then adjust for the product and the audience.
 | Video type | Default look | Why | Good alternative |
 |---|---|---|---|
 | Launch: a product with real UI to show | **Editorial** | Launches sell an outcome. One number or claim per scene, then a few real UI moments on floating cards, reads fast and works muted in a feed | Studio when the UI itself is the hero; Cinematic for a premium brand |
-| Launch: a product for real-world businesses or people (shops, salons, clubs, creators) | **Footage** | A human hook on footage ("the salon that takes appointments … sells haircare products") makes the right viewer recognise themselves before any UI; then cards, colour and the real screens | Editorial if there's no footage budget |
+| Launch: a product for real-world businesses or people (shops, salons, clubs, creators) | **Footage** | A human hook on footage ("the salon that takes appointments … sells haircare products") makes the right viewer recognise themselves before any UI; then cards, colour and the real screens | Footage over public-domain photos when there's no footage budget (`footage.md`, stills); otherwise Editorial |
 | Launch or ad: a physical product, e-commerce, a catalogue | **Poster** | The products are the stars: huge names behind cut-out photos, one colour per product, punchy words | Footage for lifestyle scenes; Graphic for a single hero product |
 | Launch: API, infrastructure, data (little UI) | **Graphic** | With no screens to show, a strong graphic system (grid, pixels, one loud colour) carries the story | Editorial with code cards |
 | Feature drop / what's new | **Editorial** | One number or one before/after claim, then the feature on a card | Studio when the feature is an interaction (drag, type, click) |
@@ -228,10 +228,13 @@ made with Claude, Remotion and generated footage (October 2026). Music-led, no v
   product.
 - **Sound only on key moments:** the switch, typing, the whoosh, the thud, clicks. Footage scenes get
   none. Soft and low (the original sits 7–15 dB above its music).
-- **Kit:** `Footage`, `LightSwitch`, `Typewriter`, `PhraseSwap`, `Punch` (with `settle` for the
-  "But" that becomes the sentence's first word), `CardDeck` (rows → fan → stack → gather), `Crate`,
-  `StepLabel`, `UrlPill`; transitions `cut`, `slab`, `pixels`. Example: `src/videos/footage/`.
-  Footage sources and prompts: `footage.md`.
+- **Stills work too.** Photos with a slow push-in, cut on the beat, read as shots: an "overlay
+  video" (type over pictures) needs no clips at all. `Montage` cuts several photos under one
+  PhraseSwap, a phrase per picture.
+- **Kit:** `Footage` (clips or photos), `Montage`, `LightSwitch`, `Typewriter`, `PhraseSwap`, `Punch`
+  (with `settle` for the "But" that becomes the sentence's first word), `CardDeck` (rows → fan →
+  stack → gather), `Crate`, `StepLabel`, `UrlPill`; transitions `cut`, `slab`, `pixels`. Example:
+  `src/videos/footage/`. Footage and photo sources, prompts: `footage.md`.
 
 ## 6b. Poster
 

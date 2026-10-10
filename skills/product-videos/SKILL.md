@@ -135,7 +135,7 @@ Read the one you need, when you need it:
 |---|---|
 | `references/styles.md` | Choosing a video type; you need a structure, length and pacing |
 | `references/visual-styles.md` | Choosing and recommending a look; building Editorial, Graphic, Cinematic, Footage or Poster scenes; studying a reference video |
-| `references/footage.md` | B-roll: stock sources, AI video models and costs, prompts, putting clips in the kit, disclosure |
+| `references/footage.md` | B-roll and photos: stock and public-domain (CC0) sources, AI video models and costs, prompts, putting clips or stills in the kit, disclosure |
 | `references/scriptwriting.md` | The story (hook, pain, solution, CTA; six angles), the script, headlines, narration, captions, reading time for on-screen words, or working from a user's script |
 | `references/audio.md` | Voiceover, music, sound effects and each look's sound palette, levels, licensing, finding more CC0 sounds, ElevenLabs or other AI audio tools |
 | `references/accuracy.md` | Before rebuilding any screen; deciding what may be shown |

@@ -1,5 +1,5 @@
 import React, { type ReactNode } from "react";
-import { AbsoluteFill, OffthreadVideo, interpolate, random, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
+import { AbsoluteFill, Img, OffthreadVideo, Sequence, interpolate, random, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { ease, easeOut, lerp, pop, progress } from "../anim";
 import { monoFamily } from "../theme";
 import { useLook } from "./looks";
@@ -188,20 +188,25 @@ export const StepLabel = ({ n, kicker, title, at = 0, size = 44, color }: { n: n
 /* ------------------------------------------------------------ footage */
 
 /**
- * Background footage (B-roll): a clip from public/footage/, covering the frame, slowly pushing in,
- * darkened at the bottom for legible type. With no `src` it draws a labelled placeholder, so the
- * storyboard can be built and timed before footage is chosen or generated. Footage stays muted;
- * the music and effects are the soundtrack.
+ * Background footage (B-roll): a clip or a still photo from public/footage/, covering the frame, slowly
+ * pushing in (from `from` to `zoom`, towards `origin`, drifting by `pan` pixels), darkened at the bottom
+ * for legible type. A still gets the same move, so a photo reads as a shot, not a slide. With no `src`
+ * it draws a labelled placeholder, so the storyboard can be built and timed before footage is chosen or
+ * generated. Footage stays muted; the music and effects are the soundtrack.
+ * `origin` also crops: zoom in towards a corner to keep a logo or a face out of frame.
  */
-export const Footage = ({ src, label, startFrom = 0, zoom = 1.08, darken = 0.45, children }: { src?: string; label?: string; startFrom?: number; zoom?: number; darken?: number; children?: ReactNode }) => {
+export const Footage = ({ src, label, startFrom = 0, from = 1, zoom = 1.08, origin = "50% 50%", pan = [0, 0], darken = 0.45, children }: { src?: string; label?: string; startFrom?: number; from?: number; zoom?: number; origin?: string; pan?: [number, number]; darken?: number; children?: ReactNode }) => {
   const frame = useCurrentFrame();
   const { durationInFrames } = useVideoConfig();
-  const s = interpolate(frame, [0, durationInFrames], [1, zoom], { extrapolateRight: "clamp" });
+  const t = interpolate(frame, [0, durationInFrames], [0, 1], { extrapolateRight: "clamp" });
+  const s = lerp(from, zoom, t);
+  const still = src !== undefined && /\.(jpe?g|png|webp|avif)$/i.test(src);
+  const fill = { width: "100%", height: "100%", objectFit: "cover" as const, objectPosition: origin };
   return (
     <AbsoluteFill style={{ background: "#111", overflow: "hidden" }}>
-      <AbsoluteFill style={{ transform: `scale(${s})` }}>
+      <AbsoluteFill style={{ transform: `translate(${pan[0] * t}px, ${pan[1] * t}px) scale(${s})`, transformOrigin: origin }}>
         {src ? (
-          <OffthreadVideo src={staticFile(src)} startFrom={startFrom} muted style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+          still ? <Img src={staticFile(src)} style={fill} /> : <OffthreadVideo src={staticFile(src)} startFrom={startFrom} muted style={fill} />
         ) : (
           <AbsoluteFill style={{ background: "repeating-linear-gradient(135deg, #2a2a33 0 40px, #24242c 40px 80px)", alignItems: "center", justifyContent: "center" }}>
             <div style={{ fontFamily: monoFamily, fontSize: 26, color: "#8a8a96", border: "2px dashed #55555f", padding: "14px 22px", borderRadius: 10 }}>footage: {label ?? "add a clip"}</div>
@@ -213,6 +218,28 @@ export const Footage = ({ src, label, startFrom = 0, zoom = 1.08, darken = 0.45,
     </AbsoluteFill>
   );
 };
+
+export type Shot = { src?: string; label?: string; from?: number; zoom?: number; origin?: string; pan?: [number, number]; darken?: number; startFrom?: number };
+
+/**
+ * Several shots cut on the beat under one caption: the first holds until `at`, then each holds `every`
+ * frames (a bar or a beat of the music). Pair it with a PhraseSwap at the same `at` and `every`, so
+ * each phrase lands on its own picture. Children are drawn once, over every shot.
+ */
+export const Montage = ({ shots, every, at = 0, children }: { shots: Shot[]; every: number; at?: number; children?: ReactNode }) => (
+  <AbsoluteFill>
+    {shots.map((shot, i) => {
+      const start = i === 0 ? 0 : at + i * every;
+      const end = i === shots.length - 1 ? undefined : at + (i + 1) * every;
+      return (
+        <Sequence key={i} from={start} durationInFrames={end === undefined ? undefined : end - start}>
+          <Footage {...shot} />
+        </Sequence>
+      );
+    })}
+    {children}
+  </AbsoluteFill>
+);
 
 /**
  * The room is dark, then a light switches on: everything inside starts at low brightness, flickers
@@ -314,7 +341,7 @@ export const Crate = ({ at = 0, closeAt, size = 220, color, label, sound = true 
         {face(`rotateY(-90deg) translateZ(${half}px)`, 0.82)}
         {face(`rotateX(-90deg) translateZ(${half}px)`, 0.6)}
         {/* the lid: hinged on the back top edge */}
-        <div style={{ position: "absolute", width: size, height: size, left: -half, top: -half, transformStyle: "preserve-3d", transform: `translateY(${-half}px) translateZ(${-half}px) rotateX(${lid}deg)`, transformOrigin: "50% 0%" }}>
+        <div style={{ position: "absolute", width: size, height: size, left: -half, top: -half, transformStyle: "preserve-3d", transform: `translateZ(${-half}px) rotateX(${lid}deg)`, transformOrigin: "50% 0%" }}>
           <div style={{ position: "absolute", inset: 0, background: c, filter: "brightness(1.15)", transform: "rotateX(90deg)", transformOrigin: "50% 0%", border: "1px solid rgba(255,255,255,.2)" }} />
         </div>
       </div>

@@ -193,7 +193,7 @@ It rebuilds the product's real screens as React components from its code and scr
   - **Editorial**: warm paper, one big rolling number per scene, floating cards, focus pulls, brand-colour circle reveals (launches, feature drops, explainers)
   - **Graphic**: white grid, one loud brand colour, pixel motifs, colour slabs, logo swirls and orbits (API and infrastructure products)
   - **Cinematic**: near-black, soft glow, large light type, slow (premium brands, teasers)
-  - **Footage**: real or AI-generated B-roll of your customers' world with typed and blurring captions, then the product (products for real-world businesses)
+  - **Footage**: real or AI-generated B-roll, or public-domain photos, of your customers' world with typed and blurring captions, then the product (products for real-world businesses; overlay videos)
   - **Poster**: huge product names behind cut-out photos, one bold colour per product, decoding and dropping type (physical products, e-commerce)
 - **Story first**: drafts the hook, pain, solution and CTA with you (six angles, three hooks each) before any storyboard, and times on-screen words to reading speed
 - **No codebase needed**: works from code, a running app, screenshots, designs or a description, and says which source each screen came from
@@ -255,7 +255,7 @@ skills/product-videos/
 ├── references/
 │   ├── styles.md               # Launch, tutorial, explainer, teaser, cutdown… structures and pacing
 │   ├── visual-styles.md        # The six looks, which to recommend for which video, and why; studying a reference video
-│   ├── footage.md              # B-roll: stock sources, AI video models and costs, prompts, disclosure
+│   ├── footage.md              # B-roll and photos: stock and CC0 sources, AI video models and costs, prompts, disclosure
 │   ├── scriptwriting.md        # Word budget, headlines, narration, claim audit, pronunciation
 │   ├── audio.md                # Voice, music, effects, levels, licences, ElevenLabs MCP
 │   ├── accuracy.md             # What may be shown, how to verify it

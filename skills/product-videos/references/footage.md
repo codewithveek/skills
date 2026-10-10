@@ -5,15 +5,16 @@ themselves before they see any UI. Box's launch opens on a dark Pilates studio w
 on, then a creator at her laptop, a stylist with a client, a padel club's courts, café and shop, each
 with one line of kinetic type. The **Footage** look is built around this (`visual-styles.md`).
 
-Claude can't make photorealistic footage in code. Get it from a library or a video model, then do all
-the type, timing and sound in Remotion.
+Claude can't make photorealistic footage in code. Get it from a library or a video model, or use
+public-domain photos (section 3), then do all the type, timing and sound in Remotion.
 
 ## Contents
 
 1. Where footage comes from
 2. Generating it: prompts and rules
-3. Putting it in the kit
-4. Accuracy and disclosure
+3. Photos instead of clips
+4. Putting it in the kit
+5. Accuracy and disclosure
 
 ---
 
@@ -63,23 +64,55 @@ prompts are copied by hand. Free Flow accounts get a small daily credit allowanc
 - **Check the frames** before using a clip: hands, faces, text-like garbage on signs, physics.
   Regenerate rather than hide a flaw under a caption.
 
-## 3. Putting it in the kit
+## 3. Photos instead of clips
+
+Still photos with a slow push-in, cut on the beat, read as shots. They suit an overlay video (type
+over pictures) when there's no footage or no budget for a video model, or when the user asks for free
+or public images. Prefer CC0 or public-domain photos: no permission, no attribution, edits allowed.
+
+| Source | Licence | Notes |
+|---|---|---|
+| **Openverse** (`api.openverse.org/v1/images/`) | Filter `license=cc0,pdm` | One search over the sources below: `q`, `source=wordpress` (or `wikimedia`, `rawpixel`, `stocksnap`), `aspect_ratio=wide`, `page_size=20`. Fetch with curl: Python's default user agent gets 403 |
+| **WordPress Photo Directory** (wordpress.org/photos) | CC0 | The best fit for 1080p: results link a 2048 px copy, and the same URL without its `-2048x1536` suffix is the 4000–6000 px original. Mostly places, food and objects |
+| **Wikimedia Commons** | Some CC0 or public domain; most are CC BY-SA (credit required, check each) | Send a descriptive User-Agent, fetch one file at a time (bursts get 429), and ask for thumbnails only at standard widths (500 px works; arbitrary widths are refused) |
+| **Rawpixel** public domain | CC0 | Free copies stop at 1300 px wide: soft at 1080p, fine for small insets |
+| **StockSnap** | CC0 | API results link 960 px thumbnails; full size only through the site |
+| **Pexels, Unsplash** | Their own free licences (not CC0) | Good people shots; their APIs need a key |
+
+- **Resolution:** at least 2048 px wide for a 1920 frame (a 1.1 push-in shows about 2100 px of it).
+  Resize larger originals to about 2560 px wide so renders stay quick.
+- **Choose for the caption:** a calm area where the type sits (floor, sky, a wall). Busy shelves and
+  markets need `darken` 0.7–0.8 or a scrim behind the line.
+- **Logos, signs and faces:** a brand in shot reads as an endorsement. Crop it out with `origin` and
+  `from` (start zoomed in towards the clean side), or blur it with a feathered mask (soft edges; a
+  hard-edged box draws the eye). CC0 allows the edit; note it in the credits.
+- **Move every still:** `from` → `zoom` (1 → 1.1) pushes in towards `origin`; `pan={[x, y]}` drifts.
+  Vary the origin from shot to shot so the moves don't repeat.
+- **One caption, several pictures:** `<Montage at={4} every={60} shots={[…]}>` with a `PhraseSwap` at
+  the same `at` and `every` puts each phrase on its own photo, cut on the bar.
+- **Credits:** list each file's title, creator, source page and licence in
+  `public/footage/CREDITS.md`. CC0 needs no on-screen credit; CC BY does (an end card line).
+
+## 4. Putting it in the kit
 
 1. Put clips in `public/footage/` (trimmed, 30 fps, muted, H.264):
    `npx remotion ffmpeg -i in.mp4 -ss 1.2 -t 4 -r 30 -an -c:v libx264 -crf 18 public/footage/salon.mp4`
-2. Use `<Footage src="footage/salon.mp4">` as the scene's ground; it covers the frame, pushes in
-   slowly and darkens the bottom for type. Without `src` it draws a labelled placeholder, so the
+2. Use `<Footage src="footage/salon.mp4">` (or a photo, `footage/salon.jpg`) as the scene's ground;
+   it covers the frame, pushes in slowly and darkens the bottom for type. Without `src` it draws a labelled placeholder, so the
    storyboard can be built and timed before footage exists.
 3. Type over footage: `PhraseSwap` (a small lead over a big line that blurs from phrase to phrase),
    `Typewriter` (caps headline with key sounds), `LightSwitch` around the opening shot.
 4. Sound: footage stays muted. On footage, **no effects, just the music** (Box's storyboard says so in
    as many words); keep effects for the light switch, typing and the turn.
-5. Cut on the music: footage scenes are `bars(1, bpm)` or `beats(n, bpm)` long, hard cuts (`in: "cut"`).
+5. Cut on the music with hard cuts (`in: "cut"`). A cut lands in the middle of its crossfade, so give
+   each scene `beats(n, bpm) + crossfade` frames (the first and last scenes `+ crossfade / 2`). A
+   scene's first frame on screen is then frame `crossfade / 2`, and its beats fall on
+   `crossfade / 2 + k × beats(1, bpm)`: put hits (the switch, a punch, the lid) there.
 
-## 4. Accuracy and disclosure
+## 5. Accuracy and disclosure
 
 - Footage shows the world the product serves, not the product. A phone or laptop screen in a clip
   must not show a fake version of the app; blur it, angle it away, or cut to the real rebuilt screen.
 - People in AI footage are not real customers; don't caption them as such ("Ada, owner of …").
-- Say in the delivery note which clips are stock (with their source) and which are AI-generated, and
-  which model made them. Some platforms ask for AI-generated content to be labelled; tell the user.
+- Say in the delivery note which clips and photos are stock (with their source and licence) and which
+  are AI-generated, and which model made them. Some platforms ask for AI-generated content to be labelled; tell the user.

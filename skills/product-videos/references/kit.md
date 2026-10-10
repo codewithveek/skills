@@ -37,7 +37,7 @@ src/
     Motion.tsx        Odometer, AccentLine, RuleLabel, Caption, Tilt, Flip, Stamp, dealt, PersonCard,
                       CellGrid, Meter, WordSlot, Orbit, Chip, Swirl, Tile, DotMatrix, GridCell
     Kinetic.tsx       Typewriter, UrlPill, PhraseSwap, Scramble, Punch, PosterName, StepLabel, Footage,
-                      LightSwitch, CardDeck, Crate
+                      Montage, LightSwitch, CardDeck, Crate
     Backdrops.tsx     Paper, Blueprint, Slab, Stage (the current look's ground)
     beats.ts          bars(), beats(), onBeat(), readFrames(): beat-length scenes, how long words must stay up
     Sfx.tsx           SFX (every effect: file, length, level) and <Sfx name at />, in the look's sound palette
@@ -132,7 +132,8 @@ Kinetic blocks (`Kinetic.tsx`), learned from the Box and Taeillo videos:
 | `Punch` | One word slams in (optional colour-split `glitch`), then can `settle` smaller and elsewhere | "But" that becomes the first word of its sentence; "THIS?" |
 | `PosterName` | A product name huge behind its cut-out photo, letters dropping in; italic serif caption | One poster per product |
 | `StepLabel` | "01 — ONBOARDING" over a two-line title, beside a product screen | Walkthrough steps in a launch |
-| `Footage` | A clip from `public/footage/` covering the frame, pushing in, darkened for type; a labelled placeholder without `src` | Every footage scene (`footage.md`) |
+| `Footage` | A clip or a still photo from `public/footage/` covering the frame, pushing in (`from` → `zoom` towards `origin`, optional `pan`), darkened for type; a labelled placeholder without `src` | Every footage scene (`footage.md`) |
+| `Montage` | Several shots cut every `every` frames under one caption | A PhraseSwap whose phrases each land on their own picture |
 | `LightSwitch` | Content starts dark, flickers and comes up with a switch click | The dark-room opening |
 | `CardDeck` | Product cards between arrangements at keyframes: `rows` (shoot in) → `fan` → `stack` → `gather` | "Most tools are built for one flow" |
 | `Crate` | A 3D box whose lid shuts at `closeAt` with a soft thud | Everything goes into one product |
