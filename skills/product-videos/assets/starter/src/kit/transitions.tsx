@@ -4,6 +4,7 @@ import { fade } from "@remotion/transitions/fade";
 import { slide } from "@remotion/transitions/slide";
 import { AbsoluteFill, Easing, interpolate } from "remotion";
 import type { Look, TransitionName } from "./looks";
+import { easingOf, MOTION } from "./measured";
 
 // Scene hand-overs, each a @remotion/transitions presentation. Plain CSS (clip-path, blur,
 // transforms), so they render the same in stills, the studio and the final file.
@@ -15,6 +16,8 @@ import type { Look, TransitionName } from "./looks";
 //   zoom   concentric squares zoom through to the next  graphic: into the close / logo
 //   push   the new scene pushes the old one out         lists, sequences, "next"
 //   cut    a hard cut at the midpoint                   on a music hit
+//   rise   old scene lifts away, new one rises in        showcase: the default between beats (measured textRise curve)
+//   wipe   a gradient wash sweeps across, then clears    showcase: brand moments and section changes
 
 type P = { look: Look; x: number; y: number };
 const io = Easing.bezier(0.65, 0, 0.35, 1);
@@ -83,6 +86,32 @@ const Zoom = ({ children, presentationProgress: p, presentationDirection: d, pas
   );
 };
 
+const riseEase = easingOf(MOTION.textRise.easing);
+const panEase = easingOf(MOTION.screenPan.easing);
+
+const Rise = ({ children, presentationProgress: p, presentationDirection: d }: TransitionPresentationComponentProps<P>) => {
+  if (d === "exiting") {
+    const t = riseEase(Math.min(1, p / 0.8));
+    return <AbsoluteFill style={{ opacity: 1 - t, transform: `translateY(${-t * 5}%)`, filter: `blur(${t * 6}px)` }}>{children}</AbsoluteFill>;
+  }
+  const t = riseEase(Math.max(0, (p - 0.2) / 0.8));
+  return <AbsoluteFill style={{ opacity: Math.min(1, t * 1.4), transform: `translateY(${(1 - t) * 7}%)` }}>{children}</AbsoluteFill>;
+};
+
+const Wipe = ({ children, presentationProgress: p, presentationDirection: d, passedProps: { look } }: TransitionPresentationComponentProps<P>) => {
+  if (d === "exiting") return <AbsoluteFill>{children}</AbsoluteFill>;
+  // A soft gradient wash sweeps in from the left, the new scene is swapped in underneath at the midpoint, the wash leaves to the right
+  const [from, to] = look.gradient ?? [look.accent, look.accent];
+  const enter = panEase(Math.min(1, p / 0.5));
+  const leave = panEase(Math.max(0, (p - 0.5) / 0.5));
+  return (
+    <AbsoluteFill>
+      <AbsoluteFill style={{ opacity: p >= 0.5 ? 1 : 0 }}>{children}</AbsoluteFill>
+      <AbsoluteFill style={{ background: `linear-gradient(115deg, ${from}, ${to} 55%, #f0abfc)`, transform: `translateX(${(enter - 1) * 110 + leave * 110}%) skewX(-8deg)` }} />
+    </AbsoluteFill>
+  );
+};
+
 const Cut = ({ children, presentationProgress: p, presentationDirection: d }: TransitionPresentationComponentProps<P>) => (
   <AbsoluteFill style={{ opacity: d === "exiting" ? (p < 0.5 ? 1 : 0) : p >= 0.5 ? 1 : 0 }}>{children}</AbsoluteFill>
 );
@@ -100,6 +129,8 @@ export const presentationFor = (name: TransitionName, look: Look, origin: [numbe
       case "slab": return make(Slab, look);
       case "zoom": return make(Zoom, look);
       case "cut": return make(Cut, look);
+      case "rise": return make(Rise, look);
+      case "wipe": return make(Wipe, look);
       case "push": return slide({ direction: "from-right" });
       default: return fade();
     }

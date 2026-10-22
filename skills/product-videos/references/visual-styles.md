@@ -5,7 +5,7 @@ decides the structure: which beats, how long. The visual style decides how it lo
 ground, the type, the colour, the transitions, the pace. In the kit a style is called a `look`, and it
 is one line in the timeline (`look: "editorial"`).
 
-There are four looks. Each one has a default for each video type, but the user chooses. Always
+There are five looks. Each one has a default for each video type, but the user chooses. Always
 show them the options, your recommendation, and why (see "Recommend, then let them choose").
 
 ## Contents
@@ -16,8 +16,9 @@ show them the options, your recommendation, and why (see "Recommend, then let th
 4. Editorial
 5. Graphic
 6. Cinematic
-7. Motion rules that apply to every look
-8. Building a look in the kit
+7. Showcase
+8. Motion rules that apply to every look
+9. Building a look in the kit
 
 ---
 
@@ -28,8 +29,9 @@ Start from the video type, then adjust for the product and the audience.
 | Video type | Default look | Why | Good alternative |
 |---|---|---|---|
 | Launch: a product with real UI to show | **Editorial** | Launches sell an outcome. One number or claim per scene, then a few real UI moments on floating cards, reads fast and works muted in a feed | Studio when the UI itself is the hero; Cinematic for a premium brand |
+| Launch: an AI, agent or automation product (the product does the work on screen) | **Showcase** | The story is "watch it work": headline, then the product filling a form or finding results live, a card lifting out with the result. White and gradient read as modern and light | Studio when the viewer must learn each click |
 | Launch: API, infrastructure, data (little UI) | **Graphic** | With no screens to show, a strong graphic system (grid, pixels, one loud colour) carries the story | Editorial with code cards |
-| Feature drop / what's new | **Editorial** | One number or one before/after claim, then the feature on a card | Studio when the feature is an interaction (drag, type, click) |
+| Feature drop / what's new | **Editorial** | One number or one before/after claim, then the feature on a card | Studio when the feature is an interaction (drag, type, click); Showcase when it's a live, multi-step action |
 | Tutorial / walkthrough | **Studio** | People need to see the whole real screen, where the cursor goes and what changes. Stylised looks slow learning | none: keep tutorials in Studio |
 | Explainer (how it works) | **Editorial** | Diagrams on paper, cards and connector lines read like a clear explanation | Graphic for data flows and pipelines |
 | Kinetic-type teaser | **Graphic** | Big type, motifs and slabs on the beat; no UI needed | Cinematic for a slower, moodier tease |
@@ -43,6 +45,7 @@ Then adjust:
 
 - **The product's own brand.** A dark, premium brand → Cinematic. One loud brand colour (orange,
   electric blue) and a geometric identity → Graphic. A light, neutral or friendly brand → Editorial.
+  A bright, gradient-led SaaS brand (blue to violet, white UI) → Showcase.
   The look borrows the brand's accent colour (`c.brand`) in every case.
 - **Where it will be watched.** LinkedIn and X autoplay muted: Editorial and Graphic carry the story in
   on-screen words and work without sound. YouTube, docs and sales calls are watched with sound: Studio
@@ -65,6 +68,8 @@ recommendation with a reason tied to *their* video, and the other three in one l
 > - **Graphic**: white grid, one loud brand colour, pixel motifs, colour slabs. Best for API or infra
 >   products with little UI.
 > - **Cinematic**: near-black, soft glow, large light type, slow. Best for a premium, quiet brand.
+> - **Showcase**: white, gradient accent words, the product working live in a browser, cards lifting
+>   out. Best for AI and automation products whose demo is the pitch.
 >
 > Say which, or I'll go with Editorial.
 
@@ -182,9 +187,50 @@ type, slow focus pulls.
 - **Sound:** a calm bed or a slow voiceover; no whooshes, or very quiet ones.
 - **Pace:** 5–8 s per scene; fewer scenes.
 
-## 7. Motion rules that apply to every look
+## 7. Showcase
 
-Learned from both references and true in all four looks:
+Learned from a 108-second launch for an AI web app, measured frame by frame (`motion-data.md`).
+Bright and busy in a controlled way: white space, one gradient word per headline, and the product
+visibly *doing the work* in a browser, as an agent fills a form or finds results while the viewer watches.
+
+**What the reference did:**
+
+| Time | What happened | How it moved |
+|---|---|---|
+| 0–3 s | A line about the problem types out ("… has always been"); its last word, "broken", is selected like text in an editor | Typewriter with caret; a selection box with handles grows across the word |
+| 3–7 s | Task chips (each a manual chore with its app and status: "Overdue", "No reply") drift in, blurred; app icons orbit the problem line | Depth blur, then concentric rings rotating and shrinking (accelerating into the cut) |
+| 7–9 s | "But…" in corner brackets; the bracket resizes around "What if you only needed one app" | Brackets land with a small overshoot |
+| 9–14 s | The logo assembles from shards; the tagline drops in word by word, then its verb phrase swaps for a second one | Words fall along a curved path from above-right and swing into place; one word in the gradient |
+| 14–15 s | A full-frame pink → violet → blue gradient sweeps across | Gradient wipe into the first feature |
+| 15–29 s | A web form in a browser; the extension's agent panel lists its steps (reading the page, filling in saved details …) while the form fills itself; Submit | Short scroll steps (~333 ms, firm stops), fields filling one after another, the cursor leading |
+| 29–36 s | The application becomes a card that lifts out of the page; it joins a board of applications | Card lift with growing shadow; zoom out into the board |
+| 36–103 s | Six more features, each: headline (one gradient word, sometimes swapped in place: "track every *application*" → "*task*") → live demo | Same vocabulary throughout: drop-in words, scroll steps, lifts, side panels popping in by scale |
+| 103–108 s | The app icon on a lavender sky shatters into the wordmark; the one-line promise and the URL | Shards fly out; wordmark slides in with motion blur |
+
+**The rules it follows:**
+
+- **Ground:** white, with faint gradient blooms in the corners (`Glow`). UI sits in light browser
+  windows or white cards with soft violet-tinted shadows.
+- **One gradient word per headline**, the brand colour into violet. The rest of the line is dark ink.
+- **Headlines are short and medium-weight** (about 500, 48–64 px at 1080p), centred, with plenty of
+  space. They hold for 1.5–3 s while their words settle.
+- **Words drop in along curves**, one by one, a few frames apart; a swapped word changes in place.
+- **The demo is the proof.** Each feature is shown working, live: the agent's panel narrates its steps
+  on screen, the cursor leads, results appear. Rebuild it from the real product (`accuracy.md`).
+- **Something always moves.** 77% of frames have motion; holds average a quarter of a second.
+- **Timing is measured, not guessed:** in-out curves peaking mid-move, 300–700 ms beats, overshoot
+  only on swaps and pops (`src/kit/measured`, `motion-data.md`).
+- **Transitions:** `rise` (the old scene lifts away, the new one rises in) between beats; `wipe` (a
+  gradient wash) into the brand and the close.
+- **Pace:** headline 1.5–3 s, demo 5–14 s. Music-led, often with an upbeat track; voiceover optional.
+
+**Kit:** `Glow`, `DropWords`, `SwapWord`, `TypeSelect`, `Bracket`, `Lift`, `CurveLine`,
+`GradientText` (`src/kit/showcase.tsx`); `Step` and `AppWindow` for the demos; `MOTION` presets;
+transitions `rise`, `wipe`. Example: `src/videos/showcase/`.
+
+## 8. Motion rules that apply to every look
+
+Learned from the references and true in all five looks:
 
 - **Hold the resolved state.** After a number lands or a status changes, hold it at least 0.5 s
   before the transition starts.
@@ -197,21 +243,24 @@ Learned from both references and true in all four looks:
   for at least 1.5 s.
 - **Accuracy still applies.** Numbers that roll must roll to the real value; cards and diagrams show
   real states, real options and real prices (`accuracy.md`).
+- **Time it like the references did.** Measured from a professional launch: beats of 300–700 ms
+  (about 9–21 frames at 30 fps), speed peaking mid-move rather than at the start, overshoot on only
+  about one beat in six. `src/kit/measured` has the curves (`motion-data.md`).
 
-## 8. Building a look in the kit
+## 9. Building a look in the kit
 
 - Set `look` in the timeline: `{ id, title, look: "editorial", crossfade: 14, scenes: [...] }`.
   `makeVideo` provides it to every scene; components read it with `useLook()` (font, canvas, ink,
   accent, alarm, card shadow, default transition, pace).
 - Choose a scene's entrance with `in` (`fade`, `focus`, `circle`, `panel`, `slab`, `zoom`, `push`,
-  `cut`) and, for `circle` and `panel`, `origin: [x, y]` as fractions of the frame. Left out, a scene
+  `cut`, `rise`, `wipe`) and, for `circle` and `panel`, `origin: [x, y]` as fractions of the frame. Left out, a scene
   uses the look's default transition.
-- Set `crossfade` to the look's pace: Studio 12, Graphic 12, Editorial 14, Cinematic 20.
+- Set `crossfade` to the look's pace: Studio 12, Graphic 12, Showcase 12, Editorial 14, Cinematic 20.
 - `<Stage />` draws the current look's ground, so Studio-style `Step` scenes also work in other looks
   (a light window shadow replaces the dark glow).
 - A scene can override the look for itself by wrapping in `<LookContext.Provider value={LOOKS.graphic}>`
   (a mixed-style showcase), but keep one look per video unless there is a reason.
 - A new look is an entry in `LOOKS` in `src/kit/looks.ts`. Derive it from the brand (its font, its
   background, its accent) and give it a default transition and pace.
-- Music: Editorial and Cinematic suit `bed.wav`; Graphic and Studio launches suit `upbeat.wav`. For
+- Music: Editorial and Cinematic suit `bed.wav`; Graphic, Showcase and Studio launches suit `upbeat.wav`. For
   music-led videos raise the music's `alone` level (0.6) since nothing ducks it.

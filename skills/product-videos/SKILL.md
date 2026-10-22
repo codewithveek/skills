@@ -1,10 +1,10 @@
 ---
 name: product-videos
-description: "Make motion videos for a software product with Remotion — launch videos, feature walkthroughs and tutorials, 'how it works' explainers, and vertical social cutdowns — in four visual styles (studio app-window, editorial paper-and-numbers, graphic grid-and-colour, cinematic dark), with a recommended style per video type — with rebuilt app screens, a camera that zooms and pans, a cursor that clicks and types, kinetic text, AI or local voiceover, music, sound effects, captions, loudness normalisation and thumbnails. Use it whenever someone asks for a product video, launch video, demo video, promo, explainer, walkthrough, tutorial video, screencast-style animation, 'a video like Linear/Raycast/Vercel launch videos', motion graphics for an app, a voiceover or narration for a video, captions or a VTT file, background music or sound effects for a video, video thumbnails, or a 9:16 Reels/TikTok/Shorts version, or a video in the style of a reference video (odometer numbers, floating cards, circle reveals, pixel grids, colour slabs) — even if they only say 'can you make a video of my app'. Also use it to change, re-time, re-voice or re-render videos made this way."
+description: "Make motion videos for a software product with Remotion — launch videos, feature walkthroughs and tutorials, 'how it works' explainers, and vertical social cutdowns — in five visual styles (studio app-window, editorial paper-and-numbers, graphic grid-and-colour, cinematic dark, showcase white-and-gradient), with a recommended style per video type and motion measured from real launches — with rebuilt app screens, a camera that zooms and pans, a cursor that clicks and types, kinetic text, AI or local voiceover, music, sound effects, captions, loudness normalisation and thumbnails. Use it whenever someone asks for a product video, launch video, demo video, promo, explainer, walkthrough, tutorial video, screencast-style animation, 'a video like Linear/Raycast/Vercel launch videos', motion graphics for an app, a voiceover or narration for a video, captions or a VTT file, background music or sound effects for a video, video thumbnails, or a 9:16 Reels/TikTok/Shorts version, or a video in the style of a reference video (odometer numbers, floating cards, circle reveals, pixel grids, colour slabs), including measuring its motion — even if they only say 'can you make a video of my app'. Also use it to change, re-time, re-voice or re-render videos made this way."
 license: MIT
 metadata:
   author: CodewithVeek
-  version: "1.1.0"
+  version: "1.2.0"
   homepage: "https://github.com/CodewithVeek/skills"
 ---
 
@@ -41,7 +41,7 @@ batch, and offer a recommended default for each:
 | What product, and where is it? (repo path, running URL, demo logins) | Screens are rebuilt from the real app | — must know |
 | Who is it for, and what should they do after? | Sets the style, script and call to action | Prospective users; "try it" |
 | Which kind of video? (`references/styles.md`) | Structure, length, pacing | Launch for a new product, tutorial for a feature |
-| Which visual style? Studio, Editorial, Graphic or Cinematic | How it looks and moves | The recommended look for the type (below); always say why |
+| Which visual style? Studio, Editorial, Graphic, Cinematic or Showcase | How it looks and moves | The recommended look for the type (below); always say why |
 | Length and shape: 16:9, 9:16, 1:1? | Layout and camera | 30–60 s, 16:9, plus a 9:16 cutdown on request |
 | Script: will they write it, or should you? | If they bring one, check every claim against the product | You draft, they approve |
 | Product name and brand: logo, colours, font | Title cards and the app frame | The app's own tokens; ask before inventing a name |
@@ -53,12 +53,14 @@ If they say "you choose", choose, say what you chose in one line each, and go.
 
 **The visual style is always offered, with a recommendation and a reason.** Each video type has a
 default look (`references/visual-styles.md` has the table): Editorial for most launches, feature drops
-and explainers; Graphic for API and infrastructure products with little UI; Studio for tutorials,
-onboarding and anything where the whole real screen matters; Cinematic for premium, quiet brands.
+and explainers; Showcase for AI, agent and automation products whose demo is the pitch; Graphic for
+API and infrastructure products with little UI; Studio for tutorials, onboarding and anything where
+the whole real screen matters; Cinematic for premium, quiet brands.
 Adjust for the product's brand and where it will be watched (muted feeds favour the text-led
 Editorial and Graphic). Tell the user which you recommend and why, in terms of *their* video, list
-the other three in one line each, and go with the recommendation if they don't choose. If they point
-at a reference video, name the closest look and what you will borrow from it.
+the other four in one line each, and go with the recommendation if they don't choose. If they point
+at a reference video, name the closest look and what you will borrow from it, and offer to measure
+its motion (`references/motion-data.md`) so the new video moves the way the reference does.
 
 Then show a **storyboard before building**: the look at the top, then scene by scene what is on
 screen, the headline, the narration line (or on-screen words, for music-led looks), the transition
@@ -80,9 +82,11 @@ into it, and roughly how long. It is cheap to change words and order now and exp
    base lengths, each scene's `in` transition) and `narration.ts` (lines, the frame each aims for, respellings). Register the video in
    `src/Root.tsx`.
 5. **Build scenes** (`scenes.tsx`) in the look's vocabulary: `src/videos/editorial/` and
-   `src/videos/graphic/` are working examples of the two text-led looks, `src/videos/example/` of
-   Studio. Rebuild each screen from its reference screenshot with the kit's
-   controls and an app frame shaped like the product's. Wrap anything the cursor or camera must
+   `src/videos/graphic/` are working examples of the two text-led looks, `src/videos/showcase/` of
+   Showcase, `src/videos/example/` of Studio. Time new motion with the measured presets in
+   `src/kit/measured` (`MOTION.screenPan`, `MOTION.settle` …) rather than inventing easings.
+   Rebuild each screen from its reference screenshot with the kit's controls and an app frame
+   shaped like the product's. Wrap anything the cursor or camera must
    reach in `<Anchor name="…">` and aim at names, never at hand-measured coordinates.
    `references/kit.md` explains the camera, pointer, anchors, scene reuse and the vertical layout.
 6. **Generate sound**: `npm run voice` (scenes grow to fit their narration), `npm run music`.
@@ -107,6 +111,9 @@ into it, and roughly how long. It is cheap to change words and order now and exp
   `StepCopy` to change their headline. One verified screen, many videos.
 - **Placeholder data is fine; placeholder features are not.** Example names, amounts and a
   `payouts.example.com` host are data. Say which data is illustrative when you deliver.
+- **Use measured timing.** The kit's `MOTION` presets are curves and durations measured from a
+  professional launch and verified by re-rendering. Prefer them to hand-picked easings; measure a
+  new reference with `assets/motion-lab` when the user wants a specific feel.
 - **Stills before renders.** A full render takes minutes; a still takes seconds.
 - **Don't trust a pipeline you haven't checked.** After the first render of a new setup, read the
   audio report and look at frames from the actual MP4, not only the stills.
@@ -121,7 +128,8 @@ Read the one you need, when you need it:
 | File | Read it when |
 |---|---|
 | `references/styles.md` | Choosing a video type; you need a structure, length and pacing |
-| `references/visual-styles.md` | Choosing and recommending a look; building Editorial, Graphic or Cinematic scenes; matching a reference video |
+| `references/visual-styles.md` | Choosing and recommending a look; building Editorial, Graphic, Cinematic or Showcase scenes; matching a reference video |
+| `references/motion-data.md` | Timing motion with measured presets; what professional launch motion measures as; measuring a reference video and scoring a render against it |
 | `references/scriptwriting.md` | Writing or reviewing the script, headlines, narration, captions, or working from a user's script |
 | `references/audio.md` | Voiceover, music, sound effects, levels, licensing, ElevenLabs or other AI audio tools |
 | `references/accuracy.md` | Before rebuilding any screen; deciding what may be shown |

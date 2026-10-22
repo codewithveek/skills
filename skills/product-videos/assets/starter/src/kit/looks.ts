@@ -12,7 +12,7 @@ const { fontFamily: jakarta } = loadJakarta("normal", { weights: ["500", "600", 
 const { fontFamily: interTight } = loadInterTight("normal", { weights: ["400", "500", "600", "700"], subsets: ["latin"] });
 const { fontFamily: geist } = loadGeist("normal", { weights: ["400", "500", "600", "700"], subsets: ["latin"] });
 
-export type TransitionName = "fade" | "focus" | "circle" | "panel" | "slab" | "zoom" | "push" | "cut";
+export type TransitionName = "fade" | "focus" | "circle" | "panel" | "slab" | "zoom" | "push" | "cut" | "rise" | "wipe";
 
 export type Look = {
   name: LookName;
@@ -24,6 +24,8 @@ export type Look = {
   muted: string;
   line: string;
   accent: string;
+  /** Two-stop gradient for accent words and wipes (showcase). Other looks colour accents flat with `accent`. */
+  gradient?: readonly [string, string];
   onAccent: string;
   alarm: string;
   /** A card sitting on the stage (person cards, floating UI snippets) */
@@ -40,7 +42,7 @@ export type Look = {
   whoosh: number;
 };
 
-export type LookName = "studio" | "editorial" | "graphic" | "cinematic";
+export type LookName = "studio" | "editorial" | "graphic" | "cinematic" | "showcase";
 
 export const LOOKS: Record<LookName, Look> = {
   // Dark stage, the app window front and centre, camera and cursor. The original kit look.
@@ -68,6 +70,15 @@ export const LOOKS: Record<LookName, Look> = {
     name: "cinematic", font: geist, canvas: "#050507", ink: "#f4f4f5", muted: "#8b8b94", line: "rgba(255,255,255,0.08)",
     accent: c.brand, onAccent: "#ffffff", alarm: "#ff7a6b", card: "#111114", cardShadow: "0 40px 120px rgba(0,0,0,0.7)",
     weight: 600, tracking: -0.04, transition: "focus", crossfade: 20, music: "music/bed.wav", whoosh: 0.1,
+  },
+  // White, airy, a brand-to-violet gradient on accent words, words that drop in along curves, live UI
+  // demos with an agent at work, cards lifting out of the screen. Timed with motion measured from a
+  // real launch (kit/measured): in-out curves that peak mid-move, short holds, near-continuous motion.
+  showcase: {
+    name: "showcase", font: fontFamily, canvas: "#ffffff", ink: "#111118", muted: "#6b6b78", line: "#e7e7f0",
+    accent: c.brand, gradient: [c.brand, "#a855f7"], onAccent: "#ffffff", alarm: "#e5484d", card: "#ffffff",
+    cardShadow: "0 24px 60px rgba(60,40,140,0.14), 0 2px 8px rgba(60,40,140,0.08)",
+    weight: 500, tracking: -0.03, transition: "rise", crossfade: 12, music: "music/upbeat.wav", whoosh: 0.12,
   },
 };
 

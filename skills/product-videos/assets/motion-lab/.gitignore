@@ -1,0 +1,5 @@
+node_modules/
+renders/
+data/*/frames.csv
+data/*/manifest.json
+__pycache__/

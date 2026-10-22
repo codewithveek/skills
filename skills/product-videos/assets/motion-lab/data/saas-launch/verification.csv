@@ -1,0 +1,17 @@
+beat_id,easing,score,progress_rmse,duration_ratio,travel_ratio,direction_match,render,verified
+196,best,99.2,0.0018,1.0,1.0096,True,beat-196-best.mp4,True
+196,linear,80.5,0.0573,1.0,1.0193,True,beat-196-linear.mp4,True
+103,best,99.3,0.0019,1.0,1.0044,True,beat-103-best.mp4,True
+103,linear,69.2,0.0916,1.0,1.0141,True,beat-103-linear.mp4,True
+211,best,98.2,0.0043,1.0,1.0148,True,beat-211-best.mp4,True
+211,linear,57.4,0.1268,1.0,1.0171,True,beat-211-linear.mp4,True
+158,best,98.3,0.0044,1.0,1.0088,True,beat-158-best.mp4,True
+158,linear,71.5,0.0847,1.0,1.0112,True,beat-158-linear.mp4,True
+94,best,98.2,0.0051,1.0,0.9962,True,beat-94-best.mp4,True
+94,linear,51.5,0.1454,1.0,1.0024,True,beat-94-linear.mp4,True
+7,best,97.7,0.0066,1.0,1.0039,True,beat-7-best.mp4,True
+7,linear,49.9,0.1811,1.0,1.0035,True,beat-7-linear.mp4,True
+139,best,97.3,0.0074,1.0,0.9901,True,beat-139-best.mp4,True
+139,linear,49.8,0.1781,1.0,1.0101,True,beat-139-linear.mp4,True
+220,best,97.7,0.0065,1.0,1.0038,True,beat-220-best.mp4,True
+220,linear,52.3,0.1427,1.0,1.0035,True,beat-220-linear.mp4,True

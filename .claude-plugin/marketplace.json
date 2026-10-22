@@ -9,7 +9,9 @@
     {
       "name": "learn-simply",
       "source": "./",
-      "skills": ["./skills/learn-simply"],
+      "skills": [
+        "./skills/learn-simply"
+      ],
       "strict": false,
       "description": "Explains any topic in plain, unambiguous language using ASD-STE100 (Simplified Technical English) principles.",
       "version": "1.0.0",
@@ -34,7 +36,9 @@
     {
       "name": "knowledge-graph",
       "source": "./",
-      "skills": ["./skills/knowledge-graph"],
+      "skills": [
+        "./skills/knowledge-graph"
+      ],
       "strict": false,
       "description": "Builds and maintains a codebase knowledge graph: one page per feature, a reading order with previous/next links, and tooling that tells you when a page has fallen behind the code it covers.",
       "version": "1.0.0",
@@ -59,10 +63,12 @@
     {
       "name": "product-videos",
       "source": "./",
-      "skills": ["./skills/product-videos"],
+      "skills": [
+        "./skills/product-videos"
+      ],
       "strict": false,
-      "description": "Makes product videos with Remotion — launches, tutorials, explainers and vertical cutdowns — in four visual styles (studio, editorial, graphic, cinematic) with a recommended style per video type, with rebuilt app screens, camera and cursor, voiceover, music, sound effects, captions and thumbnails, showing only what the product really does.",
-      "version": "1.1.0",
+      "description": "Makes product videos with Remotion — launches, tutorials, explainers and vertical cutdowns — in five visual styles (studio, editorial, graphic, cinematic, showcase) with a recommended style per video type, timed with motion measured frame by frame from real launch videos, with rebuilt app screens, camera and cursor, voiceover, music, sound effects, captions and thumbnails, showing only what the product really does.",
+      "version": "1.2.0",
       "author": {
         "name": "Lucky Victory",
         "url": "https://github.com/CodewithVeek"
@@ -83,7 +89,9 @@
         "explainer",
         "social-video",
         "motion-design",
-        "kinetic-typography"
+        "kinetic-typography",
+        "motion-measurement",
+        "easing"
       ]
     }
   ]
