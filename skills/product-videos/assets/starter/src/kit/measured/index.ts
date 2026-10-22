@@ -3,6 +3,14 @@ import type { MotionPreset } from "./preset";
 export { easingOf, measured, presetFrames } from "./preset";
 export type { BezierEasing, EasingSpec, MeasuredOptions, MotionChannel, MotionPreset, SpringEasing } from "./preset";
 export { SAAS_LAUNCH } from "./saas-launch";
+// Three more measured launches (references/motion-data.md). Smaller libraries: most clusters are one beat,
+// so use them to match a specific move, and MOTION below for everyday roles.
+//   FURNITURE_LAUNCH  27 s furniture brand, 34 beats, median 500 ms, moving 99% of the time, 21% overshoot
+//   API_LAUNCH        25 s developer API, 25 beats, median 733 ms, moving 95% of the time, 18% overshoot
+//   VOICE_APP_LAUNCH  44 s voice app, 49 beats, median 667 ms, moving 90% of the time, 6% overshoot (editorial calm)
+export { API_LAUNCH } from "./api-launch";
+export { FURNITURE_LAUNCH } from "./furniture-launch";
+export { VOICE_APP_LAUNCH } from "./voice-app-launch";
 
 /**
  * Measured motion, named by job. Each role is a shape cluster from the measured reference library

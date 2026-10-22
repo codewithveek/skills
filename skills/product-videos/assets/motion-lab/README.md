@@ -34,7 +34,10 @@ python3 analysis/extract_beat_curves.py --motion-dir data/ref --out data/ref/bea
 npm run fit-presets -- --curves data/ref/beat-curves.json --out-dir data/ref/presets --source ref --export-name REF --runtime-import ./preset
 ```
 
-- Frame rate and time base are read from the video (`--fps` / `--time-base` override them).
+- Frame rate and time base are read from the video (`--fps` / `--time-base` override them). Hold, beat
+  and scene-snap thresholds are in milliseconds, so 24, 30 and 60 fps references are cut the same way.
+- `python3 analysis/summarize_reference.py data/ref [data/other …]` prints beat lengths, where speed
+  peaks, overshoot, anticipation, motion share and holds, for comparing references.
 - Analysis takes about 10 minutes per 2 minutes of 60 fps 1080p on two cores.
 - `--storyboard` (optional) is a JSON list of `{ "start_s", "label" }` approximate scene starts;
   each start is moved to the calmest nearby frame. Without it the video is one scene.
@@ -100,6 +103,20 @@ Frames and video aren't included; the measurements are.
 | `presets/` | `fitted-beats.json`, `preset-library.json` (54 clusters), `motion-presets.ts`, `fit-report.md` |
 | `verification.csv`, `verification-vs-named.csv` | Fitted presets 97.3–99.3 vs linear 49.8–80.5 and stock CSS easings 49.8–85.7 |
 | `calibration.json` | The calibration results above |
+
+## Included data: three shorter references
+
+Measured the same way at 30 fps (`summarize_reference.py` gives the comparison table in
+`references/motion-data.md`):
+
+| Folder | Reference | Beats fitted / in library | Presets |
+|---|---|---|---|
+| `data/furniture-launch/` | 27 s furniture brand launch, 1080p | 34 / 19 | 13 clusters |
+| `data/api-launch/` | 25 s developer API launch, 720p | 25 / 11 | 10 clusters |
+| `data/voice-app-launch/` | 44 s voice-dictation app launch, 720p | 49 / 31 | 24 clusters |
+
+Each holds `scenes.csv`, `runs.csv`, `beats.csv`, `beat-curves.json` and `presets/`; frames and video
+aren't included.
 
 ## Limits
 

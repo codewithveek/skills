@@ -4,7 +4,7 @@ description: "Make motion videos of a software product with Remotion: launch vid
 license: MIT
 metadata:
   author: CodewithVeek
-  version: "1.2.0"
+  version: "1.3.0"
   homepage: "https://github.com/CodewithVeek/skills"
 ---
 
@@ -89,7 +89,8 @@ into it, and roughly how long. It is cheap to change words and order now and exp
    shaped like the product's. Wrap anything the cursor or camera must
    reach in `<Anchor name="…">` and aim at names, never at hand-measured coordinates.
    `references/kit.md` explains the camera, pointer, anchors, scene reuse and the vertical layout.
-6. **Generate sound**: `npm run voice` (scenes grow to fit their narration), `npm run music`.
+6. **Generate sound**: `npm run voice` (scenes grow to fit their narration), `npm run music` and
+   `npm run sfx` (generated tracks and effects, no licence needed; `references/audio.md`).
 7. **Check stills** at the moments that matter — every click, every typed value, every zoom, the
    last frame of each scene — and fix framing, overlaps and clipped text before rendering. Most
    problems are camera framing; widen the zoom or aim at a different anchor.

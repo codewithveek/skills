@@ -1,7 +1,8 @@
 import React from "react";
-import { Audio, Sequence, staticFile, useCurrentFrame } from "remotion";
+import { useCurrentFrame } from "remotion";
 import { progress, track, type Key } from "../anim";
 import { c } from "../theme";
+import { Sfx } from "./sfx";
 
 /**
  * A pointer that glides between keyframes (screen coordinates) and clicks at the
@@ -22,9 +23,7 @@ export const Cursor = ({ path, clicks = [], show = [0, 1e6] }: { path: Key[]; cl
   return (
     <div style={{ position: "absolute", left: 0, top: 0, pointerEvents: "none", opacity: Math.min(fadeIn, fadeOut), zIndex: 50 }}>
       {clicks.map((f) => (
-        <Sequence key={`click-${f}`} from={f - 1} durationInFrames={14} layout="none">
-          <Audio src={staticFile("sfx/mouse-click.wav")} volume={0.38} />
-        </Sequence>
+        <Sfx key={`click-${f}`} name="mouse-click" at={f - 1} />
       ))}
       {clicks.map((f) => {
         const d = frame - f;

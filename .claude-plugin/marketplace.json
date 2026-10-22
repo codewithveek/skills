@@ -67,8 +67,8 @@
         "./skills/product-videos"
       ],
       "strict": false,
-      "description": "Makes product videos with Remotion — launches, tutorials, explainers and vertical cutdowns — in five visual styles (studio, editorial, graphic, cinematic, showcase) with a recommended style per video type, timed with motion measured frame by frame from real launch videos, with rebuilt app screens, camera and cursor, voiceover, music, sound effects, captions and thumbnails, showing only what the product really does.",
-      "version": "1.2.0",
+      "description": "Makes product videos with Remotion — launches, tutorials, explainers and vertical cutdowns — in five visual styles (studio, editorial, graphic, cinematic, showcase) with a recommended style per video type, timed with motion measured frame by frame from four real launch videos, with rebuilt app screens, camera and cursor, voiceover, generated music and sound effects tuned to measured launch tracks, bundled modern typefaces, captions and thumbnails, showing only what the product really does.",
+      "version": "1.3.0",
       "author": {
         "name": "Lucky Victory",
         "url": "https://github.com/CodewithVeek"

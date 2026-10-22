@@ -9,7 +9,7 @@ Outputs (in --out-dir):
 
 --storyboard is an optional JSON list of approximate scene starts, e.g.
   [{"start_s": 0, "label": "hook"}, {"start_s": 3.5, "label": "problem"}]
-Each start is moved to the calmest frame within SNAP_WINDOW_FRAMES. Without it the video is one scene.
+Each start is moved to the calmest frame within SNAP_WINDOW_MS. Without it the video is one scene.
 """
 from __future__ import annotations
 
@@ -28,9 +28,16 @@ FLOW_WIDTH = 480  # optical flow computed at this width, vectors rescaled to ful
 CORE_FLOW_FRACTION = 0.5  # core-flow pixels: magnitude >= this fraction of the p95 magnitude
 DIFF_THRESHOLD = 8  # luma delta (0-255) counted as a "changed" pixel
 MOTION_ON_PCT = 0.05  # % of pixels changed for a frame to count as moving
-MIN_HOLD_FRAMES = 4  # holds shorter than this are merged into surrounding motion
+# Time thresholds are in milliseconds and converted with the video's frame rate, so a 30 fps reference
+# is cut into runs and beats the same way as a 60 fps one (at 60 fps: 4, 6 and 20 frames).
+MIN_HOLD_MS = 66.667  # holds shorter than this are merged into surrounding motion
+MIN_BEAT_MS = 100.0  # a beat is never split into pieces shorter than this
+SNAP_WINDOW_MS = 333.333  # how far a storyboard scene start may move to the calmest frame
 
-SNAP_WINDOW_FRAMES = 20
+
+def frames_for(milliseconds: float, fps: float) -> int:
+    """Whole frames covering a duration at this frame rate (at least one)."""
+    return max(1, round(milliseconds * fps / 1000))
 
 
 @dataclass
@@ -218,7 +225,8 @@ def snap_scene_starts(frames: list[FrameMetrics], storyboard: list[tuple[float, 
         if guess == 0:
             snapped.append((0, label))
             continue
-        low, high = max(1, guess - SNAP_WINDOW_FRAMES), min(len(frames) - 1, guess + SNAP_WINDOW_FRAMES)
+        window = frames_for(SNAP_WINDOW_MS, fps)
+        low, high = max(1, guess - window), min(len(frames) - 1, guess + window)
         calmest = min(range(low, high + 1), key=lambda i: (frames[i].changed_pct, abs(i - guess)))
         snapped.append((calmest, label))
     return snapped
@@ -282,7 +290,6 @@ def classify_easing(velocity: list[float], directions: list[float]) -> str:
 
 MIN_SCALE_CONFIDENCE = 0.5
 MIN_ROTATION_CONFIDENCE = 0.8
-MIN_BEAT_FRAMES = 6  # 100 ms at 60 fps
 BEAT_VALLEY_RATIO = 0.35  # split where speed falls below this fraction of both neighbouring peaks
 BEAT_MIN_PEAK_PX = 2.0
 
@@ -291,15 +298,16 @@ def median_smooth(values: list[float], radius: int = 1) -> list[float]:
     return [float(np.median(values[max(0, i - radius):i + radius + 1])) for i in range(len(values))]
 
 
-def split_into_beats(frames: list[FrameMetrics], start: int, end: int) -> list[tuple[int, int]]:
+def split_into_beats(frames: list[FrameMetrics], start: int, end: int, fps: float) -> list[tuple[int, int]]:
     """Recursively split [start, end] at deep speed valleys so each piece is one animation beat."""
     speed = median_smooth([f.flow_p95_px for f in frames[start:end + 1]])
+    min_beat_frames = frames_for(MIN_BEAT_MS, fps)
 
     def split(low: int, high: int) -> list[tuple[int, int]]:
-        if high - low + 1 < 2 * MIN_BEAT_FRAMES:
+        if high - low + 1 < 2 * min_beat_frames:
             return [(low, high)]
         best_index, best_ratio = -1, 1.0
-        for index in range(low + MIN_BEAT_FRAMES, high - MIN_BEAT_FRAMES + 2):
+        for index in range(low + min_beat_frames, high - min_beat_frames + 2):
             left_peak = max(speed[low - start:index - start])
             right_peak = max(speed[index - start:high - start + 1])
             smaller_peak = min(left_peak, right_peak)
@@ -349,16 +357,16 @@ def describe_motion(segment: Segment, frames: list[FrameMetrics]) -> None:
     segment.easing = classify_easing(segment.velocity_profile, [getattr(f, dominant_axis) for f in window])
 
 
-def build_beats(frames: list[FrameMetrics], runs: list[Segment]) -> list[Segment]:
+def build_beats(frames: list[FrameMetrics], runs: list[Segment], fps: float) -> list[Segment]:
     beats: list[Segment] = []
     for run_number, run in enumerate(runs):
-        pieces = [(run.start_frame, run.end_frame)] if run.kind == "hold" else split_into_beats(frames, run.start_frame, run.end_frame)
+        pieces = [(run.start_frame, run.end_frame)] if run.kind == "hold" else split_into_beats(frames, run.start_frame, run.end_frame, fps)
         for start, end in pieces:
             window = frames[start:end + 1]
             beat = Segment(
                 kind=run.kind, start_frame=start, end_frame=end,
                 start_ms=window[0].time_ms, end_ms=window[-1].time_ms,
-                duration_ms=round(window[-1].time_ms - window[0].time_ms + 1000 / 60, 3),
+                duration_ms=round(window[-1].time_ms - window[0].time_ms + 1000 / fps, 3),
                 frames=len(window), scene=window[0].scene, parent_run=run_number,
             )
             if beat.kind == "motion":
@@ -367,13 +375,14 @@ def build_beats(frames: list[FrameMetrics], runs: list[Segment]) -> list[Segment
     return beats
 
 
-def build_segments(frames: list[FrameMetrics]) -> list[Segment]:
+def build_segments(frames: list[FrameMetrics], fps: float) -> list[Segment]:
     moving = [f.frame > 0 and f.changed_pct >= MOTION_ON_PCT for f in frames]
+    min_hold_frames = frames_for(MIN_HOLD_MS, fps)
     # Merge short holds into motion so a single still frame mid-animation does not split it.
     run_start = 0
     for index in range(1, len(moving) + 1):
         if index == len(moving) or moving[index] != moving[run_start]:
-            if not moving[run_start] and index - run_start < MIN_HOLD_FRAMES and run_start > 0 and index < len(moving):
+            if not moving[run_start] and index - run_start < min_hold_frames and run_start > 0 and index < len(moving):
                 for j in range(run_start, index):
                     moving[j] = True
             run_start = index
@@ -387,7 +396,7 @@ def build_segments(frames: list[FrameMetrics]) -> list[Segment]:
             kind="motion" if moving[run_start] else "hold",
             start_frame=run_start, end_frame=index - 1,
             start_ms=window[0].time_ms, end_ms=window[-1].time_ms,
-            duration_ms=round(window[-1].time_ms - window[0].time_ms + 1000 / 60, 3),
+            duration_ms=round(window[-1].time_ms - window[0].time_ms + 1000 / fps, 3),
             frames=len(window), scene=window[0].scene,
         )
         segment.parent_run = len(segments)
@@ -465,8 +474,8 @@ def main() -> None:
             "frames": end_frame - start_frame + 1,
         })
 
-    runs = build_segments(frames)
-    beats = build_beats(frames, runs)
+    runs = build_segments(frames, options.fps)
+    beats = build_beats(frames, runs, options.fps)
 
     def segment_rows(segments: list[Segment]) -> list[dict[str, object]]:
         return [{**asdict(s), "velocity_profile": " ".join(map(str, s.velocity_profile))} for s in segments]

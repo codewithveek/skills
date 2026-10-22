@@ -23,12 +23,13 @@ music (ducked under the voice), a whoosh on each transition, and the cursor's cl
 | Voice, free, local | **Kokoro-82M** via `kokoro-js` (in the kit) | Apache-2.0; commercial use allowed | Runs on CPU at ~1.4× real time; clear, slightly flat. Best voice: `af_heart` (grade A), then `af_bella`. 28 English voices. |
 | Voice, best quality | **ElevenLabs** | Free tier forbids commercial use and needs attribution; Starter ($6/mo) and up allow commercial use | Most natural; also gives timestamps. Hosted MCP for Claude Code. |
 | Voice, other APIs | OpenAI, Google, Azure TTS | Per-character pricing; check each provider's disclosure rules for AI voices | Fine alternatives; same pipeline. |
-| Music, free, no licence | **The kit's synthesiser** (`npm run music`) | Original, no third party | Calm bed or upbeat; serviceable, not memorable. Flag as a placeholder. |
+| Music, free, no licence | **The kit's synthesiser** (`npm run music`) | Original, no third party | Upbeat pop-house (128 BPM) or a calm modern beat (100 BPM), mixed to match measured launch tracks (section 3). Fine to ship; a licensed or AI track adds a melody people remember. |
 | Music, AI | **ElevenLabs Music** | Commercial from Starter; free requires "Eleven Music" credit | Prompt for mood, tempo, length. |
 | Music, local AI | Stable Audio Open Small | Stability Community Licence: free under $1M annual revenue | Needs a Hugging Face account and Python; heavy on CPU. |
 | Music, library | Pixabay Music, YouTube Audio Library | Free commercial use | Pixabay tracks can trigger YouTube Content ID claims; its licence certificate clears them. |
 | Avoid for commercial work | MusicGen weights | CC-BY-NC | Non-commercial only. |
-| Sound effects | `@remotion/sfx` (CC0 subset), freesound.org CC0 | CC0: no attribution | Most of `@remotion/sfx` is memes; use mouse-click, whoosh, page-turn, ding. |
+| Sound effects | **The kit's synthesiser** (`npm run sfx`): click, whoosh, pop | Original, no third party | Section 4. |
+| Other sound effects | freesound.org CC0, `@remotion/sfx` (CC0 subset) | CC0: no attribution | For a ding or a page turn. Most of `@remotion/sfx` is memes. |
 
 Tell the user which licences apply to what you delivered, and that AI voices are AI-generated.
 
@@ -54,25 +55,59 @@ variable or a git-ignored `.env`, never in the code.
 
 ## 3. Music
 
-- One track under the whole video, looping or longer than the video, faded in over 20 frames and out
-  over the last 50.
-- Level: about 0.3 alone, 0.11 under the voice for tutorials; 0.5 alone, 0.16 under the voice for
-  launches (`Root.tsx` per video). The duck ramps over 8 frames.
-- Calm for tutorials (no drums), upbeat for launches and cutdowns (a light kick and hats).
-- To swap, drop a file at `public/music/bed.wav` or `upbeat.wav` (or point the video's entry in
-  `Root.tsx` at another file). The mix code doesn't change.
-- The kit's synth makes music that is warm and dark (most energy under 1 kHz). That sits well under a
-  voice; alone, it can feel muffled. Say so, and suggest a real track for a launch.
+`npm run music` writes two tracks into `public/music/` (about 25 s):
+
+| Track | Tempo | What's in it | Use for |
+|---|---|---|---|
+| `upbeat.wav` | 128 BPM, E minor | Four-on-the-floor kick with sidechained bass, claps on 2 and 4, offbeat hats and a shaker, syncopated supersaw chord stabs, a bell arpeggio in the lift sections, a riser and impact into every new section | Launches: showcase, graphic, studio |
+| `bed.wav` | 100 BPM, C major | A soft kick, claps and swung hats, electric-piano chords, a sub, sparse bells | Tutorials, editorial, cinematic |
+
+The upbeat track is built in sections (4-bar intro, then 8 bars groove, 6 lift, 2 break, repeating),
+so energy rises and falls. A bar is 4 × 60 / BPM seconds: 1.875 s (56 frames at 30 fps) at 128 BPM,
+2.4 s (72 frames) at 100 BPM. Cutting scenes on bars makes a music-led video feel edited to the track.
+`MUSIC_BPM` changes the upbeat tempo and `MUSIC_SECONDS` the length (default 90 s; the end fades).
+
+**How it was tuned.** Four professional launch videos were measured (spectrum, tempo, the share of
+energy in transients, stereo width), and the mix was fitted to them stem by stem:
+
+| | Tempo | Under 60 Hz | 60–250 Hz | 250 Hz–2 kHz | Above 2 kHz | Centroid | Transient share | Width |
+|---|---|---|---|---|---|---|---|---|
+| AI web app launch | 132 | 27% | 49% | 16% | 8% | 3.0 kHz | 0.34 | 0.32 |
+| Furniture launch | 99 | 7% | 65% | 26% | 2% | 1.4 kHz | 0.19 | 0.00 |
+| Developer API launch | 120 | 41% | 45% | 12% | 2% | 1.9 kHz | 0.14 | 0.32 |
+| Voice app launch (piano-led) | 110 | 2% | 38% | 56% | 4% | 1.9 kHz | 0.29 | 0.03 |
+| **Kit `upbeat.wav`** | 128 | 26% | 55% | 15% | 4% | 3.2 kHz | 0.20 | 0.23 |
+| **Kit `bed.wav`** | 100 | 9% | 55% | 31% | 5% | 1.5 kHz | 0.22 | 0.23 |
+| Previous kit synth (for comparison) | 92–103 | 0–4% | 18–31% | 59–81% | 1–6% | 0.8–2.4 kHz | 0.01–0.11 | 0.27–0.29 |
+
+Transient share is the fraction of energy in percussive hits (harmonic–percussive separation). The old
+synth sat in the low mids with almost no transients, which is what made it sound muffled and flat.
+
+- **Levels.** Both tracks are normalised to −13 LUFS integrated, true peak ≤ −1 dBTP, so the
+  per-video levels in `Root.tsx` hold whichever track (or tempo) you use: about 0.5–0.6 alone and
+  0.16 under the voice for launches, 0.3 and 0.11 for tutorials. The duck ramps over 8 frames.
+- One track under the whole video, longer than the video, faded in over 20 frames and out over the
+  last 50.
+- **Swapping.** Drop a file at `public/music/bed.wav` or `upbeat.wav`, or point the video's entry in
+  `Root.tsx` at another file. Normalise it near −13 LUFS too, or adjust the levels.
+- **Re-fitting the mix** (after changing an instrument): `MUSIC_STEMS=<dir> npm run music` writes each
+  track's stems unlevelled; fit the stem gains (`UPBEAT_MIX`, `BED_MIX` in `scripts/audio/tracks.mts`)
+  so the bands and transient share land inside the reference ranges above, then render and measure
+  the real mix. Summed stem measurements are only an estimate for the transient share.
 
 ## 4. Sound effects
 
-| Moment | Sound | Level |
-|---|---|---|
-| Every cursor click | `mouse-click.wav`, starting 1 frame before the click | 0.38 |
-| Every scene transition | `whoosh.wav`, 3 frames before the crossfade | 0.2 |
-| Optional: success state | a soft ding, once per video at most | 0.25 |
+`npm run sfx` writes three effects into `public/sfx/`, synthesised (`scripts/audio/effects.mts`):
 
-Fewer is better. No sound for typing (it gets tiring), no sound on every pop-in, no meme sounds.
+| Sound | What it is | Plays | Level |
+|---|---|---|---|
+| `mouse-click.wav` | A crisp trackpad click: a 4.2 kHz tick with a light knock, then a softer release 45 ms later (120 ms) | Every `Cursor` click, 1 frame early | 0.38 |
+| `whoosh.wav` | Airy band-passed noise whose pitch rises with its loudness, travelling left to right, a low thump under the peak (0.62 s, peak at 0.3 s) | Every scene transition, 3 frames before the crossfade, so it peaks mid-transition | the look's `whoosh` (0.1–0.2) |
+| `pop.wav` | A sine gliding 380 → 1,100 Hz in about 30 ms with a tiny transient (0.2 s) | `<Sfx name="pop" at={frame} />` on the landing frame | 0.3 |
+
+`Sfx` (`src/kit/sfx.tsx`) plays any of them at a frame. Fewer is better: a pop on the one element a
+scene is about (the badge, the number, the word that lands), not on every chip; no sound for typing;
+no meme sounds. Optionally one soft ding for a success state, once per video at most.
 
 ## 5. Levels and loudness
 
@@ -90,7 +125,9 @@ loudness timeline (`#` voice-level, `+` music or effects, `.` quiet, space silen
 - The voice is present where the narration should be, with music between lines (alternating `#`
   and `+`), not silence.
 - Nothing clips (peak below 0 dBFS; after normalising, about -1.5).
-- Music isn't all bass: a bed with more than ~70% of its energy under 250 Hz will sound boomy.
+- Music has weight and a top. The three beat-driven launch tracks measured 72–86% of energy under
+  250 Hz (kick and bass) and a centroid of 1.4–3 kHz; a track with most of its energy between 250 Hz and 2 kHz and a centroid
+  under 1 kHz sounds boxy and muffled, unless it's a piano or acoustic piece.
 - Speech looks like speech: most energy under 1 kHz, a little above 4 kHz.
 
 Read 32-bit float WAVs as float (Kokoro writes them): reading them as 16-bit gives nonsense numbers

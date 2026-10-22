@@ -84,8 +84,8 @@ floating window; a camera that zooms to anchors and a cursor that clicks and typ
 
 - **Feel:** a guided tour of the real product.
 - **Use for:** tutorials, walkthroughs, onboarding, before/after, launches where the UI is the hero.
-- **Ground:** `Backdrop` (dark, glow from below, drifting grid). **Type:** Inter, heavy (800) headlines
-  with an uppercase eyebrow in the brand colour.
+- **Ground:** `Backdrop` (dark, glow from below, drifting grid). **Type:** Inter Display, bold (700)
+  headlines with an uppercase eyebrow in the brand colour.
 - **Transitions:** 12-frame crossfade with a soft whoosh; `push` between steps of a series.
 - **Pace:** 5–8 s per product moment; camera wide → zoom to the action → pull back.
 - **Sound:** voiceover first, music ducked under it.
@@ -118,8 +118,11 @@ saved for the brand moments.
   white cards with soft, warm shadows. The brand colour fills the whole frame only at brand moments
   (introduction, price), entered with a circle reveal.
 - **One idea per scene.** One big number or one diagram, plus one short line under it.
-- **Type:** a rounded geometric sans (Plus Jakarta Sans in the kit), bold, tight tracking. Numbers
-  very large (200–260 px at 1080p); the line under them about 44 px; labels small, uppercase, spaced.
+- **Type:** the reference used a rounded geometric sans. The kit now sets editorial in **EB Garamond**
+  (a Garamond book serif), medium (500), with the coloured phrase in its **italic**, learned from a
+  second editorial reference (below): it reads warmer and more considered than a sans. Numbers very
+  large (200–260 px at 1080p) in the same serif; the line under them about 44 px; labels, cards and
+  meters small, in Inter (`look.textFont`). For the original sans feel, set `font` to the sans stack.
 - **Colour has meaning.** Each line has one coloured phrase: the problem in red ("*That's it.*",
   "*days*"), the promise in the brand colour ("*4 weeks*", "*ours*", "*free.*"). Never both in one
   line.
@@ -133,6 +136,13 @@ saved for the brand moments.
   moving into a detail.
 - **Pace:** 3–5 s per scene, about ten scenes in 40 s. Music only; no voiceover.
 - **Close:** the offer on brand colour (price, URL, mark), then optionally one last proof scene.
+
+**A second reference: a 44-second voice-dictation app launch**, measured frame by frame
+(`motion-data.md`). Warm cream with soft pink and orange glows; serif headlines top-left with one
+coral italic word ("The *slowest* part of you", "Texts like *you.*"); the app's real UI as white
+cards (a chat, an email), a keyboard, a gauge counting words per minute, the app on four devices.
+Its motion is the calmest of the four references: beats median 667 ms, overshoot on only 6% of them.
+For an editorial video, lengthen moves rather than adding bounce.
 
 **Kit:** `Paper`, `Slab dots`, `RuleLabel`, `Odometer`, `AccentLine`, `Caption`, `PersonCard`,
 `dealt()`, `Stamp`, `Flip`, `Tilt`, `CellGrid`, `Meter`; transitions `focus`, `circle`, `panel`.
@@ -164,12 +174,20 @@ whose value is not a screen.
   the close.
 - **One motif, reused.** The square is everything: pixels, grid cells, tiles, the zoom-through. A
   motif that keeps transforming makes a short video feel designed, not assembled.
-- **Type:** a tight neo-grotesk (Inter Tight in the kit), medium weight, strongly negative tracking.
-  Statements 50–64 px centred; slab statements 150 px left-aligned.
+- **Type:** Inter Display (Inter's optical-size cut, which the reference itself uses), semi-bold (600),
+  strongly negative tracking. Statements 50–64 px centred; slab statements 150 px left-aligned.
+- **Measured** (`motion-data.md`, `API_LAUNCH`): 25 beats, median 733 ms, motion on 95% of frames,
+  holds of about 80 ms. It cuts fast but each move is unhurried.
 - **Transitions:** colour slabs, hard cuts on the beat, push for lists, a zoom through concentric
   squares into the close.
 - **Pace:** 2–4 s per scene, cut to the music. Music only.
 - **Close:** "[Name] is live now" on the brand colour, with the mark as an outlined watermark.
+
+**A second graphic reference: a 27-second furniture brand launch** (`FURNITURE_LAUNCH`). After a short
+lifestyle shot, each product sits cut out on a saturated full-bleed colour (red, green, blue), its name
+in huge heavy capitals behind it, a small italic serif caption in the corner; then a kinetic list with
+small product images set inline between the words. The same system as above (one motif, flat colour,
+big type) for a physical product. Motion on 99% of frames; holds under 70 ms.
 
 **Kit:** `Blueprint` (and `Blueprint dark`), `Slab watermark`, `DotMatrix`, `GridCell`, `Swirl` + `Tile`,
 `Orbit` + `Chip`, `WordSlot`, `AccentLine`; transitions `slab`, `cut`, `push`, `zoom`.
@@ -181,7 +199,9 @@ For premium, quiet brands and teasers ("a video like Linear's"). Near-black, a s
 type, slow focus pulls.
 
 - **Ground:** `Backdrop` with a lower glow; lots of empty space.
-- **Type:** Geist, semi-bold, large (90–120 px), light on dark; one accent phrase per line.
+- **Type:** Inter Display, medium (500), large (90–120 px), light on dark; one accent phrase per line,
+  set in **Instrument Serif italic** (a condensed display serif) about 14% larger to match its x-height.
+  The furniture reference pairs the two the same way ("*Introducing* taeillo").
 - **Motion:** slower than every other look: 20-frame focus pulls, words rising 6–8 frames apart, long
   holds. UI appears in the Studio window but with fewer, slower camera moves.
 - **Sound:** a calm bed or a slow voiceover; no whooshes, or very quiet ones.
@@ -212,8 +232,8 @@ visibly *doing the work* in a browser, as an agent fills a form or finds results
 - **Ground:** white, with faint gradient blooms in the corners (`Glow`). UI sits in light browser
   windows or white cards with soft violet-tinted shadows.
 - **One gradient word per headline**, the brand colour into violet. The rest of the line is dark ink.
-- **Headlines are short and medium-weight** (about 500, 48–64 px at 1080p), centred, with plenty of
-  space. They hold for 1.5–3 s while their words settle.
+- **Headlines are short and medium-weight** (Inter Display about 500, 48–64 px at 1080p), centred,
+  with plenty of space. They hold for 1.5–3 s while their words settle.
 - **Words drop in along curves**, one by one, a few frames apart; a swapped word changes in place.
 - **The demo is the proof.** Each feature is shown working, live: the agent's panel narrates its steps
   on screen, the cursor leads, results appear. Rebuild it from the real product (`accuracy.md`).
@@ -234,7 +254,8 @@ Learned from the references and true in all five looks:
 
 - **Hold the resolved state.** After a number lands or a status changes, hold it at least 0.5 s
   before the transition starts.
-- **Decelerate into values.** Counts, camera moves and entrances ease out; nothing stops abruptly.
+- **Decelerate into values.** Counts and camera moves settle softly; nothing stops abruptly. Moves
+  themselves are mostly in-out (speed peaking mid-move), in all four measured references.
 - **One coloured phrase per line**, and colour means something (problem or promise).
 - **Text enters from a mask**, word by word, rather than fading as a block.
 - **Let objects carry over.** When the same element (a card, a logo, a square) appears in two
@@ -243,9 +264,10 @@ Learned from the references and true in all five looks:
   for at least 1.5 s.
 - **Accuracy still applies.** Numbers that roll must roll to the real value; cards and diagrams show
   real states, real options and real prices (`accuracy.md`).
-- **Time it like the references did.** Measured from a professional launch: beats of 300–700 ms
-  (about 9–21 frames at 30 fps), speed peaking mid-move rather than at the start, overshoot on only
-  about one beat in six. `src/kit/measured` has the curves (`motion-data.md`).
+- **Time it like the references did.** Measured from four professional launches: beats of about half
+  a second or a little more (median 417–733 ms, 13–22 frames at 30 fps), speed peaking 38–55% of the
+  way through, overshoot on 6–21% of beats, something moving on 77–99% of frames.
+  `src/kit/measured` has the curves (`motion-data.md`).
 
 ## 9. Building a look in the kit
 
@@ -260,7 +282,14 @@ Learned from the references and true in all five looks:
   (a light window shadow replaces the dark glow).
 - A scene can override the look for itself by wrapping in `<LookContext.Provider value={LOOKS.graphic}>`
   (a mixed-style showcase), but keep one look per video unless there is a reason.
+- Type per look: `font` sets headlines and big numbers, `textFont` the small text around the product
+  (labels, card names, meters, chips), and `accentFont` how `*starred*` words are set (editorial: the
+  Garamond italic; cinematic: Instrument Serif italic). Without `accentFont`, accent words change colour
+  only, or take the gradient in showcase. The fonts are bundled from npm in `src/kit/fonts.ts`
+  (Inter, EB Garamond, Instrument Serif, JetBrains Mono; all SIL Open Font License), so renders need
+  no network.
 - A new look is an entry in `LOOKS` in `src/kit/looks.ts`. Derive it from the brand (its font, its
-  background, its accent) and give it a default transition and pace.
+  background, its accent) and give it a default transition and pace. A brand font goes in
+  `src/kit/fonts.ts`: install its `@fontsource` package, import the `.woff2`, add it to `FILES`.
 - Music: Editorial and Cinematic suit `bed.wav`; Graphic, Showcase and Studio launches suit `upbeat.wav`. For
   music-led videos raise the music's `alone` level (0.6) since nothing ducks it.

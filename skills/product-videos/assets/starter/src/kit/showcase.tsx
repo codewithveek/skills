@@ -2,7 +2,7 @@ import React, { type CSSProperties, type ReactNode } from "react";
 import { useCurrentFrame } from "remotion";
 import { progress, typed } from "../anim";
 import { FPS } from "../theme";
-import { useLook } from "./looks";
+import { accentStyle, useLook } from "./looks";
 import { measured, MOTION } from "./measured";
 
 // Motion blocks for the showcase look, each timed with motion measured from a real launch video
@@ -21,6 +21,16 @@ export const parseAccents = (text: string): Word[] => {
     if (raw.endsWith("*")) inAccent = false;
   }
   return words;
+};
+
+/**
+ * An accent word in the current look: the gradient in showcase, otherwise the accent colour set in the
+ * look's accent face (EB Garamond italic in editorial, Instrument Serif italic in cinematic).
+ */
+export const AccentWord = ({ children }: { children: ReactNode }) => {
+  const look = useLook();
+  if (look.gradient) return <GradientText>{children}</GradientText>;
+  return <span style={{ color: look.accent, ...accentStyle(look) }}>{children}</span>;
 };
 
 /** Text filled with the look's two-stop gradient (falls back to the flat accent). */
@@ -66,7 +76,7 @@ export const DropWords = ({ text, at = 0, size = 64, align = "center", color, we
         };
         return (
           <span key={index} style={style}>
-            {word.accent ? <GradientText>{word.text}</GradientText> : word.text}
+            {word.accent ? <AccentWord>{word.text}</AccentWord> : word.text}
           </span>
         );
       })}
@@ -94,7 +104,7 @@ export const SwapWord = ({ lead, words, at = 0, every = 45, size = 56 }: { reado
           const visible = index === current || (index === current - 1 && leaving < 1);
           return (
             <span key={word} style={{ gridArea: "1 / 1", visibility: visible ? "visible" : "hidden", transform: `translateY(${(1 - entering) * 100 - leaving * 100}%)`, opacity: 1 - leaving }}>
-              <GradientText>{word}</GradientText>
+              <AccentWord>{word}</AccentWord>
             </span>
           );
         })}

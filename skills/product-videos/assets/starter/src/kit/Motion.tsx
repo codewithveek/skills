@@ -1,7 +1,7 @@
 import React, { type ReactNode } from "react";
 import { random, useCurrentFrame } from "remotion";
 import { ease, easeOut, lerp, pop, progress } from "../anim";
-import { useLook } from "./looks";
+import { accentStyle, useLook } from "./looks";
 
 // Motion building blocks for the editorial, graphic and cinematic looks. Each reads the video's
 // look for colours and font, takes the frame it starts on (`at`), and animates only what is given:
@@ -34,7 +34,7 @@ export const Odometer = ({ value, from = 0, at = 0, dur = 36, size = 160, color,
     const shown = k === 0 || n >= place - 0.001;
     const blur = Math.min(size * 0.04, speed * size * 0.06);
     cols.push(
-      <span key={k} style={{ display: "inline-block", height: h, overflow: "hidden", width: shown ? "0.62em" : 0, transition: "none", verticalAlign: "top" }}>
+      <span key={k} style={{ display: "inline-block", height: h, overflow: "hidden", width: shown ? "1ch" : 0, transition: "none", verticalAlign: "top" }}>
         <span style={{ display: "block", transform: `translateY(${-pos * h}px)`, filter: blur > 0.3 ? `blur(${blur}px)` : undefined }}>
           {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((d, i) => (
             <span key={i} style={{ display: "block", height: h, lineHeight: `${h}px`, textAlign: "center" }}>{d}</span>
@@ -45,7 +45,9 @@ export const Odometer = ({ value, from = 0, at = 0, dur = 36, size = 160, color,
     if (group && k > 0 && k % 3 === 0 && shown) cols.push(<span key={`s${k}`} style={{ display: "inline-block", height: h, lineHeight: `${h}px`, verticalAlign: "top" }}>,</span>);
   }
   return (
-    <div style={{ fontFamily: look.font, fontSize: size, fontWeight: weight ?? look.weight, letterSpacing: size * look.tracking, color: color ?? look.ink, fontVariantNumeric: "tabular-nums", lineHeight: 1, whiteSpace: "nowrap", display: "inline-flex", alignItems: "flex-start" }}>
+    // position: relative paints the whole number (comma and suffix included) above an absolutely positioned
+    // sibling backdrop; without it only the transformed digit columns would.
+    <div style={{ position: "relative", fontFamily: look.font, fontSize: size, fontWeight: weight ?? look.weight, letterSpacing: size * look.tracking, color: color ?? look.ink, fontVariantNumeric: "tabular-nums", lineHeight: 1, whiteSpace: "nowrap", display: "inline-flex", alignItems: "flex-start" }}>
       {prefix && <span style={{ height: h, lineHeight: `${h}px`, whiteSpace: "pre" }}>{prefix}</span>}
       {cols}
       {suffix && <span style={{ height: h, lineHeight: `${h}px`, whiteSpace: "pre" }}>{suffix}</span>}
@@ -77,7 +79,7 @@ export const AccentLine = ({ text, at = 0, size = 44, tone = "accent", color, al
         const t = progress(frame, at + i * gap, at + i * gap + 14);
         return (
           <span key={i} style={{ display: "inline-block", overflow: "hidden", verticalAlign: "bottom", paddingBottom: size * 0.12, marginBottom: -size * 0.12, marginRight: size * 0.24 }}>
-            <span style={{ display: "inline-block", transform: `translateY(${(1 - t) * 110}%)`, color: h ? (tone === "alarm" ? look.alarm : look.accent) : undefined }}>{w}</span>
+            <span style={{ display: "inline-block", transform: `translateY(${(1 - t) * 110}%)`, color: h ? (tone === "alarm" ? look.alarm : look.accent) : undefined, ...(h ? accentStyle(look) : {}) }}>{w}</span>
           </span>
         );
       })}
@@ -92,7 +94,7 @@ export const RuleLabel = ({ label, at = 0, width = 900, hot, note }: { label: st
   const draw = progress(frame, at, at + 24);
   const isHot = hot !== undefined && frame >= hot;
   return (
-    <div style={{ width, fontFamily: look.font, textAlign: "center", position: "relative" }}>
+    <div style={{ width, fontFamily: look.textFont, textAlign: "center", position: "relative" }}>
       <div style={{ fontSize: 15, letterSpacing: 2.4, fontWeight: 600, textTransform: "uppercase", color: look.muted, opacity: progress(frame, at, at + 12) }}>{label}</div>
       <div style={{ height: 2, marginTop: 14, background: isHot ? look.alarm : look.ink, opacity: isHot ? 1 : 0.55, transform: `scaleX(${draw})` }} />
       {note && <div style={{ position: "absolute", right: -110, top: 30, fontSize: 14, color: isHot ? look.alarm : look.muted, opacity: progress(frame, at + 20, at + 32) }}>{note}</div>}
@@ -164,7 +166,7 @@ export const PersonCard = ({ name, role, footer, right, width = 300, children }:
   const initials = name.split(" ").map((p) => p[0]).join("").slice(0, 2);
   const hue = Math.floor(random(name) * 360);
   return (
-    <div style={{ width, background: look.card, borderRadius: 14, boxShadow: look.cardShadow, padding: 20, fontFamily: look.font, color: look.ink }}>
+    <div style={{ width, background: look.card, borderRadius: 14, boxShadow: look.cardShadow, padding: 20, fontFamily: look.textFont, color: look.ink }}>
       <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
         <div style={{ width: 42, height: 42, borderRadius: 99, background: `hsl(${hue} 45% 82%)`, color: `hsl(${hue} 40% 30%)`, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, fontSize: 15 }}>{initials}</div>
         <div style={{ flex: 1 }}>
@@ -192,7 +194,7 @@ export const CellGrid = ({ rows, cols, at = 0, dur = 60, cell = 34, gap = 8, cou
   const filled = progress(frame, at, at + dur, (x) => x) * total;
   const fill = color ?? look.accent;
   return (
-    <div style={{ fontFamily: look.font, display: "inline-grid", gridTemplateColumns: `${labels?.rows ? "70px " : ""}repeat(${cols}, ${cell}px)`, gap, alignItems: "center" }}>
+    <div style={{ fontFamily: look.textFont, display: "inline-grid", gridTemplateColumns: `${labels?.rows ? "70px " : ""}repeat(${cols}, ${cell}px)`, gap, alignItems: "center" }}>
       {labels?.cols && (
         <>
           {labels.rows && <div />}
@@ -218,7 +220,7 @@ export const Meter = ({ label, value, max, at = 0, dur = 30, width = 520, hot = 
   const look = useLook();
   const t = progress(frame, at, at + dur, easeOut);
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 16, fontFamily: look.font, fontSize: 18, color: look.ink }}>
+    <div style={{ display: "flex", alignItems: "center", gap: 16, fontFamily: look.textFont, fontSize: 18, color: look.ink }}>
       {lead}
       <div style={{ width: 170 }}>{label}</div>
       <div style={{ width, height: 4, background: `${look.line}88`, borderRadius: 4 }}>
@@ -313,7 +315,7 @@ export const Tile = ({ size = 70, fill, children }: { size?: number; fill?: stri
 export const Chip = ({ icon, label, size = 22 }: { icon?: ReactNode; label: string; size?: number }) => {
   const look = useLook();
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 10, fontFamily: look.font, fontSize: size, fontWeight: 500, color: look.ink, whiteSpace: "nowrap" }}>
+    <div style={{ display: "flex", alignItems: "center", gap: 10, fontFamily: look.textFont, fontSize: size, fontWeight: 500, color: look.ink, whiteSpace: "nowrap" }}>
       {icon && <div style={{ width: size * 1.6, height: size * 1.6, borderRadius: 99, background: look.card, boxShadow: look.cardShadow, display: "flex", alignItems: "center", justifyContent: "center", color: look.accent }}>{icon}</div>}
       {label}
     </div>

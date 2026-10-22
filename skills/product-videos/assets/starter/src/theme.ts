@@ -1,10 +1,10 @@
-import { loadFont } from "@remotion/google-fonts/Inter";
-import { loadFont as loadMono } from "@remotion/google-fonts/JetBrainsMono";
+import { FONTS, stack } from "./kit/fonts";
 
 // Retheme here. Copy the product's real tokens (its CSS variables, Tailwind config or design file),
-// value for value, so the rebuilt screens are indistinguishable from the app.
-export const { fontFamily } = loadFont("normal", { weights: ["400", "500", "600", "700", "800"], subsets: ["latin"] });
-export const { fontFamily: monoFamily } = loadMono("normal", { weights: ["400", "500"], subsets: ["latin"] });
+// value for value, so the rebuilt screens are indistinguishable from the app. The UI font defaults to
+// Inter (bundled, src/kit/fonts.ts); if the product uses another, add its files there and point this at it.
+export const fontFamily = stack(FONTS.sans);
+export const monoFamily = stack(FONTS.mono, "monospace");
 
 /** Stage colours: backdrops, title cards and headlines around the app window. */
 export const c = {

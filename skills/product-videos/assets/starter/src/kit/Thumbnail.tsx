@@ -3,7 +3,7 @@ import { AbsoluteFill, Sequence } from "remotion";
 import { PRODUCT } from "../brand";
 import { c } from "../theme";
 import { Stage } from "./Backdrops";
-import { LookContext, LOOKS, type Look, type LookName } from "./looks";
+import { accentStyle, LookContext, LOOKS, type Look, type LookName } from "./looks";
 import { Mark } from "./Mark";
 import { GradientText } from "./showcase";
 import { Backdrop } from "./Stage";
@@ -14,11 +14,11 @@ export const THUMB_FRAME = THUMB_FRAMES - 1;
 
 const isDark = (look: Look) => look.name === "studio" || look.name === "cinematic";
 
-/** The title's second line in the look's accent: the gradient in showcase, the flat accent in other light looks. */
+/** The title's second line in the look's accent: gradient in showcase, otherwise the accent colour in the accent face. */
 const AccentLine = ({ look, children }: { look: Look; children: string }) => {
-  if (isDark(look)) return <span style={{ color: c.brand300 }}>{children}</span>;
+  if (isDark(look)) return <span style={{ color: c.brand300, ...accentStyle(look) }}>{children}</span>;
   if (look.gradient) return <GradientText>{children}</GradientText>;
-  return <span style={{ color: look.accent }}>{children}</span>;
+  return <span style={{ color: look.accent, ...accentStyle(look) }}>{children}</span>;
 };
 
 export type ThumbnailProps = {

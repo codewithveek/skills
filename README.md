@@ -194,8 +194,10 @@ It rebuilds the product's real screens as React components from its code and scr
   - **Graphic**: white grid, one loud brand colour, pixel motifs, colour slabs, logo swirls and orbits (API and infrastructure products)
   - **Cinematic**: near-black, soft glow, large light type, slow (premium brands, teasers)
   - **Showcase**: white, gradient accent words that drop in along curves, the product working live in a browser, cards lifting out (AI, agent and automation products)
-- **Motion measured from real launches**: every frame of a professional launch video analysed with optical flow, each animation fitted to Remotion's own easings and verified by re-rendering. The kit ships the curves as presets by role (`screenPan`, `settle`, `textRise` …), and the tooling to measure your own reference video and score a render against it
-- Plus voiceover (local Kokoro, or ElevenLabs), music, click and whoosh effects, `.vtt` captions, loudness at -16 LUFS, and thumbnails embedded as cover art
+- **Motion measured from real launches**: every frame of four professional launch videos analysed with optical flow, each animation fitted to Remotion's own easings and verified by re-rendering. The kit ships the curves as presets by role (`screenPan`, `settle`, `textRise` …), four measured libraries, and the tooling to measure your own reference video and score a render against it
+- **Modern type, bundled**: Inter Display for headlines, EB Garamond with italic accents for editorial, Instrument Serif italic accents for cinematic, all from npm, so renders work offline
+- **Music and sound that hit**: a 128 BPM pop-house track and a calm 100 BPM beat, mixed to match measured launch tracks and normalised to −13 LUFS, plus a crisp click, a swept whoosh and a pop, all synthesised (no licence needed)
+- Plus voiceover (local Kokoro, or ElevenLabs), `.vtt` captions, loudness at -16 LUFS, and thumbnails embedded as cover art
 
 ### How it behaves
 

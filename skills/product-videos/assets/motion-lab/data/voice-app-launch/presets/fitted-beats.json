@@ -1,0 +1,2599 @@
+[
+ {
+  "beatId": 1,
+  "scene": "01-video",
+  "startFrame": 7,
+  "endFrame": 25,
+  "durationFrames": 19,
+  "durationMs": 633.333,
+  "channel": "scale",
+  "travel": 71.71,
+  "unit": "pct",
+  "region": [
+   0,
+   80,
+   1280,
+   640
+  ],
+  "signalQuality": 0.9618,
+  "measuredOvershoot": 0.0016,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.45,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.09393796291522218
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.04,
+    "y1": 0.19,
+    "x2": 0.96,
+    "y2": 1.22
+   },
+   "progressRmse": 0.05478615879740441
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.04,
+    "y1": 0.19,
+    "x2": 0.96,
+    "y2": 1.22
+   },
+   "progressRmse": 0.05478615879740441
+  },
+  "nearestNamedEasing": {
+   "name": "css-ease-out",
+   "progressRmse": 0.059301486959639375
+  }
+ },
+ {
+  "beatId": 2,
+  "scene": "01-video",
+  "startFrame": 26,
+  "endFrame": 51,
+  "durationFrames": 26,
+  "durationMs": 866.667,
+  "channel": "translateY",
+  "travel": -5.88,
+  "unit": "px",
+  "region": [
+   0,
+   0,
+   1280,
+   720
+  ],
+  "signalQuality": 0.7554,
+  "measuredOvershoot": 0,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.45,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.178166768558291
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.73,
+    "y1": 0.41,
+    "x2": 0.27,
+    "y2": 0.63
+   },
+   "progressRmse": 0.02942902031475111
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.73,
+    "y1": 0.41,
+    "x2": 0.27,
+    "y2": 0.63
+   },
+   "progressRmse": 0.02942902031475111
+  },
+  "nearestNamedEasing": {
+   "name": "css-ease-in-out",
+   "progressRmse": 0.04495032945741918
+  }
+ },
+ {
+  "beatId": 3,
+  "scene": "01-video",
+  "startFrame": 52,
+  "endFrame": 61,
+  "durationFrames": 10,
+  "durationMs": 333.333,
+  "channel": "translateY",
+  "travel": -7.85,
+  "unit": "px",
+  "region": [
+   0,
+   0,
+   1280,
+   720
+  ],
+  "signalQuality": 0.6413,
+  "measuredOvershoot": 0,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.45,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.46450682585448455
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.62,
+    "y1": -0.6,
+    "x2": 0.55,
+    "y2": 0.79
+   },
+   "progressRmse": 0.05274970166324581
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.62,
+    "y1": -0.6,
+    "x2": 0.55,
+    "y2": 0.79
+   },
+   "progressRmse": 0.05274970166324581
+  },
+  "nearestNamedEasing": {
+   "name": "css-ease-in",
+   "progressRmse": 0.19312723723509378
+  }
+ },
+ {
+  "beatId": 5,
+  "scene": "01-video",
+  "startFrame": 66,
+  "endFrame": 76,
+  "durationFrames": 11,
+  "durationMs": 366.667,
+  "channel": "translateX",
+  "travel": 77.81,
+  "unit": "px",
+  "region": [
+   0,
+   0,
+   1263,
+   713
+  ],
+  "signalQuality": 0.9934,
+  "measuredOvershoot": 0.003,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.45,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.130134334149665
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.29,
+    "y1": -0.2,
+    "x2": 0.53,
+    "y2": 1.22
+   },
+   "progressRmse": 0.034925809117996566
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.29,
+    "y1": -0.2,
+    "x2": 0.53,
+    "y2": 1.22
+   },
+   "progressRmse": 0.034925809117996566
+  },
+  "nearestNamedEasing": {
+   "name": "css-ease-in-out",
+   "progressRmse": 0.09143702957284029
+  }
+ },
+ {
+  "beatId": 6,
+  "scene": "01-video",
+  "startFrame": 77,
+  "endFrame": 98,
+  "durationFrames": 22,
+  "durationMs": 733.333,
+  "channel": "scale",
+  "travel": -45.36,
+  "unit": "pct",
+  "region": [
+   0,
+   0,
+   1280,
+   720
+  ],
+  "signalQuality": 0.8956,
+  "measuredOvershoot": 0,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.45,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.33984885041625196
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.8,
+    "y1": -0.19,
+    "x2": 0.4,
+    "y2": 0.93
+   },
+   "progressRmse": 0.010118152603275992
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.8,
+    "y1": -0.19,
+    "x2": 0.4,
+    "y2": 0.93
+   },
+   "progressRmse": 0.010118152603275992
+  },
+  "nearestNamedEasing": {
+   "name": "css-ease-in",
+   "progressRmse": 0.1361688989182081
+  }
+ },
+ {
+  "beatId": 12,
+  "scene": "01-video",
+  "startFrame": 117,
+  "endFrame": 138,
+  "durationFrames": 22,
+  "durationMs": 733.333,
+  "channel": "progress",
+  "travel": 1,
+  "unit": "progress",
+  "region": [
+   93,
+   22,
+   1067,
+   698
+  ],
+  "signalQuality": 0.5,
+  "measuredOvershoot": 0,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.45,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.07023563754430423
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.39,
+    "y1": 0.59,
+    "x2": 0,
+    "y2": 0.45
+   },
+   "progressRmse": 0.020055982074586916
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.39,
+    "y1": 0.59,
+    "x2": 0,
+    "y2": 0.45
+   },
+   "progressRmse": 0.020055982074586916
+  },
+  "nearestNamedEasing": {
+   "name": "css-ease-out",
+   "progressRmse": 0.05632549976763197
+  }
+ },
+ {
+  "beatId": 13,
+  "scene": "01-video",
+  "startFrame": 139,
+  "endFrame": 196,
+  "durationFrames": 58,
+  "durationMs": 1933.333,
+  "channel": "progress",
+  "travel": 1,
+  "unit": "progress",
+  "region": [
+   94,
+   21,
+   1079,
+   699
+  ],
+  "signalQuality": 0.5,
+  "measuredOvershoot": 0,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.45,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.25614618744753215
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.18,
+    "y1": 0.63,
+    "x2": 0.86,
+    "y2": 0.27
+   },
+   "progressRmse": 0.03999535535100755
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.18,
+    "y1": 0.63,
+    "x2": 0.86,
+    "y2": 0.27
+   },
+   "progressRmse": 0.03999535535100755
+  },
+  "nearestNamedEasing": {
+   "name": "linear",
+   "progressRmse": 0.1214586679744053
+  }
+ },
+ {
+  "beatId": 14,
+  "scene": "01-video",
+  "startFrame": 197,
+  "endFrame": 212,
+  "durationFrames": 16,
+  "durationMs": 533.333,
+  "channel": "progress",
+  "travel": 1,
+  "unit": "progress",
+  "region": [
+   318,
+   19,
+   823,
+   701
+  ],
+  "signalQuality": 0.5,
+  "measuredOvershoot": 0,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.45,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.30407715169409005
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.01,
+    "y1": -0.2,
+    "x2": 1,
+    "y2": 0.8
+   },
+   "progressRmse": 0.054969807721725716
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.01,
+    "y1": -0.2,
+    "x2": 1,
+    "y2": 0.8
+   },
+   "progressRmse": 0.054969807721725716
+  },
+  "nearestNamedEasing": {
+   "name": "css-ease-in",
+   "progressRmse": 0.060841179096537246
+  }
+ },
+ {
+  "beatId": 22,
+  "scene": "01-video",
+  "startFrame": 234,
+  "endFrame": 240,
+  "durationFrames": 7,
+  "durationMs": 233.333,
+  "channel": "scale",
+  "travel": -7.23,
+  "unit": "pct",
+  "region": [
+   51,
+   0,
+   1110,
+   720
+  ],
+  "signalQuality": 0.9038,
+  "measuredOvershoot": 0,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.45,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.6779942671320643
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 1,
+    "y1": -0.15,
+    "x2": 1,
+    "y2": -0.05
+   },
+   "progressRmse": 0.007700626315516336
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 1,
+    "y1": -0.15,
+    "x2": 1,
+    "y2": -0.05
+   },
+   "progressRmse": 0.007700626315516336
+  },
+  "nearestNamedEasing": {
+   "name": "css-ease-in",
+   "progressRmse": 0.3999759825752816
+  }
+ },
+ {
+  "beatId": 24,
+  "scene": "01-video",
+  "startFrame": 253,
+  "endFrame": 279,
+  "durationFrames": 27,
+  "durationMs": 900,
+  "channel": "translateY",
+  "travel": -291.34,
+  "unit": "px",
+  "region": [
+   306,
+   0,
+   974,
+   720
+  ],
+  "signalQuality": 0.9019,
+  "measuredOvershoot": 0,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.45,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.30108874791042634
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.59,
+    "y1": -0.1,
+    "x2": 0.71,
+    "y2": 1.11
+   },
+   "progressRmse": 0.03717841311736927
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.59,
+    "y1": -0.1,
+    "x2": 0.71,
+    "y2": 1.11
+   },
+   "progressRmse": 0.03717841311736927
+  },
+  "nearestNamedEasing": {
+   "name": "css-ease-in",
+   "progressRmse": 0.09705202297683838
+  }
+ },
+ {
+  "beatId": 27,
+  "scene": "01-video",
+  "startFrame": 290,
+  "endFrame": 308,
+  "durationFrames": 19,
+  "durationMs": 633.333,
+  "channel": "progress",
+  "travel": 1,
+  "unit": "progress",
+  "region": [
+   95,
+   0,
+   1185,
+   646
+  ],
+  "signalQuality": 0.5,
+  "measuredOvershoot": 0,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.45,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.3660850040433544
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.63,
+    "y1": -0.14,
+    "x2": 1,
+    "y2": 1.32
+   },
+   "progressRmse": 0.01981034715974256
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.63,
+    "y1": -0.14,
+    "x2": 1,
+    "y2": 1.32
+   },
+   "progressRmse": 0.01981034715974256
+  },
+  "nearestNamedEasing": {
+   "name": "css-ease-in",
+   "progressRmse": 0.06511582091460323
+  }
+ },
+ {
+  "beatId": 28,
+  "scene": "01-video",
+  "startFrame": 309,
+  "endFrame": 316,
+  "durationFrames": 8,
+  "durationMs": 266.667,
+  "channel": "translateX",
+  "travel": 74.89,
+  "unit": "px",
+  "region": [
+   95,
+   4,
+   1185,
+   716
+  ],
+  "signalQuality": 0.6267,
+  "measuredOvershoot": 0.0236,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.45,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.4316288900561911
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.82,
+    "y1": -0.6,
+    "x2": 0.2,
+    "y2": 0.92
+   },
+   "progressRmse": 0.08429196047766664
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.82,
+    "y1": -0.6,
+    "x2": 0.2,
+    "y2": 0.92
+   },
+   "progressRmse": 0.08429196047766664
+  },
+  "nearestNamedEasing": {
+   "name": "ease-in-out-back",
+   "progressRmse": 0.1862074782610267
+  }
+ },
+ {
+  "beatId": 29,
+  "scene": "01-video",
+  "startFrame": 317,
+  "endFrame": 353,
+  "durationFrames": 37,
+  "durationMs": 1233.333,
+  "channel": "translateY",
+  "travel": 416.27,
+  "unit": "px",
+  "region": [
+   74,
+   0,
+   1206,
+   720
+  ],
+  "signalQuality": 0.9877,
+  "measuredOvershoot": 0,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.2,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.09653701372993671
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.55,
+    "y1": 0.03,
+    "x2": 0.04,
+    "y2": 1.12
+   },
+   "progressRmse": 0.02277750586474817
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.55,
+    "y1": 0.03,
+    "x2": 0.04,
+    "y2": 1.12
+   },
+   "progressRmse": 0.02277750586474817
+  },
+  "nearestNamedEasing": {
+   "name": "css-ease",
+   "progressRmse": 0.09745169827818836
+  }
+ },
+ {
+  "beatId": 30,
+  "scene": "01-video",
+  "startFrame": 354,
+  "endFrame": 417,
+  "durationFrames": 64,
+  "durationMs": 2133.333,
+  "channel": "progress",
+  "travel": 1,
+  "unit": "progress",
+  "region": [
+   92,
+   3,
+   1106,
+   717
+  ],
+  "signalQuality": 0.5,
+  "measuredOvershoot": 0,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.45,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.10028949606202048
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.42,
+    "y1": 0.03,
+    "x2": 0.23,
+    "y2": 0.83
+   },
+   "progressRmse": 0.015103817621706763
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.42,
+    "y1": 0.03,
+    "x2": 0.23,
+    "y2": 0.83
+   },
+   "progressRmse": 0.015103817621706763
+  },
+  "nearestNamedEasing": {
+   "name": "css-ease-out",
+   "progressRmse": 0.09203505171501543
+  }
+ },
+ {
+  "beatId": 31,
+  "scene": "01-video",
+  "startFrame": 418,
+  "endFrame": 438,
+  "durationFrames": 21,
+  "durationMs": 700,
+  "channel": "translateY",
+  "travel": -19.49,
+  "unit": "px",
+  "region": [
+   104,
+   65,
+   1098,
+   655
+  ],
+  "signalQuality": 0.5271,
+  "measuredOvershoot": 0.1626,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 12.3,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.0877456387513985
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.58,
+    "y1": 1.6,
+    "x2": 0,
+    "y2": 0.96
+   },
+   "progressRmse": 0.0865783059128685
+  },
+  "best": {
+   "easing": {
+    "kind": "spring",
+    "damping": 12.3,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.0877456387513985
+  },
+  "nearestNamedEasing": {
+   "name": "ease-out-back",
+   "progressRmse": 0.14253313252682254
+  }
+ },
+ {
+  "beatId": 32,
+  "scene": "01-video",
+  "startFrame": 439,
+  "endFrame": 456,
+  "durationFrames": 18,
+  "durationMs": 600,
+  "channel": "translateY",
+  "travel": -38.19,
+  "unit": "px",
+  "region": [
+   375,
+   64,
+   812,
+   647
+  ],
+  "signalQuality": 0.7212,
+  "measuredOvershoot": 0,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.45,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.19943248141207484
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0,
+    "y1": -0.15,
+    "x2": 0,
+    "y2": 0
+   },
+   "progressRmse": 0.05017559671964546
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0,
+    "y1": -0.15,
+    "x2": 0,
+    "y2": 0
+   },
+   "progressRmse": 0.05017559671964546
+  },
+  "nearestNamedEasing": {
+   "name": "linear",
+   "progressRmse": 0.05814040523912016
+  }
+ },
+ {
+  "beatId": 33,
+  "scene": "01-video",
+  "startFrame": 457,
+  "endFrame": 516,
+  "durationFrames": 60,
+  "durationMs": 2000,
+  "channel": "translateX",
+  "travel": -67.07,
+  "unit": "px",
+  "region": [
+   105,
+   64,
+   1108,
+   656
+  ],
+  "signalQuality": 0.7604,
+  "measuredOvershoot": 0,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.45,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.1011048857933438
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.99,
+    "y1": 1.2,
+    "x2": 0.53,
+    "y2": 0.67
+   },
+   "progressRmse": 0.017044826472113916
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.99,
+    "y1": 1.2,
+    "x2": 0.53,
+    "y2": 0.67
+   },
+   "progressRmse": 0.017044826472113916
+  },
+  "nearestNamedEasing": {
+   "name": "css-ease-out",
+   "progressRmse": 0.06022409760344043
+  }
+ },
+ {
+  "beatId": 34,
+  "scene": "01-video",
+  "startFrame": 517,
+  "endFrame": 539,
+  "durationFrames": 23,
+  "durationMs": 766.667,
+  "channel": "translateY",
+  "travel": -77.97,
+  "unit": "px",
+  "region": [
+   92,
+   64,
+   1082,
+   656
+  ],
+  "signalQuality": 0.8104,
+  "measuredOvershoot": 0.0049,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.45,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.31313886054540785
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.84,
+    "y1": -0.07,
+    "x2": 0.4,
+    "y2": 1.01
+   },
+   "progressRmse": 0.032546468985922714
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.84,
+    "y1": -0.07,
+    "x2": 0.4,
+    "y2": 1.01
+   },
+   "progressRmse": 0.032546468985922714
+  },
+  "nearestNamedEasing": {
+   "name": "ease-in-out-cubic",
+   "progressRmse": 0.13095927119359746
+  }
+ },
+ {
+  "beatId": 35,
+  "scene": "01-video",
+  "startFrame": 540,
+  "endFrame": 557,
+  "durationFrames": 18,
+  "durationMs": 600,
+  "channel": "translateY",
+  "travel": 113.9,
+  "unit": "px",
+  "region": [
+   92,
+   64,
+   1107,
+   651
+  ],
+  "signalQuality": 0.998,
+  "measuredOvershoot": 0,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.45,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.29409711320684334
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.66,
+    "y1": -0.14,
+    "x2": 0.4,
+    "y2": 0.81
+   },
+   "progressRmse": 0.015654047639531352
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.66,
+    "y1": -0.14,
+    "x2": 0.4,
+    "y2": 0.81
+   },
+   "progressRmse": 0.015654047639531352
+  },
+  "nearestNamedEasing": {
+   "name": "ease-in-out-cubic",
+   "progressRmse": 0.1037319474546708
+  }
+ },
+ {
+  "beatId": 36,
+  "scene": "01-video",
+  "startFrame": 558,
+  "endFrame": 571,
+  "durationFrames": 14,
+  "durationMs": 466.667,
+  "channel": "translateX",
+  "travel": 126.86,
+  "unit": "px",
+  "region": [
+   496,
+   64,
+   673,
+   432
+  ],
+  "signalQuality": 0.9807,
+  "measuredOvershoot": 0,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.45,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.0751330513243887
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.66,
+    "y1": 0.49,
+    "x2": 0.16,
+    "y2": 0.8
+   },
+   "progressRmse": 0.021667824830391782
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.66,
+    "y1": 0.49,
+    "x2": 0.16,
+    "y2": 0.8
+   },
+   "progressRmse": 0.021667824830391782
+  },
+  "nearestNamedEasing": {
+   "name": "css-ease-out",
+   "progressRmse": 0.07730408498064371
+  }
+ },
+ {
+  "beatId": 37,
+  "scene": "01-video",
+  "startFrame": 572,
+  "endFrame": 610,
+  "durationFrames": 39,
+  "durationMs": 1300,
+  "channel": "progress",
+  "travel": 1,
+  "unit": "progress",
+  "region": [
+   96,
+   11,
+   1079,
+   689
+  ],
+  "signalQuality": 0.5,
+  "measuredOvershoot": 0,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.45,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.1189176170641707
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.43,
+    "y1": 0.13,
+    "x2": 0.3,
+    "y2": 0.77
+   },
+   "progressRmse": 0.023354913017332026
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.43,
+    "y1": 0.13,
+    "x2": 0.3,
+    "y2": 0.77
+   },
+   "progressRmse": 0.023354913017332026
+  },
+  "nearestNamedEasing": {
+   "name": "css-ease-in-out",
+   "progressRmse": 0.07639862019083761
+  }
+ },
+ {
+  "beatId": 38,
+  "scene": "01-video",
+  "startFrame": 611,
+  "endFrame": 652,
+  "durationFrames": 42,
+  "durationMs": 1400,
+  "channel": "progress",
+  "travel": 1,
+  "unit": "progress",
+  "region": [
+   92,
+   64,
+   1188,
+   656
+  ],
+  "signalQuality": 0.5,
+  "measuredOvershoot": 0,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.45,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.3273466072626074
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.95,
+    "y1": 0,
+    "x2": 0.2,
+    "y2": 0.64
+   },
+   "progressRmse": 0.03157028541123526
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.95,
+    "y1": 0,
+    "x2": 0.2,
+    "y2": 0.64
+   },
+   "progressRmse": 0.03157028541123526
+  },
+  "nearestNamedEasing": {
+   "name": "css-ease-in",
+   "progressRmse": 0.1377668003687183
+  }
+ },
+ {
+  "beatId": 39,
+  "scene": "01-video",
+  "startFrame": 653,
+  "endFrame": 670,
+  "durationFrames": 18,
+  "durationMs": 600,
+  "channel": "scale",
+  "travel": 79.52,
+  "unit": "pct",
+  "region": [
+   96,
+   80,
+   1118,
+   483
+  ],
+  "signalQuality": 0.9523,
+  "measuredOvershoot": 0.0034,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.45,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.07090366197301473
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.45,
+    "y1": 0.05,
+    "x2": 0.2,
+    "y2": 1.03
+   },
+   "progressRmse": 0.020698610644558576
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.45,
+    "y1": 0.05,
+    "x2": 0.2,
+    "y2": 1.03
+   },
+   "progressRmse": 0.020698610644558576
+  },
+  "nearestNamedEasing": {
+   "name": "css-ease",
+   "progressRmse": 0.08352870739880398
+  }
+ },
+ {
+  "beatId": 40,
+  "scene": "01-video",
+  "startFrame": 671,
+  "endFrame": 688,
+  "durationFrames": 18,
+  "durationMs": 600,
+  "channel": "scale",
+  "travel": 39.35,
+  "unit": "pct",
+  "region": [
+   550,
+   159,
+   531,
+   401
+  ],
+  "signalQuality": 0.7238,
+  "measuredOvershoot": 0.0222,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.45,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.3166342526572332
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.95,
+    "y1": 0.18,
+    "x2": 0.4,
+    "y2": 0.8
+   },
+   "progressRmse": 0.05883480914803368
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.95,
+    "y1": 0.18,
+    "x2": 0.4,
+    "y2": 0.8
+   },
+   "progressRmse": 0.05883480914803368
+  },
+  "nearestNamedEasing": {
+   "name": "css-ease-in",
+   "progressRmse": 0.10531616109730133
+  }
+ },
+ {
+  "beatId": 41,
+  "scene": "01-video",
+  "startFrame": 689,
+  "endFrame": 711,
+  "durationFrames": 23,
+  "durationMs": 766.667,
+  "channel": "translateX",
+  "travel": 346.59,
+  "unit": "px",
+  "region": [
+   92,
+   132,
+   1108,
+   461
+  ],
+  "signalQuality": 0.9539,
+  "measuredOvershoot": 0.0079,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 18.55,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.08758725705342565
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.4,
+    "y1": -0.1,
+    "x2": 0,
+    "y2": 1.21
+   },
+   "progressRmse": 0.022518797983416633
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.4,
+    "y1": -0.1,
+    "x2": 0,
+    "y2": 1.21
+   },
+   "progressRmse": 0.022518797983416633
+  },
+  "nearestNamedEasing": {
+   "name": "css-ease",
+   "progressRmse": 0.09854776719520181
+  }
+ },
+ {
+  "beatId": 42,
+  "scene": "01-video",
+  "startFrame": 712,
+  "endFrame": 737,
+  "durationFrames": 26,
+  "durationMs": 866.667,
+  "channel": "translateX",
+  "travel": -153.2,
+  "unit": "px",
+  "region": [
+   94,
+   100,
+   1120,
+   483
+  ],
+  "signalQuality": 1,
+  "measuredOvershoot": 0,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.45,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.2480471198991727
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.03,
+    "y1": 0,
+    "x2": 0.21,
+    "y2": 0
+   },
+   "progressRmse": 0.010423896460822113
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.03,
+    "y1": 0,
+    "x2": 0.21,
+    "y2": 0
+   },
+   "progressRmse": 0.010423896460822113
+  },
+  "nearestNamedEasing": {
+   "name": "css-ease-in",
+   "progressRmse": 0.06502121026322782
+  }
+ },
+ {
+  "beatId": 48,
+  "scene": "01-video",
+  "startFrame": 757,
+  "endFrame": 790,
+  "durationFrames": 34,
+  "durationMs": 1133.333,
+  "channel": "translateY",
+  "travel": -134.55,
+  "unit": "px",
+  "region": [
+   92,
+   72,
+   1123,
+   571
+  ],
+  "signalQuality": 0.7224,
+  "measuredOvershoot": 0.0009,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.45,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.3031221164970989
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.61,
+    "y1": -0.21,
+    "x2": 0.41,
+    "y2": 0.79
+   },
+   "progressRmse": 0.03290282798895165
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.61,
+    "y1": -0.21,
+    "x2": 0.41,
+    "y2": 0.79
+   },
+   "progressRmse": 0.03290282798895165
+  },
+  "nearestNamedEasing": {
+   "name": "ease-in-out-cubic",
+   "progressRmse": 0.11443880186132414
+  }
+ },
+ {
+  "beatId": 49,
+  "scene": "01-video",
+  "startFrame": 791,
+  "endFrame": 809,
+  "durationFrames": 19,
+  "durationMs": 633.333,
+  "channel": "translateX",
+  "travel": 207.61,
+  "unit": "px",
+  "region": [
+   146,
+   155,
+   1060,
+   440
+  ],
+  "signalQuality": 0.9121,
+  "measuredOvershoot": 0.0004,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 18.9,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.052615649438898265
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.39,
+    "y1": 0.31,
+    "x2": 0,
+    "y2": 0.94
+   },
+   "progressRmse": 0.032110659154114186
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.39,
+    "y1": 0.31,
+    "x2": 0,
+    "y2": 0.94
+   },
+   "progressRmse": 0.032110659154114186
+  },
+  "nearestNamedEasing": {
+   "name": "css-ease",
+   "progressRmse": 0.08222366099627366
+  }
+ },
+ {
+  "beatId": 50,
+  "scene": "01-video",
+  "startFrame": 810,
+  "endFrame": 832,
+  "durationFrames": 23,
+  "durationMs": 766.667,
+  "channel": "translateY",
+  "travel": 34.32,
+  "unit": "px",
+  "region": [
+   292,
+   155,
+   876,
+   485
+  ],
+  "signalQuality": 0.885,
+  "measuredOvershoot": 0,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.45,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.5230022721984219
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 1,
+    "y1": -0.13,
+    "x2": 0.6,
+    "y2": 0.43
+   },
+   "progressRmse": 0.05719772484532142
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 1,
+    "y1": -0.13,
+    "x2": 0.6,
+    "y2": 0.43
+   },
+   "progressRmse": 0.05719772484532142
+  },
+  "nearestNamedEasing": {
+   "name": "css-ease-in",
+   "progressRmse": 0.22949944298184277
+  }
+ },
+ {
+  "beatId": 51,
+  "scene": "01-video",
+  "startFrame": 833,
+  "endFrame": 860,
+  "durationFrames": 28,
+  "durationMs": 933.333,
+  "channel": "progress",
+  "travel": 1,
+  "unit": "progress",
+  "region": [
+   92,
+   80,
+   1122,
+   544
+  ],
+  "signalQuality": 0.5,
+  "measuredOvershoot": 0,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.45,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.262432670926162
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.77,
+    "y1": 0.6,
+    "x2": 0.22,
+    "y2": 0
+   },
+   "progressRmse": 0.016063487825747364
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.77,
+    "y1": 0.6,
+    "x2": 0.22,
+    "y2": 0
+   },
+   "progressRmse": 0.016063487825747364
+  },
+  "nearestNamedEasing": {
+   "name": "css-ease-in",
+   "progressRmse": 0.06129921739639635
+  }
+ },
+ {
+  "beatId": 53,
+  "scene": "01-video",
+  "startFrame": 865,
+  "endFrame": 871,
+  "durationFrames": 7,
+  "durationMs": 233.333,
+  "channel": "translateX",
+  "travel": -15.45,
+  "unit": "px",
+  "region": [
+   288,
+   155,
+   926,
+   461
+  ],
+  "signalQuality": 0.4383,
+  "measuredOvershoot": 0,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.45,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.1668456122888107
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.58,
+    "y1": 0.58,
+    "x2": 0.36,
+    "y2": 0.4
+   },
+   "progressRmse": 0.025134677251783803
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.58,
+    "y1": 0.58,
+    "x2": 0.36,
+    "y2": 0.4
+   },
+   "progressRmse": 0.025134677251783803
+  },
+  "nearestNamedEasing": {
+   "name": "linear",
+   "progressRmse": 0.027076891233560385
+  }
+ },
+ {
+  "beatId": 57,
+  "scene": "01-video",
+  "startFrame": 882,
+  "endFrame": 889,
+  "durationFrames": 8,
+  "durationMs": 266.667,
+  "channel": "translateX",
+  "travel": -22.37,
+  "unit": "px",
+  "region": [
+   92,
+   72,
+   1122,
+   556
+  ],
+  "signalQuality": 1,
+  "measuredOvershoot": 0,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.45,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.17004992262221216
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.99,
+    "y1": 0.85,
+    "x2": 1,
+    "y2": 1.49
+   },
+   "progressRmse": 0.029444456388789442
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.99,
+    "y1": 0.85,
+    "x2": 1,
+    "y2": 1.49
+   },
+   "progressRmse": 0.029444456388789442
+  },
+  "nearestNamedEasing": {
+   "name": "linear",
+   "progressRmse": 0.056612948659129095
+  }
+ },
+ {
+  "beatId": 58,
+  "scene": "01-video",
+  "startFrame": 890,
+  "endFrame": 902,
+  "durationFrames": 13,
+  "durationMs": 433.333,
+  "channel": "progress",
+  "travel": 1,
+  "unit": "progress",
+  "region": [
+   92,
+   72,
+   1079,
+   553
+  ],
+  "signalQuality": 0.5,
+  "measuredOvershoot": 0,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.5,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.029953042873291705
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.43,
+    "y1": 0.62,
+    "x2": 0.36,
+    "y2": 0.96
+   },
+   "progressRmse": 0.020066212370827632
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.43,
+    "y1": 0.62,
+    "x2": 0.36,
+    "y2": 0.96
+   },
+   "progressRmse": 0.020066212370827632
+  },
+  "nearestNamedEasing": {
+   "name": "css-ease",
+   "progressRmse": 0.032040143684570865
+  }
+ },
+ {
+  "beatId": 60,
+  "scene": "01-video",
+  "startFrame": 908,
+  "endFrame": 932,
+  "durationFrames": 25,
+  "durationMs": 833.333,
+  "channel": "translateX",
+  "travel": 217.71,
+  "unit": "px",
+  "region": [
+   95,
+   96,
+   1028,
+   528
+  ],
+  "signalQuality": 0.7881,
+  "measuredOvershoot": 0,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.05,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": true
+   },
+   "progressRmse": 0.06354040179326721
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.21,
+    "y1": -0.35,
+    "x2": 0,
+    "y2": 1.21
+   },
+   "progressRmse": 0.037388479772237145
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.21,
+    "y1": -0.35,
+    "x2": 0,
+    "y2": 1.21
+   },
+   "progressRmse": 0.037388479772237145
+  },
+  "nearestNamedEasing": {
+   "name": "ease-out-cubic",
+   "progressRmse": 0.10043295561393323
+  }
+ },
+ {
+  "beatId": 62,
+  "scene": "01-video",
+  "startFrame": 936,
+  "endFrame": 942,
+  "durationFrames": 7,
+  "durationMs": 233.333,
+  "channel": "translateX",
+  "travel": 13.76,
+  "unit": "px",
+  "region": [
+   888,
+   428,
+   244,
+   100
+  ],
+  "signalQuality": 0.7028,
+  "measuredOvershoot": 0,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.45,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.43758108659415523
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.85,
+    "y1": 0.07,
+    "x2": 0.01,
+    "y2": -0.6
+   },
+   "progressRmse": 0.026459284410635903
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.85,
+    "y1": 0.07,
+    "x2": 0.01,
+    "y2": -0.6
+   },
+   "progressRmse": 0.026459284410635903
+  },
+  "nearestNamedEasing": {
+   "name": "css-ease-in",
+   "progressRmse": 0.14509377492668493
+  }
+ },
+ {
+  "beatId": 63,
+  "scene": "01-video",
+  "startFrame": 943,
+  "endFrame": 950,
+  "durationFrames": 8,
+  "durationMs": 266.667,
+  "channel": "translateY",
+  "travel": -16.63,
+  "unit": "px",
+  "region": [
+   888,
+   432,
+   243,
+   93
+  ],
+  "signalQuality": 0.9849,
+  "measuredOvershoot": 0,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.45,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.4383970088186328
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.52,
+    "y1": 0.17,
+    "x2": 0.4,
+    "y2": -0.32
+   },
+   "progressRmse": 0.018595017372639504
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.52,
+    "y1": 0.17,
+    "x2": 0.4,
+    "y2": -0.32
+   },
+   "progressRmse": 0.018595017372639504
+  },
+  "nearestNamedEasing": {
+   "name": "css-ease-in",
+   "progressRmse": 0.1338019616526278
+  }
+ },
+ {
+  "beatId": 65,
+  "scene": "01-video",
+  "startFrame": 956,
+  "endFrame": 989,
+  "durationFrames": 34,
+  "durationMs": 1133.333,
+  "channel": "translateY",
+  "travel": -49.39,
+  "unit": "px",
+  "region": [
+   94,
+   96,
+   1169,
+   524
+  ],
+  "signalQuality": 0.6574,
+  "measuredOvershoot": 0,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.55,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.024867076850783484
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.58,
+    "y1": 0.77,
+    "x2": 0.36,
+    "y2": 0.98
+   },
+   "progressRmse": 0.012984109289189819
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.58,
+    "y1": 0.77,
+    "x2": 0.36,
+    "y2": 0.98
+   },
+   "progressRmse": 0.012984109289189819
+  },
+  "nearestNamedEasing": {
+   "name": "css-ease",
+   "progressRmse": 0.02663692638366569
+  }
+ },
+ {
+  "beatId": 68,
+  "scene": "01-video",
+  "startFrame": 1005,
+  "endFrame": 1017,
+  "durationFrames": 13,
+  "durationMs": 433.333,
+  "channel": "translateY",
+  "travel": -69.47,
+  "unit": "px",
+  "region": [
+   84,
+   88,
+   1178,
+   532
+  ],
+  "signalQuality": 0.7319,
+  "measuredOvershoot": 0.008,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.45,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.11748141021990927
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.92,
+    "y1": 0.63,
+    "x2": 0,
+    "y2": 0.83
+   },
+   "progressRmse": 0.032822893407560366
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.92,
+    "y1": 0.63,
+    "x2": 0,
+    "y2": 0.83
+   },
+   "progressRmse": 0.032822893407560366
+  },
+  "nearestNamedEasing": {
+   "name": "css-ease-out",
+   "progressRmse": 0.11283863397195154
+  }
+ },
+ {
+  "beatId": 69,
+  "scene": "01-video",
+  "startFrame": 1018,
+  "endFrame": 1026,
+  "durationFrames": 9,
+  "durationMs": 300,
+  "channel": "translateX",
+  "travel": 223.4,
+  "unit": "px",
+  "region": [
+   85,
+   200,
+   731,
+   356
+  ],
+  "signalQuality": 0.9934,
+  "measuredOvershoot": 0,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.45,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.3476156291891081
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.94,
+    "y1": -0.08,
+    "x2": 0.41,
+    "y2": 1.03
+   },
+   "progressRmse": 0.028573767353020293
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.94,
+    "y1": -0.08,
+    "x2": 0.41,
+    "y2": 1.03
+   },
+   "progressRmse": 0.028573767353020293
+  },
+  "nearestNamedEasing": {
+   "name": "css-ease-in",
+   "progressRmse": 0.13257305446772008
+  }
+ },
+ {
+  "beatId": 70,
+  "scene": "01-video",
+  "startFrame": 1027,
+  "endFrame": 1058,
+  "durationFrames": 32,
+  "durationMs": 1066.667,
+  "channel": "translateY",
+  "travel": -229.14,
+  "unit": "px",
+  "region": [
+   86,
+   186,
+   1072,
+   386
+  ],
+  "signalQuality": 0.9694,
+  "measuredOvershoot": 0,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.45,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.34263646685875493
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.77,
+    "y1": 0.98,
+    "x2": 0.45,
+    "y2": -0.44
+   },
+   "progressRmse": 0.06515922617943368
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.77,
+    "y1": 0.98,
+    "x2": 0.45,
+    "y2": -0.44
+   },
+   "progressRmse": 0.06515922617943368
+  },
+  "nearestNamedEasing": {
+   "name": "css-ease-in",
+   "progressRmse": 0.1544348129302139
+  }
+ },
+ {
+  "beatId": 71,
+  "scene": "01-video",
+  "startFrame": 1059,
+  "endFrame": 1075,
+  "durationFrames": 17,
+  "durationMs": 566.667,
+  "channel": "translateX",
+  "travel": 28.07,
+  "unit": "px",
+  "region": [
+   866,
+   186,
+   289,
+   316
+  ],
+  "signalQuality": 0.9688,
+  "measuredOvershoot": 0,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.45,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.35017171798388974
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.76,
+    "y1": 0,
+    "x2": 0.19,
+    "y2": 0.14
+   },
+   "progressRmse": 0.02855310658153525
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.76,
+    "y1": 0,
+    "x2": 0.19,
+    "y2": 0.14
+   },
+   "progressRmse": 0.02855310658153525
+  },
+  "nearestNamedEasing": {
+   "name": "css-ease-in",
+   "progressRmse": 0.08500052619846843
+  }
+ },
+ {
+  "beatId": 77,
+  "scene": "01-video",
+  "startFrame": 1100,
+  "endFrame": 1105,
+  "durationFrames": 6,
+  "durationMs": 200,
+  "channel": "translateX",
+  "travel": -141.39,
+  "unit": "px",
+  "region": [
+   91,
+   68,
+   1013,
+   574
+  ],
+  "signalQuality": 0.9934,
+  "measuredOvershoot": 0,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.45,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.2902970192447344
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.33,
+    "y1": -0.25,
+    "x2": 0.81,
+    "y2": 1.01
+   },
+   "progressRmse": 0.004943003700148321
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.33,
+    "y1": -0.25,
+    "x2": 0.81,
+    "y2": 1.01
+   },
+   "progressRmse": 0.004943003700148321
+  },
+  "nearestNamedEasing": {
+   "name": "css-ease-in",
+   "progressRmse": 0.05325177847899394
+  }
+ },
+ {
+  "beatId": 78,
+  "scene": "01-video",
+  "startFrame": 1106,
+  "endFrame": 1125,
+  "durationFrames": 20,
+  "durationMs": 666.667,
+  "channel": "progress",
+  "travel": 1,
+  "unit": "progress",
+  "region": [
+   90,
+   72,
+   950,
+   572
+  ],
+  "signalQuality": 0.5,
+  "measuredOvershoot": 0,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 19.2,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.03729633978523267
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.22,
+    "y1": 0,
+    "x2": 0,
+    "y2": 0.86
+   },
+   "progressRmse": 0.01809236369522798
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.22,
+    "y1": 0,
+    "x2": 0,
+    "y2": 0.86
+   },
+   "progressRmse": 0.01809236369522798
+  },
+  "nearestNamedEasing": {
+   "name": "css-ease",
+   "progressRmse": 0.0630403230813486
+  }
+ },
+ {
+  "beatId": 79,
+  "scene": "01-video",
+  "startFrame": 1126,
+  "endFrame": 1137,
+  "durationFrames": 12,
+  "durationMs": 400,
+  "channel": "translateX",
+  "travel": 89.05,
+  "unit": "px",
+  "region": [
+   86,
+   16,
+   1194,
+   704
+  ],
+  "signalQuality": 0.7338,
+  "measuredOvershoot": 0,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.45,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.5533685834901275
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 1,
+    "y1": 0.48,
+    "x2": 0.79,
+    "y2": -0.51
+   },
+   "progressRmse": 0.06468908474936517
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 1,
+    "y1": 0.48,
+    "x2": 0.79,
+    "y2": -0.51
+   },
+   "progressRmse": 0.06468908474936517
+  },
+  "nearestNamedEasing": {
+   "name": "css-ease-in",
+   "progressRmse": 0.2991107087605617
+  }
+ },
+ {
+  "beatId": 80,
+  "scene": "01-video",
+  "startFrame": 1138,
+  "endFrame": 1155,
+  "durationFrames": 18,
+  "durationMs": 600,
+  "channel": "scale",
+  "travel": 57.56,
+  "unit": "pct",
+  "region": [
+   92,
+   16,
+   1149,
+   700
+  ],
+  "signalQuality": 0.994,
+  "measuredOvershoot": 0,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.45,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.0764026471175679
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.05,
+    "y1": -0.35,
+    "x2": 0,
+    "y2": 0.6
+   },
+   "progressRmse": 0.050969839224346225
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.05,
+    "y1": -0.35,
+    "x2": 0,
+    "y2": 0.6
+   },
+   "progressRmse": 0.050969839224346225
+  },
+  "nearestNamedEasing": {
+   "name": "css-ease-out",
+   "progressRmse": 0.0522379443704227
+  }
+ },
+ {
+  "beatId": 81,
+  "scene": "01-video",
+  "startFrame": 1156,
+  "endFrame": 1196,
+  "durationFrames": 41,
+  "durationMs": 1366.667,
+  "channel": "progress",
+  "travel": 1,
+  "unit": "progress",
+  "region": [
+   93,
+   4,
+   1135,
+   716
+  ],
+  "signalQuality": 0.5,
+  "measuredOvershoot": 0,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.45,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.06059659041012981
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.47,
+    "y1": 0.17,
+    "x2": 0,
+    "y2": 0.76
+   },
+   "progressRmse": 0.028735689462053394
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.47,
+    "y1": 0.17,
+    "x2": 0,
+    "y2": 0.76
+   },
+   "progressRmse": 0.028735689462053394
+  },
+  "nearestNamedEasing": {
+   "name": "css-ease",
+   "progressRmse": 0.06784583339761836
+  }
+ },
+ {
+  "beatId": 82,
+  "scene": "01-video",
+  "startFrame": 1197,
+  "endFrame": 1252,
+  "durationFrames": 56,
+  "durationMs": 1866.667,
+  "channel": "progress",
+  "travel": 1,
+  "unit": "progress",
+  "region": [
+   92,
+   2,
+   1095,
+   591
+  ],
+  "signalQuality": 0.5,
+  "measuredOvershoot": 0,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.45,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.2749882848212427
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.86,
+    "y1": 0.8,
+    "x2": 0.2,
+    "y2": -0.2
+   },
+   "progressRmse": 0.01886954072429367
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.86,
+    "y1": 0.8,
+    "x2": 0.2,
+    "y2": -0.2
+   },
+   "progressRmse": 0.01886954072429367
+  },
+  "nearestNamedEasing": {
+   "name": "css-ease-in",
+   "progressRmse": 0.07335799959300014
+  }
+ },
+ {
+  "beatId": 83,
+  "scene": "01-video",
+  "startFrame": 1253,
+  "endFrame": 1273,
+  "durationFrames": 21,
+  "durationMs": 700,
+  "channel": "translateX",
+  "travel": -8.57,
+  "unit": "px",
+  "region": [
+   424,
+   165,
+   432,
+   525
+  ],
+  "signalQuality": 0.8563,
+  "measuredOvershoot": 0.0666,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.45,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.2382150910433398
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 1,
+    "y1": 0.18,
+    "x2": 0.13,
+    "y2": 1.4
+   },
+   "progressRmse": 0.05725013172543131
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 1,
+    "y1": 0.18,
+    "x2": 0.13,
+    "y2": 1.4
+   },
+   "progressRmse": 0.05725013172543131
+  },
+  "nearestNamedEasing": {
+   "name": "ease-in-out-quint",
+   "progressRmse": 0.11379703079544295
+  }
+ },
+ {
+  "beatId": 84,
+  "scene": "01-video",
+  "startFrame": 1274,
+  "endFrame": 1293,
+  "durationFrames": 20,
+  "durationMs": 666.667,
+  "channel": "progress",
+  "travel": 1,
+  "unit": "progress",
+  "region": [
+   424,
+   176,
+   336,
+   513
+  ],
+  "signalQuality": 0.5,
+  "measuredOvershoot": 0,
+  "springFit": {
+   "easing": {
+    "kind": "spring",
+    "damping": 17.45,
+    "stiffness": 100,
+    "mass": 1,
+    "overshootClamping": false
+   },
+   "progressRmse": 0.18026920784909645
+  },
+  "bezierFit": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.36,
+    "y1": -0.06,
+    "x2": 0,
+    "y2": 0.22
+   },
+   "progressRmse": 0.02742740860645233
+  },
+  "best": {
+   "easing": {
+    "kind": "bezier",
+    "x1": 0.36,
+    "y1": -0.06,
+    "x2": 0,
+    "y2": 0.22
+   },
+   "progressRmse": 0.02742740860645233
+  },
+  "nearestNamedEasing": {
+   "name": "linear",
+   "progressRmse": 0.06556447933519374
+  }
+ }
+]
