@@ -238,7 +238,9 @@ square, register a 1080x1080 composition the same way.
 
 ## 9. Thumbnails
 
-`THUMBNAILS` entries render `Thumbnail`: brand and a two-line title on the left, one of the video's
+`THUMBNAILS` entries render `Thumbnail` in the video's look (Root passes the look of the video named
+`<Title>Thumbnail`): dark looks sit on the glow; light looks on their own ground, in their ink and
+accent (showcase with the gradient). Brand and a two-line title on the left, one of the video's
 scenes on the right, held at a chosen frame (pick a resolved, telling moment: a chart fully drawn, a
 "Settled" badge, a highlighted price). `render-all.sh` renders 1920 PNG and 1280 JPG versions and
 embeds the JPG as the MP4's cover art. Each 16:9 video with a thumbnail also **opens on it**

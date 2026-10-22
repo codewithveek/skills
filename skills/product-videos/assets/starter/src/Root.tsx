@@ -34,9 +34,13 @@ const VIDEOS: [VideoSpec, Record<string, () => React.JSX.Element>, VoiceSpec, st
 const VERTICAL = new Set(["example"]);
 
 // Thumbnails: [composition id (<Title>Thumbnail), eyebrow, [line 1, line 2], scene, frame of that scene].
+// Each is drawn in its video's look (light looks on their own ground, dark looks on the glow).
 const THUMBNAILS: [string, string, [string, string], () => React.JSX.Element, number][] = [
   ["ExampleThumbnail", "Introducing", ["Set up in", "one minute"], EXAMPLE_SCENES.demo, 170],
+  ["ShowcaseThumbnail", "Introducing", ["Builds that", "ship themselves"], SHOWCASE_SCENES.track, 140],
 ];
+/** The look of the video a thumbnail belongs to (<Title>Thumbnail → that video's timeline). */
+const lookOf = (thumbnailId: string) => VIDEOS.find(([spec]) => `${spec.title}Thumbnail` === thumbnailId)?.[0].look ?? "studio";
 
 /** A scene on its own, in its video's look (for stills and previews). */
 const inLook = (spec: VideoSpec, Scene: () => React.JSX.Element) => {
@@ -48,8 +52,8 @@ const inLook = (spec: VideoSpec, Scene: () => React.JSX.Element) => {
   return S;
 };
 
-const thumbnail = ([, eyebrow, title, Scene, at]: (typeof THUMBNAILS)[number]) => {
-  const T = () => <Thumbnail eyebrow={eyebrow} title={title} Scene={Scene} at={at} />;
+const thumbnail = ([id, eyebrow, title, Scene, at]: (typeof THUMBNAILS)[number]) => {
+  const T = () => <Thumbnail eyebrow={eyebrow} title={title} Scene={Scene} at={at} look={lookOf(id)} />;
   return T;
 };
 // A video with a thumbnail opens on it (withPoster), so feeds that preview the first frame show it.
