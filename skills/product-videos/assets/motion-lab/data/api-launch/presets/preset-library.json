@@ -1,0 +1,173 @@
+[
+ {
+  "id": "bezier-custom-01",
+  "channel": "translateX",
+  "easing": {
+   "kind": "bezier",
+   "x1": 0.53,
+   "y1": 0.05,
+   "x2": 0,
+   "y2": 1.08
+  },
+  "medianDurationMs": 350,
+  "medianTravel": 154.78,
+  "memberBeatIds": [
+   7,
+   8
+  ],
+  "meanProgressRmse": 0.0192
+ },
+ {
+  "id": "bezier-custom-02",
+  "channel": "translateX",
+  "easing": {
+   "kind": "bezier",
+   "x1": 0.72,
+   "y1": 0.18,
+   "x2": 0,
+   "y2": 0.83
+  },
+  "medianDurationMs": 733,
+  "medianTravel": -261.72,
+  "memberBeatIds": [
+   22
+  ],
+  "meanProgressRmse": 0.0112
+ },
+ {
+  "id": "bezier-custom-03",
+  "channel": "scale",
+  "easing": {
+   "kind": "bezier",
+   "x1": 1,
+   "y1": 0.37,
+   "x2": 0.16,
+   "y2": -0.05
+  },
+  "medianDurationMs": 200,
+  "medianTravel": -12.39,
+  "memberBeatIds": [
+   11
+  ],
+  "meanProgressRmse": 0.0246
+ },
+ {
+  "id": "bezier-custom-04",
+  "channel": "translateY",
+  "easing": {
+   "kind": "bezier",
+   "x1": 1,
+   "y1": 1.12,
+   "x2": 0.72,
+   "y2": 1.02
+  },
+  "medianDurationMs": 333,
+  "medianTravel": 280.35,
+  "memberBeatIds": [
+   15
+  ],
+  "meanProgressRmse": 0.0347
+ },
+ {
+  "id": "linear-01",
+  "channel": "translateY",
+  "easing": {
+   "kind": "bezier",
+   "x1": 1,
+   "y1": 0.96,
+   "x2": 0.2,
+   "y2": 0.2
+  },
+  "medianDurationMs": 3433,
+  "medianTravel": -863.16,
+  "memberBeatIds": [
+   42
+  ],
+  "meanProgressRmse": 0.0161
+ },
+ {
+  "id": "bezier-custom-05",
+  "channel": "translateY",
+  "easing": {
+   "kind": "bezier",
+   "x1": 0.13,
+   "y1": 0.2,
+   "x2": 1,
+   "y2": 0.4
+  },
+  "medianDurationMs": 333,
+  "medianTravel": -4.98,
+  "memberBeatIds": [
+   10
+  ],
+  "meanProgressRmse": 0.0283
+ },
+ {
+  "id": "bezier-custom-06",
+  "channel": "translateY",
+  "easing": {
+   "kind": "bezier",
+   "x1": 0.65,
+   "y1": -0.03,
+   "x2": 0,
+   "y2": 1.07
+  },
+  "medianDurationMs": 533,
+  "medianTravel": -97.88,
+  "memberBeatIds": [
+   40
+  ],
+  "meanProgressRmse": 0.0228
+ },
+ {
+  "id": "bezier-custom-07",
+  "channel": "translateY",
+  "easing": {
+   "kind": "bezier",
+   "x1": 1,
+   "y1": -0.32,
+   "x2": 0,
+   "y2": 1.35
+  },
+  "medianDurationMs": 233,
+  "medianTravel": 50.48,
+  "memberBeatIds": [
+   14
+  ],
+  "meanProgressRmse": 0.0346
+ },
+ {
+  "id": "bezier-custom-08",
+  "channel": "translateY",
+  "easing": {
+   "kind": "bezier",
+   "x1": 1,
+   "y1": 0,
+   "x2": 0.41,
+   "y2": 1.05
+  },
+  "medianDurationMs": 1167,
+  "medianTravel": -148.26,
+  "memberBeatIds": [
+   21
+  ],
+  "meanProgressRmse": 0.0599
+ },
+ {
+  "id": "bezier-custom-09",
+  "channel": "translateY",
+  "easing": {
+   "kind": "bezier",
+   "x1": 0.8,
+   "y1": 1.01,
+   "x2": 0.23,
+   "y2": 1.17
+  },
+  "medianDurationMs": 800,
+  "medianTravel": 361.99,
+  "memberBeatIds": [
+   16
+  ],
+  "meanProgressRmse": 0.0458
+ }
+]

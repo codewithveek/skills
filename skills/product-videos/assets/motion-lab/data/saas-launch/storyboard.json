@@ -1,0 +1,118 @@
+[
+ {
+  "start_s": 0.0,
+  "label": "hook-typewriter-broken"
+ },
+ {
+  "start_s": 3.0,
+  "label": "manual-workflows-chips"
+ },
+ {
+  "start_s": 4.0,
+  "label": "separated-apps-orbit"
+ },
+ {
+  "start_s": 7.0,
+  "label": "but-bracket"
+ },
+ {
+  "start_s": 8.0,
+  "label": "one-app-bracket"
+ },
+ {
+  "start_s": 9.0,
+  "label": "meet-brand-logo"
+ },
+ {
+  "start_s": 11.0,
+  "label": "tagline-humanized-ai"
+ },
+ {
+  "start_s": 14.0,
+  "label": "gradient-wipe"
+ },
+ {
+  "start_s": 15.0,
+  "label": "auto-apply-live-agent"
+ },
+ {
+  "start_s": 29.0,
+  "label": "application-card"
+ },
+ {
+  "start_s": 33.0,
+  "label": "track-applications"
+ },
+ {
+  "start_s": 36.0,
+  "label": "track-tasks"
+ },
+ {
+  "start_s": 38.0,
+  "label": "discover-jobs-one-feed"
+ },
+ {
+  "start_s": 41.0,
+  "label": "job-feed-scroll"
+ },
+ {
+  "start_s": 44.0,
+  "label": "ai-autofill-headline"
+ },
+ {
+  "start_s": 46.0,
+  "label": "autofill-lever-demo"
+ },
+ {
+  "start_s": 53.0,
+  "label": "resume-every-job-headline"
+ },
+ {
+  "start_s": 55.0,
+  "label": "fortune-500-resume-wall"
+ },
+ {
+  "start_s": 58.0,
+  "label": "resume-builder-demo"
+ },
+ {
+  "start_s": 70.0,
+  "label": "tailor-on-job-post-headline"
+ },
+ {
+  "start_s": 72.0,
+  "label": "tailor-linkedin-demo"
+ },
+ {
+  "start_s": 80.0,
+  "label": "find-leads-headline"
+ },
+ {
+  "start_s": 82.0,
+  "label": "find-leads-modal"
+ },
+ {
+  "start_s": 88.0,
+  "label": "message-sounds-like-you"
+ },
+ {
+  "start_s": 90.0,
+  "label": "get-noticed-linkedin"
+ },
+ {
+  "start_s": 94.0,
+  "label": "interview-detection-headline"
+ },
+ {
+  "start_s": 99.0,
+  "label": "interview-calendar-demo"
+ },
+ {
+  "start_s": 103.0,
+  "label": "app-icon-shatter"
+ },
+ {
+  "start_s": 104.0,
+  "label": "end-card"
+ }
+]

@@ -13,16 +13,20 @@ import EDITORIAL_VOICE from "./videos/editorial/voice.json";
 import { SCENES as GRAPHIC_SCENES } from "./videos/graphic/scenes";
 import { VIDEO as GRAPHIC } from "./videos/graphic/timeline";
 import GRAPHIC_VOICE from "./videos/graphic/voice.json";
+import { SCENES as SHOWCASE_SCENES } from "./videos/showcase/scenes";
+import { VIDEO as SHOWCASE } from "./videos/showcase/timeline";
+import SHOWCASE_VOICE from "./videos/showcase/voice.json";
 
 type Level = { alone: number; underVoice: number; ramp: number };
 // One entry per video: [cut list, scenes, voice manifest, music file, music levels].
 // Music: "music/bed.wav" (calm, for tutorials) or "music/upbeat.wav" (launches). Levels default to bed levels.
-// The visual style is the timeline's `look` (studio, editorial, graphic, cinematic): references/visual-styles.md.
+// The visual style is the timeline's `look` (studio, editorial, graphic, cinematic, showcase): references/visual-styles.md.
 // Music-led videos (no narration) play the music at its "alone" level throughout.
 const VIDEOS: [VideoSpec, Record<string, () => React.JSX.Element>, VoiceSpec, string?, Level?][] = [
   [EXAMPLE, EXAMPLE_SCENES, EXAMPLE_VOICE, "music/upbeat.wav", { alone: 0.5, underVoice: 0.16, ramp: 8 }],
   [EDITORIAL, EDITORIAL_SCENES, EDITORIAL_VOICE, "music/bed.wav", { alone: 0.6, underVoice: 0.16, ramp: 8 }],
   [GRAPHIC, GRAPHIC_SCENES, GRAPHIC_VOICE, "music/upbeat.wav", { alone: 0.6, underVoice: 0.16, ramp: 8 }],
+  [SHOWCASE, SHOWCASE_SCENES, SHOWCASE_VOICE, "music/upbeat.wav", { alone: 0.6, underVoice: 0.16, ramp: 8 }],
 ];
 
 // Videos that also get a 9:16 cutdown (<Title>Vertical, 1080x1920), reusing the same scenes and voice,
@@ -30,9 +34,13 @@ const VIDEOS: [VideoSpec, Record<string, () => React.JSX.Element>, VoiceSpec, st
 const VERTICAL = new Set(["example"]);
 
 // Thumbnails: [composition id (<Title>Thumbnail), eyebrow, [line 1, line 2], scene, frame of that scene].
+// Each is drawn in its video's look (light looks on their own ground, dark looks on the glow).
 const THUMBNAILS: [string, string, [string, string], () => React.JSX.Element, number][] = [
   ["ExampleThumbnail", "Introducing", ["Set up in", "one minute"], EXAMPLE_SCENES.demo, 170],
+  ["ShowcaseThumbnail", "Introducing", ["Builds that", "ship themselves"], SHOWCASE_SCENES.track, 140],
 ];
+/** The look of the video a thumbnail belongs to (<Title>Thumbnail → that video's timeline). */
+const lookOf = (thumbnailId: string) => VIDEOS.find(([spec]) => `${spec.title}Thumbnail` === thumbnailId)?.[0].look ?? "studio";
 
 /** A scene on its own, in its video's look (for stills and previews). */
 const inLook = (spec: VideoSpec, Scene: () => React.JSX.Element) => {
@@ -44,8 +52,8 @@ const inLook = (spec: VideoSpec, Scene: () => React.JSX.Element) => {
   return S;
 };
 
-const thumbnail = ([, eyebrow, title, Scene, at]: (typeof THUMBNAILS)[number]) => {
-  const T = () => <Thumbnail eyebrow={eyebrow} title={title} Scene={Scene} at={at} />;
+const thumbnail = ([id, eyebrow, title, Scene, at]: (typeof THUMBNAILS)[number]) => {
+  const T = () => <Thumbnail eyebrow={eyebrow} title={title} Scene={Scene} at={at} look={lookOf(id)} />;
   return T;
 };
 // A video with a thumbnail opens on it (withPoster), so feeds that preview the first frame show it.

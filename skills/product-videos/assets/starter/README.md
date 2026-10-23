@@ -2,18 +2,22 @@
 
 Remotion project for product videos: launches, tutorials, explainers and vertical cutdowns, with
 rebuilt app screens, a camera and cursor that aim at named elements, local voiceover, generated
-music, click and whoosh effects, captions, loudness normalisation and thumbnails. Four visual
-styles (`look` in a video's timeline): `studio` (the `example` video), `editorial` and `graphic`
-(their own example videos) and `cinematic`.
+music and sound effects, captions, loudness normalisation and thumbnails. Five visual
+styles (`look` in a video's timeline): `studio` (the `example` video), `editorial`, `graphic` and
+`showcase` (their own example videos) and `cinematic`. Motion can be timed with presets measured
+from four real launch videos (`src/kit/measured`). Fonts (Inter, EB Garamond, Instrument Serif,
+JetBrains Mono) are bundled from npm, so renders need no network.
 
 ```bash
 npm install
 npm i -D kokoro-js@1        # once, for voiceover (large: the ONNX runtime)
-npm run music               # public/music/bed.wav and upbeat.wav
+npm run music               # public/music/upbeat.wav (128 BPM) and bed.wav (100 BPM), -13 LUFS
+npm run sfx                 # public/sfx/mouse-click.wav, whoosh.wav, pop.wav
 npm run voice               # narration.ts -> public/vo/ + voice.json (cached per line)
 npm run studio              # preview and scrub in the browser
 ./stills.sh example-demo:60,160 ExampleVertical:290   # check single frames
 ./render-all.sh             # every video into out/: mp4, loudness -16 LUFS, captions, thumbnails as cover
+                            # (REMOTION_BROWSER_EXECUTABLE=… to use an installed Chrome; RENDER_CONCURRENCY=… threads)
 node scripts/audio-report.mjs out/example.mp4          # levels, spectrum and loudness timeline
 ```
 
@@ -26,8 +30,10 @@ node scripts/audio-report.mjs out/example.mp4          # levels, spectrum and lo
 | `src/videos/<id>/scenes.tsx` | One component per scene |
 | `src/Root.tsx` | Which videos, music, vertical cutdowns and thumbnails exist |
 | `src/kit/` | Window and camera (`AppStage`), anchors, cursor, cards, captions, thumbnails, the app frame and controls |
-| `src/kit/looks.ts`, `transitions.tsx`, `Motion.tsx`, `Backdrops.tsx` | The four looks, eight scene transitions, motion blocks (odometer, tilt, flip, stamp, cell grid, word slot, orbit, swirl, dot matrix …) and each look's ground |
-| `scripts/` | voice, music, captions, audio report |
+| `src/kit/looks.ts`, `transitions.tsx`, `Motion.tsx`, `showcase.tsx`, `Backdrops.tsx` | The five looks, ten scene transitions, motion blocks (odometer, tilt, flip, stamp, cell grid, word slot, orbit, swirl, dot matrix, drop words, word swap, type-and-select, lift …) and each look's ground |
+| `src/kit/fonts.ts` | The bundled typefaces; add a product's own font here |
+| `src/kit/measured/` | Motion measured frame by frame from real launch videos: `MOTION` presets by role, `measured()`, `easingOf()`, four libraries |
+| `scripts/` | voice, music, sound effects (`audio/`: the synthesiser, instruments, tracks, effects, loudness), captions, audio report |
 | `reference/capture.mjs` | Read-only screenshots of the real product, the source of truth for rebuilt screens |
 
 Remotion is pinned to 4.0.530: 4.0.531 shipped an empty `@remotion/cli/dist/render-queue/queue.js`

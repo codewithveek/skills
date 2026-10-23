@@ -5,6 +5,7 @@ import { AbsoluteFill, Audio, interpolate, Sequence, staticFile } from "remotion
 import { BurnedCaptions, captionsFrom } from "./BurnedCaptions";
 import { LookContext, LOOKS, type LookName, type TransitionName } from "./looks";
 import { THUMB_FRAME } from "./Thumbnail";
+import { Sfx, SFX_VOLUME } from "./sfx";
 import { presentationFor } from "./transitions";
 
 export type Cue = { from: number; to: number; text: string };
@@ -38,7 +39,6 @@ export const sceneStarts = (frames: number[], crossfade: number) => {
   });
 };
 
-const WHOOSH = 0.2;
 const MUSIC = { alone: 0.3, underVoice: 0.11, ramp: 8 };
 
 /**
@@ -52,13 +52,11 @@ export const musicVolume = (frame: number, total: number, spans: [number, number
   return (level.alone + (level.underVoice - level.alone) * duck) * fades;
 };
 
-/** A soft whoosh as each crossfade begins. */
-export const Whooshes = ({ at, volume = WHOOSH }: { at: number[]; volume?: number }) => (
+/** A whoosh on each transition: it starts 3 frames before the crossfade and peaks mid-transition. */
+export const Whooshes = ({ at, volume = SFX_VOLUME.whoosh }: { at: number[]; volume?: number }) => (
   <>
     {at.map((f) => (
-      <Sequence key={f} from={Math.max(0, f - 3)} durationInFrames={20} layout="none">
-        <Audio src={staticFile("sfx/whoosh.wav")} volume={volume} />
-      </Sequence>
+      <Sfx key={f} name="whoosh" at={f - 3} volume={volume} />
     ))}
   </>
 );

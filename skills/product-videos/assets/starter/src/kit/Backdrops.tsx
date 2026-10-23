@@ -57,11 +57,30 @@ export const Slab = ({ watermark = false, dots = false }: { watermark?: boolean;
   );
 };
 
+/**
+ * White with two soft blooms of the brand gradient drifting in the corners: the showcase look's
+ * ground. Quiet enough for live UI demos to sit on; `strength` 0 gives plain white.
+ */
+export const Glow = ({ strength = 1 }: { strength?: number }) => {
+  const look = useLook();
+  const frame = useCurrentFrame();
+  const [from, to] = look.gradient ?? [look.accent, look.accent];
+  const drift = Math.sin(frame / 90) * 3;
+  const alpha = (hex: string, amount: number) => `${hex}${Math.round(amount * strength * 255).toString(16).padStart(2, "0")}`;
+  return (
+    <AbsoluteFill style={{ background: look.canvas, overflow: "hidden" }}>
+      <AbsoluteFill style={{ background: `radial-gradient(ellipse 55% 50% at ${8 + drift}% 0%, ${alpha(from, 0.16)}, transparent 70%)` }} />
+      <AbsoluteFill style={{ background: `radial-gradient(ellipse 55% 55% at ${94 - drift}% 100%, ${alpha(to, 0.14)}, transparent 70%)` }} />
+    </AbsoluteFill>
+  );
+};
+
 /** The current look's default ground. */
 export const Stage = () => {
   const look = useLook();
   if (look.name === "editorial") return <Paper />;
   if (look.name === "graphic") return <Blueprint />;
   if (look.name === "cinematic") return <Backdrop glow={0.4} />;
+  if (look.name === "showcase") return <Glow />;
   return <Backdrop />;
 };

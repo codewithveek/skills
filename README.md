@@ -188,12 +188,16 @@ It rebuilds the product's real screens as React components from its code and scr
 - **Tutorials and walkthroughs**: step by step, with the app's real labels and confirmations
 - **Explainers**: diagram-led "how it works" videos
 - **Social cutdowns**: 9:16 versions from the same scenes, with captions burned in
-- **Four visual styles**, each with a recommended default per video type:
+- **Five visual styles**, each with a recommended default per video type:
   - **Studio**: dark stage, the real app in a window, a camera and cursor (tutorials, onboarding)
   - **Editorial**: warm paper, one big rolling number per scene, floating cards, focus pulls, brand-colour circle reveals (launches, feature drops, explainers)
   - **Graphic**: white grid, one loud brand colour, pixel motifs, colour slabs, logo swirls and orbits (API and infrastructure products)
   - **Cinematic**: near-black, soft glow, large light type, slow (premium brands, teasers)
-- Plus voiceover (local Kokoro, or ElevenLabs), music, click and whoosh effects, `.vtt` captions, loudness at -16 LUFS, and thumbnails embedded as cover art
+  - **Showcase**: white, gradient accent words that drop in along curves, the product working live in a browser, cards lifting out (AI, agent and automation products)
+- **Motion measured from real launches**: every frame of four professional launch videos analysed with optical flow, each animation fitted to Remotion's own easings and verified by re-rendering. The kit ships the curves as presets by role (`screenPan`, `settle`, `textRise` …), four measured libraries, and the tooling to measure your own reference video and score a render against it
+- **Modern type, bundled**: Inter Display for headlines, EB Garamond with italic accents for editorial, Instrument Serif italic accents for cinematic, all from npm, so renders work offline
+- **Music and sound that hit**: a 128 BPM pop-house track and a calm 100 BPM beat, mixed to match measured launch tracks and normalised to −13 LUFS, plus a crisp click, a swept whoosh and a pop, all synthesised (no licence needed)
+- Plus voiceover (local Kokoro, or ElevenLabs), `.vtt` captions, loudness at -16 LUFS, and thumbnails embedded as cover art
 
 ### How it behaves
 
@@ -203,6 +207,7 @@ It rebuilds the product's real screens as React components from its code and scr
 - **Narration drives timing.** Each voice line is pinned to the frame of its action, and scenes grow to fit.
 - **Verifies what it can't watch.** Frames are checked as stills, and sound is checked by measuring it. It tells you what's left to judge by eye and ear.
 - **Ships a starter kit.** A tested Remotion project with the camera and anchor system, cursor, cards, thumbnails, vertical layout, and scripts for voice, music, captions, loudness and an audio report.
+- **Matches a reference's motion, measurably.** Give it a reference video and it can measure how it moves, reuse those curves, and score its own render against the reference out of 100.
 
 ### Install
 
@@ -237,6 +242,8 @@ turn the onboarding flow into a 60-second tutorial with a voiceover
 make a 9:16 version of the launch video for Reels
 make a 30-second launch video for our API in the graphic style
 make a LinkedIn launch video like this one (attach a reference video)
+make a showcase-style launch video for our AI agent
+measure how this reference video moves and use that timing
 add music and click sounds to the videos
 write the VTT captions and a thumbnail for each video
 ```
@@ -250,14 +257,16 @@ skills/product-videos/
 ├── SKILL.md                    # Intake questions, the workflow, the rules, delivery
 ├── references/
 │   ├── styles.md               # Launch, tutorial, explainer, teaser, cutdown… structures and pacing
-│   ├── visual-styles.md        # The four looks, which to recommend for which video, and why
+│   ├── visual-styles.md        # The five looks, which to recommend for which video, and why
+│   ├── motion-data.md          # Motion measured from real launches: the numbers, presets by role, measuring a reference
 │   ├── scriptwriting.md        # Word budget, headlines, narration, claim audit, pronunciation
 │   ├── audio.md                # Voice, music, effects, levels, licences, ElevenLabs MCP
 │   ├── accuracy.md             # What may be shown, how to verify it
 │   ├── kit.md                  # The starter project: looks, transitions, motion blocks, camera, anchors, scenes
 │   ├── social.md               # Platform shapes, safe areas, captions, thumbnails
 │   └── pitfalls.md             # Bugs met along the way, and their fixes
-└── assets/starter/             # A working Remotion project with Studio, Editorial and Graphic example videos
+├── assets/starter/             # A working Remotion project with Studio, Editorial, Graphic and Showcase example videos
+└── assets/motion-lab/          # Measure a reference video, fit Remotion presets, score renders against it
 ```
 
 ---

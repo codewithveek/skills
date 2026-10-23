@@ -4,6 +4,7 @@
 #   ./render-all.sh Example         just these compositions
 # Output names are kebab-case: ExampleVertical -> out/example-vertical.mp4
 # If the browser lacks system libraries (WSL without sudo), set CHROMIUM_LIBS to the extracted lib dir.
+# Renders use up to 4 threads, never more than the machine's cores; override with RENDER_CONCURRENCY.
 set -e
 cd "$(dirname "$0")"
 [ -n "$CHROMIUM_LIBS" ] && export LD_LIBRARY_PATH="$CHROMIUM_LIBS"
@@ -12,12 +13,20 @@ comps="$*"
 if [ -z "$comps" ]; then
   comps=$(npx remotion compositions build --quiet 2>/dev/null | tr ' ' '\n' | grep -v -- '-' | grep -v 'Thumbnail$' | tr '\n' ' ')
 fi
+cores=$( (nproc || sysctl -n hw.ncpu) 2>/dev/null || echo 2)
+concurrency=${RENDER_CONCURRENCY:-$(( cores < 4 ? cores : 4 ))}
 kebab() { echo "$1" | sed -E 's/([a-z0-9])([A-Z])/\1-\2/g' | tr '[:upper:]' '[:lower:]'; }
 for c in $comps; do
   out="out/$(kebab "$c").mp4"
   mkdir -p out
   echo "rendering $c -> $out"
-  npx remotion render build "$c" "$out" --concurrency=4 >/dev/null 2>&1
+  log="out/$(kebab "$c").render.log"
+  if ! npx remotion render build "$c" "$out" --concurrency="$concurrency" >"$log" 2>&1; then
+    echo "render failed for $c; last lines of $log:"
+    tail -20 "$log"
+    exit 1
+  fi
+  rm -f "$log"
   ./normalise.sh "$out"
   # A <Name>Thumbnail composition (for the base name, so cutdowns share it) becomes the cover art
   base_name="${c%Vertical}"

@@ -1,0 +1,29 @@
+{
+  "name": "motion-lab",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Turn reference-video motion data into verified Remotion presets, and score renders against references.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "fit-presets": "tsx src/presets/cli.ts",
+    "render-check": "tsx src/render-check/render-preset.ts",
+    "test": "tsx --test src/presets/*.test.ts && python3 -m unittest discover -s analysis -p 'test_*.py'"
+  },
+  "dependencies": {
+    "@remotion/bundler": "4.0.537",
+    "@remotion/renderer": "4.0.537",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "remotion": "4.0.537"
+  },
+  "devDependencies": {
+    "@types/node": "22.10.2",
+    "@types/react": "18.3.12",
+    "tsx": "4.19.2",
+    "typescript": "5.7.2"
+  }
+}
